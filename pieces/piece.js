@@ -1,8 +1,8 @@
 class Piece {
-  constructor(type, posX, posY) {
-    this.type = type;
-    this.posX = posX;
-    this.posY = posY;
+  constructor(pos, isWhite, pattern) {
+    this.pos = pos;
+    this.isWhite = isWhite;
+    this.pattern = pattern;
   }
 }
 
