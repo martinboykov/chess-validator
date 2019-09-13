@@ -21,37 +21,58 @@ class Pawn extends Piece {
           ],
         },
       },
+      black: {
+        regular: [
+          ...MOVEMENT_PATTERNS.down.slice(0, 1),
+        ],
+        special: {
+          first: [...MOVEMENT_PATTERNS.down.slice(1, 2)],
+          attack: [
+            ...MOVEMENT_PATTERNS.diag.down_left.slice(0, 1),
+            ...MOVEMENT_PATTERNS.diag.down_right.slice(0, 1),
+          ],
+        },
+      },
     };
   }
   validateMove(deltaPos, isEnemyAttacked, piece) {
+    console.log(deltaPos);
     console.log(isEnemyAttacked);
+    console.log(piece);
     const deltaX = deltaPos[0];
     const deltaY = deltaPos[1];
     const isFirstMove = piece.movementCount === 0;
-    if (piece.isWhite) {
-      if (!isEnemyAttacked && isFirstMove) {
-        const isRegularFound = this.pattern.white.regular.some((pattern) => {
-          return deltaX === pattern[0] && deltaY === pattern[1];
+    if (isFirstMove) {
+      const isFirstMoveFound = piece.isWhite ?
+        this.pattern.white.special.first.some((d) => {
+          return deltaX === d[0] && deltaY === deltaX[1];
+        }) :
+        this.pattern.white.special.first.some((d) => {
+          return deltaX === d[0] && deltaY === d[1];
         });
-        if (isRegularFound) return true;
-        return false;
-      } else if (isEnemyAttacked) {
-        const isAttackMoveFound = this.pattern.white.special.attack.some((pattern) => {
-          return deltaX === pattern[0] && deltaY === pattern[1];
+      if (isFirstMoveFound) return true;
+    }
+    if (!isEnemyAttacked) {
+      const isRegularFound = piece.isWhite ?
+        this.pattern.white.regular.some((d) => {
+          return deltaX === d[0] && deltaY === d[1];
+        }) :
+        this.pattern.black.regular.some((d) => {
+          return deltaX === d[0] && deltaY === d[1];
         });
-        if (isAttackMoveFound) return true;
-        return false;
-      } else if (isFirstMove) {
-        const isFirstMoveFound = this.pattern.white.special.first.some((pattern) => {
-          return deltaX === pattern[0] && deltaY === pattern[1];
+      if (isRegularFound) return true;
+      return false;
+    } else if (isEnemyAttacked) {
+      const isAttackMoveFound = piece.isWhite ?
+        this.pattern.white.special.attack.some((d) => {
+          return deltaX === d[0] && deltaY === d[1];
+        }) :
+        this.pattern.white.special.attack.some((d) => {
+          return deltaX === d[0] && deltaY === d[1];
         });
-        if (isFirstMoveFound) return true;
-        return false;
-      }
+      if (isAttackMoveFound) return true;
 
-
-    } else if (!piece.isWhite) {
-      // ..
+      return false;
     }
   }
 }

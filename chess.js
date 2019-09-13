@@ -15,6 +15,7 @@ class Chess {
     // console.log(board);
 
     // white pawns initiation
+    // -----------------------------------------
     const pawnW1 = new pieces.Pawn('a2', true);
     this.board.pieces[pawnW1.pos] = pawnW1;
     const pawnW2 = new pieces.Pawn('b2', true);
@@ -33,9 +34,11 @@ class Chess {
     this.board.pieces[pawnW8.pos] = pawnW8;
 
     // rest of whites
+    // -----------------------------------------
     // ...
 
-    // white pawns initiation
+    // black pawns initiation
+    // -----------------------------------------
     const pawnB1 = new pieces.Pawn('a7', false);
     this.board.pieces[pawnB1.pos] = pawnB1;
     const pawnB2 = new pieces.Pawn('b7', false);
@@ -55,21 +58,55 @@ class Chess {
     this.board.print();
 
     // rest of blacks
+    // -----------------------------------------
     // ...
 
     console.log('chess initiated');
   }
-  makeMove(start, finish) {
+  makeMove(start, end) {
     const piece = this.board.pieces[start];
-    const delta = this.board.calculateDelta(start, finish);
+    if (piece === 0) {
+      this.gameOver(start, end);
+    }
+
+    const delta = this.board.calculateDelta(end, start);
     const isEnemyAttacked =
-      (this.board.pieces[finish] !== 0 &&
-        this.board.pieces[start].isWhite !== this.board.pieces[finish].isWhite) ?
+      (this.board.pieces[end] !== 0 &&
+        this.board.pieces[start].isWhite !== this.board.pieces[end].isWhite) ?
         true :
         false;
-    piece.validateMove(delta, isEnemyAttacked, piece);
-  }
+    const isValidMove = piece.validateMove(delta, isEnemyAttacked, piece);
+    if (isValidMove) {
+      // default
+      // ---------------------------------------
+      this.board.pieces[end] = piece;
+      this.board.pieces[start] = 0;
+      piece.pos = end;
+      // king castling move with rook
+      // ---------------------------------------
+      // .....
 
+      // pown promotion move
+      // ---------------------------------------
+      // .....
+
+      // on state Check
+      // ---------------------------------------
+      // .....
+
+
+      // on state Checkmate
+      // ---------------------------------------
+      // .....
+      this.board.print();
+      return true;
+    }
+    this.gameOver(start, end);
+  }
+  gameOver(start, end) {
+    console.log(`Wrong move: ${start}-${end}`);
+    process.exit();
+  }
 }
 
 module.exports = {
