@@ -7,6 +7,16 @@ const TYPES = {
   pawn: 'p',
 };
 
+const COLORS = {
+  white: true,
+  black: false,
+};
+
+const PLAY_ORDER = {
+  white: true,
+  black: false,
+};
+
 const MOVEMENT_PATTERNS = {
   up: [[0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [0, 7]],
   down: [[0, -1], [0, -2], [0, -3], [0, -4], [0, -5], [0, -6], [0, -7]],
@@ -20,7 +30,15 @@ const MOVEMENT_PATTERNS = {
   },
 };
 
+const STATE = {
+  regular: 0,
+  check: 1,
+  checkmate: 2,
+};
+
 module.exports = {
   TYPES,
+  COLORS,
   MOVEMENT_PATTERNS,
+  STATE,
 };
