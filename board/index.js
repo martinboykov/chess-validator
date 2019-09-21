@@ -1,8 +1,7 @@
 const chalk = require('chalk');
 const log = console.log;
 class Board {
-
-  constructor(pieces, coord, coordRev) {
+  constructor() {
     /*eslint-disable */
     this.pieces = {
       a8: '.', b8: '.', c8: '.', d8: '.', e8: '.', f8: '.', g8: '.', h8: '.',
@@ -254,7 +253,7 @@ class Board {
         chalk.blue.bgWhite.bold(' ' + `${this.pieces.h1.type || ' '}` + ' '))
     );
   }
-  printRaw(){
+  printRaw() {
     console.log('////////////////////////');
     console.log(`${this.pieces.a8.type || '.'}, ${this.pieces.b8.type || '.'}, ${this.pieces.c8.type || '.'}, ${this.pieces.d8.type || '.'}, ${this.pieces.e8.type || '.'}, ${this.pieces.f8.type || '.'}, ${this.pieces.g8.type || '.'}, ${this.pieces.h8.type || '.'}`);
     console.log(`${this.pieces.a7.type || '.'}, ${this.pieces.b7.type || '.'}, ${this.pieces.c7.type || '.'}, ${this.pieces.d7.type || '.'}, ${this.pieces.e7.type || '.'}, ${this.pieces.f7.type || '.'}, ${this.pieces.g7.type || '.'}, ${this.pieces.h7.type || '.'}`);
@@ -267,7 +266,7 @@ class Board {
     console.log('////////////////////////');
 
   }
-   /* eslint-enable */
+  /* eslint-enable */
 }
 module.exports = {
   Board,
