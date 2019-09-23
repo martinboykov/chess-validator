@@ -252,6 +252,7 @@ class Board {
         chalk.red.bgWhite.bold(' ' + `${this.pieces.h1.type || ' '}` + ' ') :
         chalk.blue.bgWhite.bold(' ' + `${this.pieces.h1.type || ' '}` + ' '))
     );
+    // this.printRaw();
   }
   printRaw() {
     console.log('////////////////////////');

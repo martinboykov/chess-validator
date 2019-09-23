@@ -1,5 +1,4 @@
-const { Board } = require('../../board/index');
-// jest.mock('../../board/index');
+const { Board } = require('../../board');
 
 describe('board', () => {
   it('delta between a1 and a2 shoud return 0 and -1', () => {
@@ -26,5 +25,4 @@ describe('board', () => {
     expect(result[0]).toBe(1);
     expect(result[1]).toBe(5);
   });
-
 });

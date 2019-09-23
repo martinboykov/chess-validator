@@ -1,7 +1,7 @@
 const log = require('debug')('pawn');
 const { Piece } = require('./piece');
-const TYPES = require('../util/index').TYPES;
-const MOVEMENT_PATTERNS = require('../util/index').MOVEMENT_PATTERNS;
+const TYPES = require('../util').TYPES;
+const MOVEMENT_PATTERNS = require('../util').MOVEMENT_PATTERNS;
 const isDev = process.env.NODE_ENV === 'development' ? true : false; // eslint-disable-line no-process-env
 
 class Pawn extends Piece {
@@ -46,7 +46,7 @@ class Pawn extends Piece {
     const deltaY = deltaPos[1];
     const isFirstMove = piece.movementCount === 0;
     if (isFirstMove) {
-      const isPathBlocked = this.obsticlesCheck(
+      const isPathBlocked = this.obsticleCheck(
         start, end, deltaX, deltaY, piece, board
       );
       const isFirstMoveFound = piece.color ?
@@ -72,7 +72,8 @@ class Pawn extends Piece {
         });
       if (isRegularFound) return true;
       return false;
-    } else if (isEnemyAttacked) {
+    }
+    if (isEnemyAttacked) {
       log('isEnemyAttacked = ', isEnemyAttacked);
       log('pattern.white.special.attack = ', this.pattern.white.special.attack);
       log('pattern.black.special.attack = ', this.pattern.black.special.attack);
@@ -86,15 +87,16 @@ class Pawn extends Piece {
           return deltaX === d[0] && deltaY === d[1];
         });
       if (isAttackMoveFound) return true;
-
-      return false;
     }
+    return false;
   }
-  obsticlesCheck(start, end, deltaX, deltaY, piece, board) {
+  obsticleCheck(start, end, deltaX, deltaY, piece, board) {
     if (deltaY !== 2 && deltaX !== 0) return false;
     for (let index = 1; index <= deltaY; index++) {
       const coordValue = parseInt(board.coord[start], 10);
-      const nextIterStep = piece.color ? coordValue + index : coordValue - index;
+      const nextIterStep = piece.color ?
+        coordValue + index :
+        coordValue - index;
       const nextIterCoord = board.coordRev[nextIterStep];
       const nextIterPieceType = board.pieces[nextIterCoord].type || '.';
       log('nextIterStep = ', nextIterStep);

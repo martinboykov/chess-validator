@@ -6,8 +6,11 @@
   "scripts": {
     "dev": "SET NODE_ENV=development&&SET DEBUG=chess,pawn&&nodemon index.js",
     "start": "SET NODE_ENV=production&&node index.js",
-    "test": "jest tests/pieces/pawn.test.js --watch"
+    "jest": "jest --env=node --colors --verbose --coverage test",
+    "jest:watch": "jest --env=node --runInBand --watchAll",
+    "test": "npm run jest:watch"
   },
+
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -15,7 +18,7 @@
   "devDependencies": {
     "chalk": "^2.4.2",
     "debug": "^4.1.1",
-    "jest": "^24.9.0",
+    "jest": "^22.4.4",
     "nodemon": "^1.19.2"
   }
 }

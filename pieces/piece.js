@@ -1,8 +1,8 @@
 class Piece {
-  constructor(pos, isWhite, pattern) {
+  constructor(pos, color) {
     this.pos = pos;
-    this.isWhite = isWhite;
-    this.pattern = pattern;
+    this.color = color;
+    this.pattern = {};
   }
 }
 

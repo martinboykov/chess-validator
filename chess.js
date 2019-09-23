@@ -5,11 +5,11 @@ const { Board } = require('./board');
 // import pieces
 const pieceType = require('./pieces');
 
-const TYPES = require('./util/index').TYPES;
+const TYPES = require('./util').TYPES;
 
-const COLORS = require('./util/index').COLORS;
+const COLORS = require('./util').COLORS;
 
-const STATE = require('./util/index').STATE;
+const STATE = require('./util').STATE;
 
 const isDev = process.env.NODE_ENV === 'development' ? true : false; // eslint-disable-line no-process-env
 
@@ -22,20 +22,18 @@ class Chess {
   init() {
     if (isDev) {
       this.board.print();
-      this.board.printRaw();
     }
     // pawns init
     // -----------------------------------------
 
-    const that = this;
     const posPawnWhite = ['a2', 'b2', 'c2', 'd2', 'e2', 'f2', 'g2', 'h2'];
-    posPawnWhite.forEach(function(pos) {
-      that.add().pawn(pos, COLORS.white);
+    posPawnWhite.forEach((pos) => {
+      this.add().pawn(pos, COLORS.white);
     });
 
     const posPawBlack = ['a7', 'b7', 'c7', 'd7', 'e7', 'f7', 'g7', 'h7'];
-    posPawBlack.forEach(function(pos) {
-      that.add().pawn(pos, COLORS.black);
+    posPawBlack.forEach((pos) => {
+      this.add().pawn(pos, COLORS.black);
     });
 
     // rest of pieces
@@ -44,7 +42,6 @@ class Chess {
 
     if (isDev) {
       this.board.print();
-      this.board.printRaw();
     }
 
     log('chess initiated');
@@ -98,7 +95,6 @@ class Chess {
 
       if (isDev) {
         this.board.print();
-        this.board.printRaw();
       }
       return true;
     }
@@ -108,10 +104,10 @@ class Chess {
     return `Wrong move: ${start}-${end}`;
   }
   add() {
-    const that = this;
+    // const that = this;
     return {
-      pawn: function(pos, color) {
-        that.board.pieces[pos] = new pieceType.Pawn('a2', color);
+      pawn: (pos, color) => {
+        this.board.pieces[pos] = new pieceType.Pawn('a2', color);
       },
     };
   }
