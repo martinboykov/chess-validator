@@ -42,9 +42,11 @@ class Board {
     ];
   }
   /*eslint-disable */
+  /* istanbul ignore next */
   print() {
     // console.log('///////////////////////////////////////////////////////////');
     log(
+      (chalk.grey.bgBlack(' ' + `8` + ' ')) +
       (this.pieces.a8.color ?
         chalk.red.bgWhite.bold(' ' + `${this.pieces.a8.type || ' '}` + ' ') :
         chalk.blue.bgWhite.bold(' ' + `${this.pieces.a8.type || ' '}` + ' ')) +
@@ -71,6 +73,7 @@ class Board {
         chalk.blue.bgYellow.bold(' ' + `${this.pieces.h8.type || ' '}` + ' '))
     );
     log(
+      (chalk.grey.bgBlack(' ' + `7` + ' ')) +
       (this.pieces.a7.color ?
         chalk.red.bgYellow.bold(' ' + `${this.pieces.a7.type || ' '}` + ' ') :
         chalk.blue.bgYellow.bold(' ' + `${this.pieces.a7.type || ' '}` + ' ')) +
@@ -97,6 +100,7 @@ class Board {
         chalk.blue.bgWhite.bold(' ' + `${this.pieces.h7.type || ' '}` + ' '))
     );
     log(
+      (chalk.grey.bgBlack(' ' + `6` + ' ')) +
       (this.pieces.a6.color ?
         chalk.red.bgWhite.bold(' ' + `${this.pieces.a6.type || ' '}` + ' ') :
         chalk.blue.bgWhite.bold(' ' + `${this.pieces.a6.type || ' '}` + ' ')) +
@@ -123,6 +127,7 @@ class Board {
         chalk.blue.bgYellow.bold(' ' + `${this.pieces.h6.type || ' '}` + ' '))
     );
     log(
+      (chalk.grey.bgBlack(' ' + `5` + ' ')) +
       (this.pieces.a5.color ?
         chalk.red.bgYellow.bold(' ' + `${this.pieces.a5.type || ' '}` + ' ') :
         chalk.blue.bgYellow.bold(' ' + `${this.pieces.a5.type || ' '}` + ' ')) +
@@ -149,6 +154,7 @@ class Board {
         chalk.blue.bgWhite.bold(' ' + `${this.pieces.h5.type || ' '}` + ' '))
     );
     log(
+      (chalk.grey.bgBlack(' ' + `4` + ' ')) +
       (this.pieces.a4.color ?
         chalk.red.bgWhite.bold(' ' + `${this.pieces.a4.type || ' '}` + ' ') :
         chalk.blue.bgWhite.bold(' ' + `${this.pieces.a4.type || ' '}` + ' ')) +
@@ -175,6 +181,7 @@ class Board {
         chalk.blue.bgYellow.bold(' ' + `${this.pieces.h4.type || ' '}` + ' '))
     );
     log(
+      (chalk.grey.bgBlack(' ' + `3` + ' ')) +
       (this.pieces.a3.color ?
         chalk.red.bgYellow.bold(' ' + `${this.pieces.a3.type || ' '}` + ' ') :
         chalk.blue.bgYellow.bold(' ' + `${this.pieces.a3.type || ' '}` + ' ')) +
@@ -201,6 +208,7 @@ class Board {
         chalk.blue.bgWhite.bold(' ' + `${this.pieces.h3.type || ' '}` + ' '))
     );
     log(
+      (chalk.grey.bgBlack(' ' + `2` + ' ')) +
       (this.pieces.a2.color ?
         chalk.red.bold.bgWhite(' ' + `${this.pieces.a2.type || ' '}` + ' ') :
         chalk.blue.bgWhite.bold(' ' + `${this.pieces.a2.type || ' '}` + ' ')) +
@@ -227,6 +235,7 @@ class Board {
         chalk.blue.bgYellow.bold(' ' + `${this.pieces.h2.type || ' '}` + ' '))
     );
     log(
+      (chalk.grey.bgBlack(' ' + `1` + ' ')) +
       (this.pieces.a1.color ?
         chalk.red.bgYellow.bold(' ' + `${this.pieces.a1.type || ' '}` + ' ') :
         chalk.blue.bgYellow.bold(' ' + `${this.pieces.a1.type || ' '}` + ' ')) +
@@ -252,8 +261,20 @@ class Board {
         chalk.red.bgWhite.bold(' ' + `${this.pieces.h1.type || ' '}` + ' ') :
         chalk.blue.bgWhite.bold(' ' + `${this.pieces.h1.type || ' '}` + ' '))
     );
+    log(
+      (chalk.grey.bgBlack(' ' + ` ` + ' ')) +
+      (chalk.grey.bgBlack(' ' + `a` + ' ')) +
+      (chalk.grey.bgBlack(' ' + `b` + ' ')) +
+      (chalk.grey.bgBlack(' ' + `c` + ' ')) +
+      (chalk.grey.bgBlack(' ' + `d` + ' ')) +
+      (chalk.grey.bgBlack(' ' + `e` + ' ')) +
+      (chalk.grey.bgBlack(' ' + `f` + ' ')) +
+      (chalk.grey.bgBlack(' ' + `g` + ' ')) +
+      (chalk.grey.bgBlack(' ' + `h` + ' '))
+    );
     // this.printRaw();
   }
+  /* istanbul ignore next */
   printRaw() {
     console.log('////////////////////////');
     console.log(`${this.pieces.a8.type || '.'}, ${this.pieces.b8.type || '.'}, ${this.pieces.c8.type || '.'}, ${this.pieces.d8.type || '.'}, ${this.pieces.e8.type || '.'}, ${this.pieces.f8.type || '.'}, ${this.pieces.g8.type || '.'}, ${this.pieces.h8.type || '.'}`);

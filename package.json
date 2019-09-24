@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "SET NODE_ENV=development&&SET DEBUG=chess,pawn&&nodemon index.js",
+    "dev": "SET NODE_ENV=development&&SET DEBUG=chess,pawn,knight&&nodemon index.js",
     "start": "SET NODE_ENV=production&&node index.js",
-    "jest": "jest --env=node --colors --verbose --coverage test",
+    "test": "jest --env=node --colors --verbose --coverage test",
     "jest:watch": "jest --env=node --runInBand --watchAll",
-    "test": "npm run jest:watch"
+    "jest": "npm run jest:watch"
   },
 
   "keywords": [],

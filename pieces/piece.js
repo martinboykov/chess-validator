@@ -1,8 +1,9 @@
+const TYPES = require('../util').TYPES;
 class Piece {
   constructor(pos, color) {
     this.pos = pos;
     this.color = color;
-    this.pattern = {};
+    this.type = TYPES.default;
   }
 }
 

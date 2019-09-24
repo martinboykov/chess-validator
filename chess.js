@@ -9,6 +9,8 @@ const TYPES = require('./util').TYPES;
 
 const COLORS = require('./util').COLORS;
 
+const PLAY_ORDER = require('./util').PLAY_ORDER;
+
 const STATE = require('./util').STATE;
 
 const isDev = process.env.NODE_ENV === 'development' ? true : false; // eslint-disable-line no-process-env
@@ -17,30 +19,36 @@ const isDev = process.env.NODE_ENV === 'development' ? true : false; // eslint-d
 class Chess {
   constructor() {
     this.board = new Board();
+    this.order = PLAY_ORDER.white;
     this.state = STATE.regular;
   }
   init() {
-    if (isDev) {
+    if (isDev) {/* istanbul ignore next */
       this.board.print();
     }
     // pawns init
     // -----------------------------------------
 
-    const posPawnWhite = ['a2', 'b2', 'c2', 'd2', 'e2', 'f2', 'g2', 'h2'];
-    posPawnWhite.forEach((pos) => {
-      this.add().pawn(pos, COLORS.white);
-    });
+    ['a2', 'b2', 'c2', 'd2', 'e2', 'f2', 'g2', 'h2',
+      'a7', 'b7', 'c7', 'd7', 'e7', 'f7', 'g7', 'h7']
+      .forEach((pos, idx) => {
+        if (idx < 8) this.add().pawn(pos, COLORS.white);
+        else if (idx >= 8) this.add().pawn(pos, COLORS.black);
+      });
 
-    const posPawBlack = ['a7', 'b7', 'c7', 'd7', 'e7', 'f7', 'g7', 'h7'];
-    posPawBlack.forEach((pos) => {
-      this.add().pawn(pos, COLORS.black);
+    // knights init
+    // -----------------------------------------
+    ['b1', 'g1', 'b8', 'g8'].forEach((pos, idx) => {
+      if (idx < 2) this.add().knight(pos, COLORS.white);
+      else if (idx >= 2) this.add().knight(pos, COLORS.black);
     });
 
     // rest of pieces
     // -----------------------------------------
     // ...
 
-    if (isDev) {
+
+    if (isDev) {/* istanbul ignore next */
       this.board.print();
     }
 
@@ -48,8 +56,6 @@ class Chess {
   }
   makeMove(start, end) {
     const piece = this.board.pieces[start];
-    log(piece);
-
     if (piece === '.' || // check if there is no piece on start position
       // check if start and/or end position is outside the board
       typeof (this.board.pieces[start]) === 'undefined' ||
@@ -57,13 +63,14 @@ class Chess {
     ) {
       return this.gameOver(start, end);
     }
+    log('piece.color = ', this.board.pieces[start].color);
+    log('order = ', this.order);
+    if (this.order !== this.board.pieces[start].color) return this.gameOver();
 
     const delta = this.board.calculateDelta(end, start);
-    const isEnemyAttacked =
-      (this.board.pieces[end] !== '.' &&
-        this.board.pieces[start].isWhite !== this.board.pieces[end].isWhite) ?
-        true :
-        false;
+    const isEnemyAttacked = this.enemyAttackedCheck(start, end);
+    log('delta = ', delta);
+    log('enemyAtt = ', isEnemyAttacked);
     const isValidMove = piece.validateMove(
       delta, isEnemyAttacked,
       piece, this.board, start, end
@@ -74,8 +81,8 @@ class Chess {
       this.board.pieces[end] = piece;
       this.board.pieces[start] = '.';
       piece.pos = end;
-      if (piece.type === TYPES.pawn) piece.movementCount += 1;
-
+      piece.movementCount += 1;
+      log(piece);
       // case: pawn promotion
       // ---------------------------------------
       // .....
@@ -93,23 +100,33 @@ class Chess {
       // ---------------------------------------
       // N/A
 
-      if (isDev) {
+      this.order = !this.order;
+      if (isDev) {/* istanbul ignore next */
         this.board.print();
       }
       return true;
     }
     return this.gameOver(start, end);
   }
-  gameOver(start, end) {
+  gameOver(start, end) {/* istanbul ignore next */
     return `Wrong move: ${start}-${end}`;
   }
   add() {
     // const that = this;
     return {
       pawn: (pos, color) => {
-        this.board.pieces[pos] = new pieceType.Pawn('a2', color);
+        this.board.pieces[pos] = new pieceType.Pawn(pos, color);
+      },
+      knight: (pos, color) => {
+        this.board.pieces[pos] = new pieceType.Knight(pos, color);
       },
     };
+  }
+  enemyAttackedCheck(start, end) {
+    return (this.board.pieces[end] !== '.' &&
+      (this.board.pieces[start].color !== this.board.pieces[end].color)) ?
+      true :
+      false;
   }
 }
 

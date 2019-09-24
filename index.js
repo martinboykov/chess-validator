@@ -2,7 +2,6 @@ const { Chess } = require('./chess');
 
 const startGame = (moves) => {
   const chess = new Chess();
-  // start game
   chess.init();
   let unvalidMove = false;
   let unvalidMoveOutput = '';
@@ -24,9 +23,11 @@ const startGame = (moves) => {
   return success;
 };
 const moves = [
-  ['a7', 'a5'],
-  ['a5', 'a4'],
   ['a2', 'a4'],
+  ['a7', 'a5'],
+  ['b1', 'c3'],
+  ['b8', 'c6'],
+  ['c3', 'e2'],
 ];
 const result = startGame(moves);
 console.log(result);
