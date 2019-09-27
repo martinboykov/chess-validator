@@ -88,8 +88,6 @@ describe('chess', () => {
         chess.init();
         const start = 'a7';
         const end = 'a6';
-        chess.gameOver =
-          jest.fn().mockImplementation(() => `Wrong move: ${start}-${end}`);
         chess.board.pieces[start].validateMove =
           jest.fn().mockImplementation(() => true);
         const result = chess.makeMove(start, end);
@@ -100,8 +98,6 @@ describe('chess', () => {
         chess.init();
         let start = 'a2';
         let end = 'a4';
-        chess.gameOver =
-          jest.fn().mockImplementation(() => `Wrong move: ${start}-${end}`);
         chess.board.pieces[start].validateMove =
           jest.fn().mockImplementation(() => true);
         chess.makeMove(start, end);
@@ -115,8 +111,6 @@ describe('chess', () => {
         chess.init();
         let start = 'a2';
         let end = 'a4';
-        chess.gameOver =
-          jest.fn().mockImplementation(() => `Wrong move: ${start}-${end}`);
         chess.board.pieces[start].validateMove =
           jest.fn().mockImplementation(() => true);
         chess.makeMove(start, end);

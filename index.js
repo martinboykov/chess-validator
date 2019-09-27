@@ -1,37 +1,41 @@
-const { Chess } = require('./chess');
+const log = require('debug')('system');
+const { Chess } = require('./src/chess');
+const fs = require('fs');
+const rl = require('readline');
+const path = require('path');
+const file = path.resolve(__dirname, 'input', 'input.txt');
+const { dataHandler, errorHandler } = require('./src/util');
+const isDev = process.env.NODE_ENV === 'development' ? true : false; // eslint-disable-line no-process-env
 
-const startGame = (moves) => {
+function main() { // eslint-disable-line consistent-return
+  const success = 'All moves are valid';
+  let lineCounter = 1;
+  const readline = rl.createInterface({
+    input: fs.createReadStream(file),
+    crlfDelay: Infinity, // to recognize all instances of CR LF
+  });
   const chess = new Chess();
   chess.init();
-  let unvalidMove = false;
-  let unvalidMoveOutput = '';
-  const success = 'All moves are valid';
-  for (let index = 0; index < moves.length; index++) {
-      const move = moves[index];
-      const start = move[0];
-      const finish = move[1];
-      const moveOutcome = chess.makeMove(start, finish);
-      if (typeof (moveOutcome) === 'string') {
-        unvalidMove = true;
-        unvalidMoveOutput = moveOutcome;
-        break;
+  try {
+    fs.accessSync(file, fs.constants.R_OK | fs.constants.W_OK);
+    return readline.on('line', (line) => {
+      const moves = dataHandler(line, lineCounter++);
+      for (let i = 0; i < moves.length; i++) {
+        const start = moves[i][0];
+        const finish = moves[i][1];
+        const moveOutcome = chess.makeMove(start, finish);
+        if (typeof (moveOutcome) === 'string') {
+          log(moveOutcome);
+          if (!isDev) console.log(moveOutcome);
+          process.exit(0);
+        }
       }
+    }).on('close', () => {
+      log(success);
+      if (!isDev) console.log(success);
+    });
+  } catch (err) {
+    errorHandler(err, file);
   }
-  if (unvalidMove) {
-    return unvalidMoveOutput;
-  }
-  return success;
-};
-const moves = [
-  ['a2', 'a4'],
-  ['a7', 'a5'],
-  ['b1', 'c3'],
-  ['b8', 'c6'],
-  ['c3', 'e2'],
-];
-const result = startGame(moves);
-console.log(result);
-
-module.exports = {
-  startGame,
-};
+}
+main();

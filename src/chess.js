@@ -65,12 +65,14 @@ class Chess {
     }
     log('piece.color = ', this.board.pieces[start].color);
     log('order = ', this.order);
-    if (this.order !== this.board.pieces[start].color) return this.gameOver();
+    if (this.order !== this.board.pieces[start].color) {
+      return this.gameOver(start, end);
+    }
 
     const delta = this.board.calculateDelta(end, start);
     const isEnemyAttacked = this.enemyAttackedCheck(start, end);
     log('delta = ', delta);
-    log('enemyAtt = ', isEnemyAttacked);
+    log('isEnemyAttacked = ', isEnemyAttacked);
     const isValidMove = piece.validateMove(
       delta, isEnemyAttacked,
       piece, this.board, start, end

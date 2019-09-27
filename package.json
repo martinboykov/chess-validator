@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "SET NODE_ENV=development&&SET DEBUG=chess,pawn,knight&&nodemon index.js",
+    "dev": "SET NODE_ENV=development&&SET DEBUG=*,-nodemon*,-snapdragon*&&nodemon index.js",
     "start": "SET NODE_ENV=production&&node index.js",
     "test": "jest --env=node --colors --verbose --coverage test",
     "jest:watch": "jest --env=node --runInBand --watchAll",
