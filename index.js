@@ -18,7 +18,7 @@ function main() { // eslint-disable-line consistent-return
   chess.init();
   try {
     fs.accessSync(file, fs.constants.R_OK | fs.constants.W_OK);
-    return readline.on('line', (line) => {
+    readline.on('line', (line) => {
       const moves = dataHandler(line, lineCounter++);
       for (let i = 0; i < moves.length; i++) {
         const start = moves[i][0];
