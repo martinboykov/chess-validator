@@ -1,3 +1,5 @@
+const log = require('debug')('piece');
+
 const TYPES = require('../util').TYPES;
 class Piece {
   constructor(pos, color) {

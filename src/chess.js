@@ -48,6 +48,12 @@ class Chess {
       if (idx < 2) this.add().bishop(pos, COLORS.white);
       else if (idx >= 2) this.add().bishop(pos, COLORS.black);
     });
+    // rooks init
+    // -----------------------------------------
+    ['a1', 'h1', 'a8', 'h8'].forEach((pos, idx) => {
+      if (idx < 2) this.add().rook(pos, COLORS.white);
+      else if (idx >= 2) this.add().rook(pos, COLORS.black);
+    });
 
     // rest of pieces
     // -----------------------------------------
@@ -69,12 +75,12 @@ class Chess {
     ) {
       return this.gameOver(start, end);
     }
-    log('piece.color = ', this.board.pieces[start].color);
-    log('order = ', this.order);
     if (this.order !== this.board.pieces[start].color) {
       return this.gameOver(start, end);
     }
 
+    log('piece.color = ', this.board.pieces[start].color);
+    log('order = ', this.order);
     const delta = this.board.calculateDelta(end, start);
     const isEnemyAttacked = this.enemyAttackedCheck(start, end);
     log('delta = ', delta);
@@ -130,6 +136,9 @@ class Chess {
       },
       bishop: (pos, color) => {
         this.board.pieces[pos] = new pieceType.Bishop(pos, color);
+      },
+      rook: (pos, color) => {
+        this.board.pieces[pos] = new pieceType.Rook(pos, color);
       },
     };
   }

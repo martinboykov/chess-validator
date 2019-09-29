@@ -9,7 +9,7 @@ describe('chess', () => {
   });
   describe('makeMove', () => {
     describe('start/end position', () => {
-      it('if start pos of move {start,end} is out of board return `Wrong move: ${start}-${end}`', () => { // eslint-disable-line max-len
+      it('should return `Wrong move: ${start}-${end}` if start pos of move {start,end} is out of board ', () => { // eslint-disable-line max-len
         const chess = new Chess();
         chess.init();
         const start = 'a0';
@@ -21,7 +21,7 @@ describe('chess', () => {
           start, end);
         expect(result).toBe(`Wrong move: ${start}-${end}`);
       });
-      it('if end pos of move {start,end} is out of board return `Wrong move: ${start}-${end}`', () => { // eslint-disable-line max-len
+      it('should return `Wrong move: ${start}-${end}` if end pos of move {start,end} is out of board ', () => { // eslint-disable-line max-len
         const chess = new Chess();
         chess.init();
         const start = 'a1';
@@ -33,7 +33,7 @@ describe('chess', () => {
           start, end);
         expect(result).toBe(`Wrong move: ${start}-${end}`);
       });
-      it('if on start pos of move {start,end} is no piece on board return `Wrong move: ${start}-${end}`', () => { // eslint-disable-line max-len
+      it('should return `Wrong move: ${start}-${end}` if on start pos of move {start,end} is no piece on board ', () => { // eslint-disable-line max-len
         const chess = new Chess();
         chess.init();
         const start = 'a3';
@@ -45,7 +45,7 @@ describe('chess', () => {
           start, end);
         expect(result).toBe(`Wrong move: ${start}-${end}`);
       });
-      it('if is valid move return "true"', () => { // eslint-disable-line max-len
+      it('should return "true" if is valid move ', () => { // eslint-disable-line max-len
         const chess = new Chess();
         chess.init();
         const start = 'a2';
@@ -57,7 +57,7 @@ describe('chess', () => {
           start, end);
         expect(result).toBe(true);
       });
-      it('if is unvalid move return `Wrong move: ${start}-${end}`', () => { // eslint-disable-line max-len
+      it('should return `Wrong move: ${start}-${end}` if is unvalid move ', () => { // eslint-disable-line max-len
         const chess = new Chess();
         chess.init();
         const start = 'a2';

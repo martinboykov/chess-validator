@@ -13,22 +13,22 @@ class Pawn extends Piece {
     this.movementCount = 0;
     this.pattern = {
       white: {
-        regular: [...MOVEMENT_PATTERNS.up.slice(0, 1)],
+        regular: [MOVEMENT_PATTERNS.up[0]],
         special: {
-          first: [...MOVEMENT_PATTERNS.up.slice(1, 2)],
+          first: [MOVEMENT_PATTERNS.up[1]],
           attack: [
-            ...MOVEMENT_PATTERNS.diag.up_left.slice(0, 1),
-            ...MOVEMENT_PATTERNS.diag.up_right.slice(0, 1),
+            MOVEMENT_PATTERNS.diag.up_left[0],
+            MOVEMENT_PATTERNS.diag.up_right[0],
           ],
         },
       },
       black: {
-        regular: [...MOVEMENT_PATTERNS.down.slice(0, 1)],
+        regular: [MOVEMENT_PATTERNS.down[0]],
         special: {
-          first: [...MOVEMENT_PATTERNS.down.slice(1, 2)],
+          first: [MOVEMENT_PATTERNS.down[1]],
           attack: [
-            ...MOVEMENT_PATTERNS.diag.down_left.slice(0, 1),
-            ...MOVEMENT_PATTERNS.diag.down_right.slice(0, 1),
+            MOVEMENT_PATTERNS.diag.down_left[0],
+            MOVEMENT_PATTERNS.diag.down_right[0],
           ],
         },
       },
@@ -40,7 +40,6 @@ class Pawn extends Piece {
     const deltaY = deltaPos[1];
     const isFirstMove = piece.movementCount === 0;
     if (isFirstMove) {
-
       const isFirstMoveFound = piece.color
         ? this.pattern.white.special.first.some((d) => {
           return deltaX === d[0] && deltaY === d[1];

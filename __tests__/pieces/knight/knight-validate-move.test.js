@@ -14,6 +14,12 @@ describe('knight', () => {
         const board = new Board();
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
+        knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          return true;
+        });
+        knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+          return true;
+        });
         board.pieces[knight.pos] = knight;
         const result = knight.validateMove(
           delta, false, knight, board, start, end);
@@ -26,6 +32,12 @@ describe('knight', () => {
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
+        knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          return true;
+        });
+        knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+          return true;
+        });
         const result = knight.validateMove(
           delta, false, knight, board, start, end);
         expect(result).toBe(true);
@@ -37,6 +49,12 @@ describe('knight', () => {
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
+        knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          return true;
+        });
+        knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+          return true;
+        });
         const result = knight.validateMove(
           delta, false, knight, board, start, end);
         expect(result).toBe(true);
@@ -48,6 +66,12 @@ describe('knight', () => {
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
+        knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          return true;
+        });
+        knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+          return true;
+        });
         const result = knight.validateMove(
           delta, false, knight, board, start, end);
         expect(result).toBe(true);
@@ -58,6 +82,12 @@ describe('knight', () => {
         const board = new Board();
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
+        knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          return true;
+        });
+        knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+          return true;
+        });
         board.pieces[knight.pos] = knight;
         const result = knight.validateMove(
           delta, false, knight, board, start, end);
@@ -70,6 +100,12 @@ describe('knight', () => {
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
+        knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          return true;
+        });
+        knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+          return true;
+        });
         const result = knight.validateMove(
           delta, false, knight, board, start, end);
         expect(result).toBe(true);
@@ -81,6 +117,12 @@ describe('knight', () => {
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
+        knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          return true;
+        });
+        knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+          return true;
+        });
         const result = knight.validateMove(
           delta, false, knight, board, start, end);
         expect(result).toBe(true);
@@ -92,6 +134,12 @@ describe('knight', () => {
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
+        knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          return true;
+        });
+        knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+          return true;
+        });
         const result = knight.validateMove(
           delta, false, knight, board, start, end);
         expect(result).toBe(true);
@@ -99,7 +147,7 @@ describe('knight', () => {
     });
     describe('with piece at end', () => {
       describe('same color', () => {
-        it('should return "true" if knight start pos is "e4" and end pos is "f6" with piece of same color  at end', () => { // eslint-disable-line max-len
+        it('should return "false" if knight start pos is "e4" and end pos is "f6" with piece of same color at end', () => { // eslint-disable-line max-len
           const start = 'e4';
           const end = 'f6';
           const board = new Board();
@@ -107,6 +155,12 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
           board.pieces[end] = new Knight(start, COLORS.black);
+          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+            return false;
+          });
           const result = knight.validateMove(
             delta, false, knight, board, start, end);
           expect(result).toBe(false);
@@ -119,6 +173,12 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
           board.pieces[end] = new Knight(start, COLORS.black);
+          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+            return false;
+          });
           const result = knight.validateMove(
             delta, false, knight, board, start, end);
           expect(result).toBe(false);
@@ -131,6 +191,12 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[end] = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
+          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+            return false;
+          });
           const result = knight.validateMove(
             delta, false, knight, board, start, end);
           expect(result).toBe(false);
@@ -143,6 +209,12 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[end] = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
+          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+            return false;
+          });
           const result = knight.validateMove(
             delta, false, knight, board, start, end);
           expect(result).toBe(false);
@@ -155,6 +227,12 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[end] = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
+          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+            return false;
+          });
           const result = knight.validateMove(
             delta, false, knight, board, start, end);
           expect(result).toBe(false);
@@ -167,6 +245,12 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[end] = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
+          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+            return false;
+          });
           const result = knight.validateMove(
             delta, false, knight, board, start, end);
           expect(result).toBe(false);
@@ -179,6 +263,12 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[end] = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
+          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+            return false;
+          });
           const result = knight.validateMove(
             delta, false, knight, board, start, end);
           expect(result).toBe(false);
@@ -191,6 +281,12 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
           board.pieces[end] = new Knight(start, COLORS.black);
+          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+            return false;
+          });
           const result = knight.validateMove(
             delta, false, knight, board, start, end);
           expect(result).toBe(false);
@@ -205,6 +301,12 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
           board.pieces[end] = new Knight(start, COLORS.white);
+          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+            return false;
+          });
           const result = knight.validateMove(
             delta, true, knight, board, start, end);
           expect(result).toBe(true);
@@ -217,6 +319,12 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
           board.pieces[end] = new Knight(start, COLORS.white);
+          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+            return false;
+          });
           const result = knight.validateMove(
             delta, true, knight, board, start, end);
           expect(result).toBe(true);
@@ -229,6 +337,12 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
           board.pieces[end] = new Knight(start, COLORS.white);
+          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+            return false;
+          });
           const result = knight.validateMove(
             delta, true, knight, board, start, end);
           expect(result).toBe(true);
@@ -241,6 +355,12 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
           board.pieces[end] = new Knight(start, COLORS.white);
+          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+            return false;
+          });
           const result = knight.validateMove(
             delta, true, knight, board, start, end);
           expect(result).toBe(true);
@@ -253,6 +373,12 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
           board.pieces[end] = new Knight(start, COLORS.white);
+          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+            return false;
+          });
           const result = knight.validateMove(
             delta, true, knight, board, start, end);
           expect(result).toBe(true);
@@ -265,6 +391,12 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[end] = new Knight(start, COLORS.white);
           board.pieces[knight.pos] = knight;
+          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+            return false;
+          });
           const result = knight.validateMove(
             delta, true, knight, board, start, end);
           expect(result).toBe(true);
@@ -277,6 +409,12 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
           board.pieces[end] = new Knight(start, COLORS.white);
+          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+            return false;
+          });
           const result = knight.validateMove(
             delta, true, knight, board, start, end);
           expect(result).toBe(true);
@@ -289,6 +427,12 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
           board.pieces[end] = new Knight(start, COLORS.white);
+          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          knight.checkEndEmpty = jest.fn().mockImplementation(() => {
+            return false;
+          });
           const result = knight.validateMove(
             delta, true, knight, board, start, end);
           expect(result).toBe(true);

@@ -18,50 +18,66 @@ class Rook extends Piece {
     this.movementCount = 0;
   }
   validateMove(deltaPos, isEnemyAttacked, piece, board, start, end) {
-    log(piece);
     const deltaX = deltaPos[0];
     const deltaY = deltaPos[1];
-    const isRegularFound = this.findRegularPattern(piece, deltaX, deltaY);
-    const isEndEmpty = this.checkEndEmpty(board, end);
+    if ((deltaX !== 0 && deltaY !== 0) ||
+      (deltaX === 0 && deltaY === 0)) return false; // fast check
+    const isRegularFound = this.findRegularPattern(deltaX, deltaY);
+    log(piece);
+    log('color = ', piece.color);
+    log('deltaX, deltaY = ', [deltaX, deltaY]);
+    log('isRegularFound = ', isRegularFound);
     if (isRegularFound) {
+      const isEndEmpty = this.checkEndEmpty(board, end);
+      log('isEndEmpty = ', isEndEmpty);
       if (isEnemyAttacked || isEndEmpty) {
         const isPathBlocked = this.obsticleCheck( // if the previous conditions are met => check for obsticles
           start, end, deltaX, deltaY, piece, board);
-        log('isEnemyAttacked = ', isEnemyAttacked);
-        log('color = ', piece.color);
-        log('deltaX, deltaY = ', [deltaX, deltaY]);
+        log('isPathBlocked = ', isPathBlocked);
         if (!isPathBlocked) return true;
       }
     }
     return false;
   }
   obsticleCheck(start, end, deltaX, deltaY, piece, board) {
-    const iterationCount = Math.abs(deltaX);
-    const deltaXIterStep = deltaX / iterationCount;
-    const deltaYIterStep = deltaY / iterationCount;
+    const iterationCount =
+      Math.abs(deltaX) > 0 ?
+        Math.abs(deltaX) :
+        Math.abs(deltaY);
+    const deltaXIterStep = deltaX !== 0 ? deltaX / iterationCount : 0;
+    const deltaYIterStep = deltaY !== 0 ? deltaY / iterationCount : 0;
+    log('deltaXIterStep = ', deltaXIterStep);
+    log('deltaYIterStep = ', deltaYIterStep);
     for (let index = 1; index < iterationCount; index++) { // last step is not checked as the conditions (isEnemyAttacked || isEndEmpty) are already met
       const coordValue = parseInt(board.coord[start], 10);
       let nextIterStep;
-      if (deltaXIterStep > 0 && deltaYIterStep > 0) {
-        nextIterStep = coordValue + 11;
-      } else if (deltaXIterStep > 0 && deltaYIterStep < 0) {
-        nextIterStep = coordValue + 9;
-      } else if (deltaXIterStep < 0 && deltaYIterStep < 0) {
-        nextIterStep = coordValue - 11;
-      } else if (deltaXIterStep < 0 && deltaYIterStep > 0) {
-        nextIterStep = coordValue - 9;
+      if (deltaYIterStep > 0) {
+        nextIterStep = coordValue + (1 * index);
+      } else if (deltaYIterStep < 0) {
+        nextIterStep = coordValue - (1 * index);
+      } else if (deltaXIterStep > 0) {
+        nextIterStep = coordValue + (10 * index);
+      } else if (deltaXIterStep < 0) {
+        nextIterStep = coordValue - (10 * index);
       }
       const nextIterCoord = board.coordRev[nextIterStep];
-      const nextIterPieceType = board.pieces[nextIterCoord].type || '.';
       log('nextIterStep = ', nextIterStep);
       log('nextIterCoord = ', nextIterCoord);
+      let nextIterPieceType;
+      if (board.pieces[nextIterCoord]) {
+        nextIterPieceType = board.pieces[nextIterCoord].type || '.';
+      } else {
+        nextIterPieceType = '.';
+      }
       log('nextIterPieceType = ', nextIterPieceType);
       if (nextIterPieceType !== '.') return true; // path is blocked
     }
     return false;
   }
   findRegularPattern(deltaX, deltaY) {
-    return this.pattern.some((d) => deltaX === d[0] && deltaY === d[1]);
+    return this.pattern.some((d) => {
+      return deltaX === d[0] && deltaY === d[1];
+    });
   }
   checkEndEmpty(board, end) {
     return board.pieces[end] === '.' ? true : false;

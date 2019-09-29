@@ -18,18 +18,20 @@ class Bishop extends Piece {
     this.movementCount = 0;
   }
   validateMove(deltaPos, isEnemyAttacked, piece, board, start, end) {
-    log(piece);
     const deltaX = deltaPos[0];
     const deltaY = deltaPos[1];
     const isRegularFound = this.findRegularPattern(deltaX, deltaY);
-    const isEndEmpty = this.checkEndEmpty(board, end);
+    log(piece);
+    log('color = ', piece.color);
+    log('deltaX, deltaY = ', [deltaX, deltaY]);
+    log('isRegularFound = ', isRegularFound);
     if (isRegularFound) {
+      const isEndEmpty = this.checkEndEmpty(board, end);
+      log('isEndEmpty = ', isEndEmpty);
       if (isEnemyAttacked || isEndEmpty) {
         const isPathBlocked = this.obsticleCheck( // if the previous conditions are met => check for obsticles
           start, end, deltaX, deltaY, piece, board);
-        log('isEnemyAttacked = ', isEnemyAttacked);
-        log('color = ', piece.color);
-        log('deltaX, deltaY = ', [deltaX, deltaY]);
+        log('isPathBlocked = ', isPathBlocked);
         if (!isPathBlocked) return true;
       }
     }

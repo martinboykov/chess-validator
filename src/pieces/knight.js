@@ -16,18 +16,27 @@ class Knight extends Piece {
     log(piece);
     const deltaX = deltaPos[0];
     const deltaY = deltaPos[1];
-    const isRegularFound = this.pattern.some((d) => {
+    const isRegularFound = this.findRegularPattern(deltaX, deltaY);
+    log(piece);
+    log('color = ', piece.color);
+    log('deltaX, deltaY = ', [deltaX, deltaY]);
+    log('isRegularFound = ', isRegularFound);
+    if (isRegularFound) {
+      const isEndEmpty = this.checkEndEmpty(board, end);
+      log('isEndEmpty = ', isEndEmpty);
+      if (isEnemyAttacked || isEndEmpty) {
+        return true;
+      }
+    }
+    return false;
+  }
+  findRegularPattern(deltaX, deltaY) {
+    return this.pattern.some((d) => {
       return deltaX === d[0] && deltaY === d[1];
     });
-    const isEndEmpty = board.pieces[end] === '.' ? true : false;
-    if (isEnemyAttacked || isEndEmpty) {
-      log('isEnemyAttacked = ', isEnemyAttacked);
-      log('color = ', piece.color);
-      log('deltaX, deltaY = ', [deltaX, deltaY]);
-      if (isRegularFound) return true;
-    }
-    // no knight movement pattern found or on end is piece with same color => false
-    return false;
+  }
+  checkEndEmpty(board, end) {
+    return board.pieces[end] === '.' ? true : false;
   }
 }
 
