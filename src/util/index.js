@@ -21,7 +21,7 @@ const PLAY_ORDER = {
 	black: false,
 };
 
-// [x,y]; x -> left/right; y -> up/down;
+// [x,y]; x -> left (-)/right (+); y -> up (+)/down (-);
 const MOVEMENT_PATTERNS = { /*eslint-disable */
   up:           [[ 0, 1], [ 0, 2], [ 0, 3], [ 0, 4], [ 0, 5], [ 0, 6], [ 0, 7]],
   down:         [[ 0,-1], [ 0,-2], [ 0,-3], [ 0,-4], [ 0,-5], [ 0,-6], [ 0,-7]],

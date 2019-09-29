@@ -1,8 +1,7 @@
-const COLORS = require('../../../util').COLORS;
-const { Board } = require('../../../board');
-const { Knight } = require('../../../pieces/knight');
+const COLORS = require('../../../src/util').COLORS;
+const { Board } = require('../../../src/board');
+const { Knight } = require('../../../src/pieces/knight');
 
-/* disable eslint*/
 describe('knight', () => {
   beforeAll(() => {
 

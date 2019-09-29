@@ -36,19 +36,11 @@ class Pawn extends Piece {
   }
   validateMove(deltaPos, isEnemyAttacked, piece, board, start, end) {
     log(piece);
-
     const deltaX = deltaPos[0];
     const deltaY = deltaPos[1];
     const isFirstMove = piece.movementCount === 0;
     if (isFirstMove) {
-      const isPathBlocked = this.obsticleCheck(
-        start,
-        end,
-        deltaX,
-        deltaY,
-        piece,
-        board
-      );
+
       const isFirstMoveFound = piece.color
         ? this.pattern.white.special.first.some((d) => {
           return deltaX === d[0] && deltaY === d[1];
@@ -57,11 +49,13 @@ class Pawn extends Piece {
           return deltaX === d[0] && deltaY === d[1];
         });
       log('isFirstMoveFound = ', isFirstMoveFound);
-      log('isPathBlocked = ', isPathBlocked);
-      log('isFirstMoveFound && !isPathBlocked = ',
-        isFirstMoveFound && !isPathBlocked
-      );
-      if (isFirstMoveFound && !isPathBlocked) return true;
+      if (isFirstMoveFound) {
+        const isPathBlocked = this.obsticleCheck(
+          start, end, deltaX, deltaY, piece, board
+        );
+        log('isPathBlocked = ', isPathBlocked);
+        if (!isPathBlocked) return true;
+      }
     }
     if (isEnemyAttacked) {
       log('isEnemyAttacked = ', isEnemyAttacked);

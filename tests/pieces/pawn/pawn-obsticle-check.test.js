@@ -1,7 +1,7 @@
 
-const COLORS = require('../../../util').COLORS;
-const { Board } = require('../../../board');
-const { Pawn } = require('../../../pieces/pawn');
+const COLORS = require('../../../src/util').COLORS;
+const { Board } = require('../../../src/board');
+const { Pawn } = require('../../../src/pieces/pawn');
 describe('pawn', () => {
   beforeAll(() => {
 

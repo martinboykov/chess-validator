@@ -1,4 +1,4 @@
-const { Board } = require('../../board');
+const { Board } = require('../../src/board');
 
 describe('board', () => {
   it('delta between a1 and a2 shoud return 0 and -1', () => {

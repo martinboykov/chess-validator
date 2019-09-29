@@ -1,4 +1,4 @@
-const { dataHandler, errorHandler } = require('../../util');
+const { dataHandler, errorHandler } = require('../../src/util');
 
 describe('file reader', () => {
   beforeEach(() => {

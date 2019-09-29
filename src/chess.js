@@ -42,6 +42,12 @@ class Chess {
       if (idx < 2) this.add().knight(pos, COLORS.white);
       else if (idx >= 2) this.add().knight(pos, COLORS.black);
     });
+    // bishops init
+    // -----------------------------------------
+    ['c1', 'f1', 'c8', 'f8'].forEach((pos, idx) => {
+      if (idx < 2) this.add().bishop(pos, COLORS.white);
+      else if (idx >= 2) this.add().bishop(pos, COLORS.black);
+    });
 
     // rest of pieces
     // -----------------------------------------
@@ -121,6 +127,9 @@ class Chess {
       },
       knight: (pos, color) => {
         this.board.pieces[pos] = new pieceType.Knight(pos, color);
+      },
+      bishop: (pos, color) => {
+        this.board.pieces[pos] = new pieceType.Bishop(pos, color);
       },
     };
   }

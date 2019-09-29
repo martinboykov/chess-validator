@@ -1,6 +1,6 @@
-const { Chess } = require('../chess');
-const { Piece } = require('../pieces/piece');
-const COLORS = require('../util').COLORS;
+const { Chess } = require('../src/chess');
+const { Piece } = require('../src/pieces/piece');
+const COLORS = require('../src/util').COLORS;
 
 
 describe('chess', () => {
