@@ -54,6 +54,12 @@ class Chess {
       if (idx < 2) this.add().rook(pos, COLORS.white);
       else if (idx >= 2) this.add().rook(pos, COLORS.black);
     });
+    // queens init
+    // -----------------------------------------
+    ['d1', 'd8'].forEach((pos, idx) => {
+      if (idx < 1) this.add().queen(pos, COLORS.white);
+      else if (idx >= 1) this.add().queen(pos, COLORS.black);
+    });
 
     // rest of pieces
     // -----------------------------------------
@@ -78,16 +84,17 @@ class Chess {
     if (this.order !== this.board.pieces[start].color) {
       return this.gameOver(start, end);
     }
-
-    log('piece.color = ', this.board.pieces[start].color);
-    log('order = ', this.order);
     const delta = this.board.calculateDelta(end, start);
     const isEnemyAttacked = this.enemyAttackedCheck(start, end);
+    const isEndEmpty = this.endEmptyCheck(end);
+    log('piece.color = ', this.board.pieces[start].color);
+    log('order = ', this.order);
     log('delta = ', delta);
     log('isEnemyAttacked = ', isEnemyAttacked);
+    log('isEndEmpty = ', isEndEmpty);
     const isValidMove = piece.validateMove(
-      delta, isEnemyAttacked,
-      piece, this.board, start, end
+      delta, isEnemyAttacked, isEndEmpty,
+      piece, this.board, start, end,
     );
     if (isValidMove) {
       // default
@@ -140,6 +147,9 @@ class Chess {
       rook: (pos, color) => {
         this.board.pieces[pos] = new pieceType.Rook(pos, color);
       },
+      queen: (pos, color) => {
+        this.board.pieces[pos] = new pieceType.Queen(pos, color);
+      },
     };
   }
   enemyAttackedCheck(start, end) {
@@ -147,6 +157,9 @@ class Chess {
       (this.board.pieces[start].color !== this.board.pieces[end].color)) ?
       true :
       false;
+  }
+  endEmptyCheck(end) {
+    return this.board.pieces[end] === '.' ? true : false;
   }
 }
 

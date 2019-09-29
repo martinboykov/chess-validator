@@ -17,7 +17,8 @@ class Rook extends Piece {
     ];
     this.movementCount = 0;
   }
-  validateMove(deltaPos, isEnemyAttacked, piece, board, start, end) {
+  validateMove(deltaPos, isEnemyAttacked,
+    isEndEmpty, piece, board, start, end) {
     const deltaX = deltaPos[0];
     const deltaY = deltaPos[1];
     if ((deltaX !== 0 && deltaY !== 0) ||
@@ -28,8 +29,6 @@ class Rook extends Piece {
     log('deltaX, deltaY = ', [deltaX, deltaY]);
     log('isRegularFound = ', isRegularFound);
     if (isRegularFound) {
-      const isEndEmpty = this.checkEndEmpty(board, end);
-      log('isEndEmpty = ', isEndEmpty);
       if (isEnemyAttacked || isEndEmpty) {
         const isPathBlocked = this.obsticleCheck( // if the previous conditions are met => check for obsticles
           start, end, deltaX, deltaY, piece, board);
@@ -78,9 +77,6 @@ class Rook extends Piece {
     return this.pattern.some((d) => {
       return deltaX === d[0] && deltaY === d[1];
     });
-  }
-  checkEndEmpty(board, end) {
-    return board.pieces[end] === '.' ? true : false;
   }
 }
 

@@ -122,7 +122,7 @@ describe('chess', () => {
     });
   });
   describe('enemyAttackedCheck', () => {
-    it('if on start pos the piece is with white color and on end pos the piece is with black color should return true', () => { // eslint-disable-line max-len
+    it('should return true if on start pos the piece is with white color and on end pos the piece is with black color', () => { // eslint-disable-line max-len
       const chess = new Chess();
       const start = 'a2';
       const end = 'b3';
@@ -132,7 +132,7 @@ describe('chess', () => {
         start, end);
       expect(result).toBe(true);
     });
-    it('if on start pos the piece is with white color and on end pos the piece is with white color should return false', () => { // eslint-disable-line max-len
+    it('return false if on start pos the piece is with white color and on end pos the piece is with white color should', () => { // eslint-disable-line max-len
       const chess = new Chess();
       const start = 'a2';
       const end = 'b3';
@@ -142,7 +142,7 @@ describe('chess', () => {
         start, end);
       expect(result).toBe(false);
     });
-    it('if on start pos the piece is with white color and on end pos is no piece should return false', () => { // eslint-disable-line max-len
+    it('should return false if on start pos the piece is with white color and on end pos is no piece', () => { // eslint-disable-line max-len
       const chess = new Chess();
       const start = 'a2';
       const end = 'b3';
@@ -151,7 +151,7 @@ describe('chess', () => {
         start, end);
       expect(result).toBe(false);
     });
-    it('if on start pos the piece is with black color and on end pos the piece is with white color should return true', () => { // eslint-disable-line max-len
+    it('should return true if on start pos the piece is with black color and on end pos the piece is with white color', () => { // eslint-disable-line max-len
       const chess = new Chess();
       const start = 'a2';
       const end = 'b3';
@@ -161,7 +161,7 @@ describe('chess', () => {
         start, end);
       expect(result).toBe(true);
     });
-    it('if on start pos the piece is with black color and on end pos the piece is with black color should return false', () => { // eslint-disable-line max-len
+    it('should return false if on start pos the piece is with black color and on end pos the piece is with black color', () => { // eslint-disable-line max-len
       const chess = new Chess();
       const start = 'a2';
       const end = 'b3';
@@ -171,13 +171,41 @@ describe('chess', () => {
         start, end);
       expect(result).toBe(false);
     });
-    it('if on start pos the piece is with black color and on end pos is no piece should return false', () => { // eslint-disable-line max-len
+    it('should return false if on start pos the piece is with black color and on end pos is no piece', () => { // eslint-disable-line max-len
       const chess = new Chess();
       const start = 'a2';
       const end = 'b3';
       chess.board.pieces[start] = new Piece(start, COLORS.black);
       const result = chess.enemyAttackedCheck(
         start, end);
+      expect(result).toBe(false);
+    });
+  });
+  describe('endEmptyCheck', () => {
+    it('should return true if on end pos there is no piece', () => { // eslint-disable-line max-len
+      const chess = new Chess();
+      const start = 'a2';
+      const end = 'b3';
+      chess.board.pieces[start] = new Piece(start, COLORS.white);
+      const result = chess.endEmptyCheck(end);
+      expect(result).toBe(true);
+    });
+    it('should return false if on end pos there is piece with same color', () => { // eslint-disable-line max-len
+      const chess = new Chess();
+      const start = 'a2';
+      const end = 'b3';
+      chess.board.pieces[start] = new Piece(start, COLORS.white);
+      chess.board.pieces[end] = new Piece(end, COLORS.white);
+      const result = chess.endEmptyCheck(end);
+      expect(result).toBe(false);
+    });
+    it('should return false if on end pos there is piece with another color', () => { // eslint-disable-line max-len
+      const chess = new Chess();
+      const start = 'a2';
+      const end = 'b3';
+      chess.board.pieces[start] = new Piece(start, COLORS.white);
+      chess.board.pieces[end] = new Piece(end, COLORS.black);
+      const result = chess.endEmptyCheck(end);
       expect(result).toBe(false);
     });
   });

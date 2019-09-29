@@ -12,13 +12,11 @@ describe('rook', () => {
       const start = 'e4';
       const end = 'g4';
       const isEnemyAttacked = false;
+      const isEndEmpty = true;
       const board = new Board();
       const rook = new Rook(start, COLORS.black);
       board.pieces[start] = rook;
       rook.findRegularPattern = jest.fn().mockImplementation(() => {
-        return true;
-      });
-      rook.checkEndEmpty = jest.fn().mockImplementation(() => {
         return true;
       });
       rook.obsticleCheck = jest.fn().mockImplementation(() => {
@@ -26,34 +24,33 @@ describe('rook', () => {
       });
       const delta = board.calculateDelta(end, start);
       const result = rook.validateMove(
-        delta, isEnemyAttacked, rook, board, start, end);
+        delta, isEnemyAttacked, isEndEmpty, rook, board, start, end);
       expect(result).toBe(true); // no obstruction
     });
     it('should return "false" if rook start pos is "e4" and end pos is "h6" without piece at end and with no obstruction', () => { // eslint-disable-line max-len
       const start = 'e4';
       const end = 'h6';
       const isEnemyAttacked = false;
+      const isEndEmpty = true;
       const board = new Board();
       const rook = new Rook(start, COLORS.black);
       board.pieces[start] = rook;
       rook.findRegularPattern = jest.fn().mockImplementation(() => {
         return false;
       });
-      rook.checkEndEmpty = jest.fn().mockImplementation(() => {
-        return true;
-      });
       rook.obsticleCheck = jest.fn().mockImplementation(() => {
         return false;
       });
       const delta = board.calculateDelta(end, start);
       const result = rook.validateMove(
-        delta, isEnemyAttacked, rook, board, start, end);
+        delta, isEnemyAttacked, isEndEmpty, rook, board, start, end);
       expect(result).toBe(false); // no obstruction
     });
     it('should return "true" if rook start pos is "e4" and end pos is "e6" with enemy piece at end and with no obstruction', () => { // eslint-disable-line max-len
       const start = 'e4';
       const end = 'e6';
       const isEnemyAttacked = true;
+      const isEndEmpty = false;
       const board = new Board();
       const rook = new Rook(start, COLORS.black);
       board.pieces[start] = rook;
@@ -61,21 +58,20 @@ describe('rook', () => {
       rook.findRegularPattern = jest.fn().mockImplementation(() => {
         return true;
       });
-      rook.checkEndEmpty = jest.fn().mockImplementation(() => {
-        return false;
-      });
       rook.obsticleCheck = jest.fn().mockImplementation(() => {
         return false;
       });
       const delta = board.calculateDelta(end, start);
       const result = rook.validateMove(
-        delta, isEnemyAttacked, rook, board, start, end);
+        delta, isEnemyAttacked, isEndEmpty, rook, board, start, end);
       expect(result).toBe(true); // no obstruction
     });
-    it('should return "false" if rook start pos is "e4" and end pos is "g6" with enemy piece at end and with obstruction', () => { // eslint-disable-line max-len
+    it('should return "false" if rook start pos is "e4" and end pos is "e6" with enemy piece at end and with obstruction', () => { // eslint-disable-line max-len
       const start = 'e4';
-      const end = 'g6';
+      const end = 'e6';
       const isEnemyAttacked = true;
+      const isEndEmpty = false;
+
       const board = new Board();
       const rook = new Rook(start, COLORS.black);
       board.pieces[start] = rook;
@@ -83,21 +79,19 @@ describe('rook', () => {
       rook.findRegularPattern = jest.fn().mockImplementation(() => {
         return true;
       });
-      rook.checkEndEmpty = jest.fn().mockImplementation(() => {
-        return false;
-      });
       rook.obsticleCheck = jest.fn().mockImplementation(() => {
         return true;
       });
       const delta = board.calculateDelta(end, start);
       const result = rook.validateMove(
-        delta, isEnemyAttacked, rook, board, start, end);
+        delta, isEnemyAttacked, isEndEmpty, rook, board, start, end);
       expect(result).toBe(false); // no obstruction
     });
     it('should return "false" if rook start pos is "e4" and end pos is "g6" with same color piece at end and with no obstruction', () => { // eslint-disable-line max-len
       const start = 'e4';
       const end = 'g6';
       const isEnemyAttacked = false;
+      const isEndEmpty = false;
       const board = new Board();
       const rook = new Rook(start, COLORS.black);
       board.pieces[start] = rook;
@@ -105,15 +99,12 @@ describe('rook', () => {
       rook.findRegularPattern = jest.fn().mockImplementation(() => {
         return true;
       });
-      rook.checkEndEmpty = jest.fn().mockImplementation(() => {
-        return false;
-      });
       rook.obsticleCheck = jest.fn().mockImplementation(() => {
         return false;
       });
       const delta = board.calculateDelta(end, start);
       const result = rook.validateMove(
-        delta, isEnemyAttacked, rook, board, start, end);
+        delta, isEnemyAttacked, isEndEmpty, rook, board, start, end);
       expect(result).toBe(false); // no obstruction
     });
   });

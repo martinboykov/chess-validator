@@ -2,7 +2,6 @@ const log = require('debug')('pawn');
 const { Piece } = require('./piece');
 const TYPES = require('../util').TYPES;
 const MOVEMENT_PATTERNS = require('../util').MOVEMENT_PATTERNS;
-const isDev = process.env.NODE_ENV === 'development'; // eslint-disable-line no-process-env
 
 class Pawn extends Piece {
   constructor(pos, color) {
@@ -34,7 +33,8 @@ class Pawn extends Piece {
       },
     };
   }
-  validateMove(deltaPos, isEnemyAttacked, piece, board, start, end) {
+  validateMove(deltaPos, isEnemyAttacked,
+    isEndEmpty, piece, board, start, end) {
     log(piece);
     const deltaX = deltaPos[0];
     const deltaY = deltaPos[1];
@@ -57,7 +57,6 @@ class Pawn extends Piece {
       }
     }
     if (isEnemyAttacked) {
-      log('isEnemyAttacked = ', isEnemyAttacked);
       log('pattern.white.special.attack = ', this.pattern.white.special.attack); // eslint-disable-line max-len
       log('pattern.black.special.attack = ', this.pattern.black.special.attack); // eslint-disable-line max-len
       log('color = ', piece.color);
