@@ -6,19 +6,22 @@ class Rook extends Piece {
   constructor(pos, color) {
     super(pos, color);
     this.type = TYPES.rook;
-    this.pattern = [
-      ...MOVEMENT_PATTERNS.up,
-      ...MOVEMENT_PATTERNS.right,
-      ...MOVEMENT_PATTERNS.down,
-      ...MOVEMENT_PATTERNS.left,
-    ];
+    this.pattern = {
+      regular: [
+        ...MOVEMENT_PATTERNS.up,
+        ...MOVEMENT_PATTERNS.right,
+        ...MOVEMENT_PATTERNS.down,
+        ...MOVEMENT_PATTERNS.left,
+      ],
+    };
     this.movementCount = 0;
   }
   validateMove(deltaX, deltaY, isEnemyAttacked,
     isEndEmpty, piece, board, start, end) {
     if ((deltaX !== 0 && deltaY !== 0) ||
       (deltaX === 0 && deltaY === 0)) return false; // fast check
-    const isRegularFound = this.findRegularPattern(deltaX, deltaY);
+    const isRegularFound = this.findRegularPattern(
+      this.pattern.regular, deltaX, deltaY);
     log(piece);
     log('color = ', piece.color);
     log('deltaX, deltaY = ', [deltaX, deltaY]);
@@ -67,6 +70,9 @@ class Rook extends Piece {
       if (nextIterPieceType !== '.') return true; // path is blocked
     }
     return false;
+  }
+  findRegularPattern(pattern, deltaX, deltaY) {
+    return super.findRegularPattern(pattern, deltaX, deltaY);
   }
 }
 

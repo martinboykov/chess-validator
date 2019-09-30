@@ -19,7 +19,7 @@ describe('queen', () => {
           const deltaX = delta[0];
           const deltaY = delta[1];
           const result = queen.findRegularPattern(
-            deltaX, deltaY);
+            queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
         it('should return "true" if queen start pos is "e4" and end pos is "g6" without piece at end', () => { // eslint-disable-line max-len
@@ -32,7 +32,7 @@ describe('queen', () => {
           const deltaX = delta[0];
           const deltaY = delta[1];
           const result = queen.findRegularPattern(
-            deltaX, deltaY);
+            queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
         it('should return "true" if queen start pos is "e4" and end pos is "h7" without piece at end', () => { // eslint-disable-line max-len
@@ -45,7 +45,7 @@ describe('queen', () => {
           const deltaX = delta[0];
           const deltaY = delta[1];
           const result = queen.findRegularPattern(
-            deltaX, deltaY);
+            queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
       });
@@ -60,7 +60,7 @@ describe('queen', () => {
           const deltaX = delta[0];
           const deltaY = delta[1];
           const result = queen.findRegularPattern(
-            deltaX, deltaY);
+            queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
         it('should return "true" if queen start pos is "e4" and end pos is "g2" without piece at end', () => { // eslint-disable-line max-len
@@ -73,7 +73,7 @@ describe('queen', () => {
           const deltaX = delta[0];
           const deltaY = delta[1];
           const result = queen.findRegularPattern(
-            deltaX, deltaY);
+            queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
         it('should return "true" if queen start pos is "e4" and end pos is "h1" without piece at end', () => { // eslint-disable-line max-len
@@ -86,7 +86,7 @@ describe('queen', () => {
           const deltaX = delta[0];
           const deltaY = delta[1];
           const result = queen.findRegularPattern(
-            deltaX, deltaY);
+            queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
       });
@@ -101,7 +101,7 @@ describe('queen', () => {
           const deltaX = delta[0];
           const deltaY = delta[1];
           const result = queen.findRegularPattern(
-            deltaX, deltaY);
+            queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
         it('should return "true" if queen start pos is "e4" and end pos is "c2" without piece at end', () => { // eslint-disable-line max-len
@@ -114,7 +114,7 @@ describe('queen', () => {
           const deltaX = delta[0];
           const deltaY = delta[1];
           const result = queen.findRegularPattern(
-            deltaX, deltaY);
+            queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
         it('should return "true" if queen start pos is "e4" and end pos is "b1" without piece at end', () => { // eslint-disable-line max-len
@@ -127,7 +127,7 @@ describe('queen', () => {
           const deltaX = delta[0];
           const deltaY = delta[1];
           const result = queen.findRegularPattern(
-            deltaX, deltaY);
+            queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
       });
@@ -142,7 +142,7 @@ describe('queen', () => {
           const deltaX = delta[0];
           const deltaY = delta[1];
           const result = queen.findRegularPattern(
-            deltaX, deltaY);
+            queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
         it('should return "true" if queen start pos is "e4" and end pos is "c6" without piece at end', () => { // eslint-disable-line max-len
@@ -155,7 +155,7 @@ describe('queen', () => {
           const deltaX = delta[0];
           const deltaY = delta[1];
           const result = queen.findRegularPattern(
-            deltaX, deltaY);
+            queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
         it('should return "true" if queen start pos is "e4" and end pos is "b7" without piece at end', () => { // eslint-disable-line max-len
@@ -168,7 +168,7 @@ describe('queen', () => {
           const deltaX = delta[0];
           const deltaY = delta[1];
           const result = queen.findRegularPattern(
-            deltaX, deltaY);
+            queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
       });
@@ -184,7 +184,7 @@ describe('queen', () => {
         const deltaX = delta[0];
         const deltaY = delta[1];
         const result = queen.findRegularPattern(
-          deltaX, deltaY);
+          queen.pattern.regular, deltaX, deltaY);
         expect(result).toBe(false);
       });
       it('should return "false" if queen start pos is "e4" and end pos is "a3"', () => { // eslint-disable-line max-len
@@ -197,7 +197,7 @@ describe('queen', () => {
         const deltaX = delta[0];
         const deltaY = delta[1];
         const result = queen.findRegularPattern(
-          deltaX, deltaY);
+          queen.pattern.regular, deltaX, deltaY);
         expect(result).toBe(false);
       });
     });

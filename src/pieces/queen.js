@@ -6,21 +6,24 @@ class Queen extends Piece {
   constructor(pos, color) {
     super(pos, color);
     this.type = TYPES.queen;
-    this.pattern = [
-      ...MOVEMENT_PATTERNS.up,
-      ...MOVEMENT_PATTERNS.diag.up_right,
-      ...MOVEMENT_PATTERNS.right,
-      ...MOVEMENT_PATTERNS.diag.down_right,
-      ...MOVEMENT_PATTERNS.down,
-      ...MOVEMENT_PATTERNS.diag.down_left,
-      ...MOVEMENT_PATTERNS.left,
-      ...MOVEMENT_PATTERNS.diag.up_left,
-    ];
+    this.pattern = {
+      regular: [
+        ...MOVEMENT_PATTERNS.up,
+        ...MOVEMENT_PATTERNS.diag.up_right,
+        ...MOVEMENT_PATTERNS.right,
+        ...MOVEMENT_PATTERNS.diag.down_right,
+        ...MOVEMENT_PATTERNS.down,
+        ...MOVEMENT_PATTERNS.diag.down_left,
+        ...MOVEMENT_PATTERNS.left,
+        ...MOVEMENT_PATTERNS.diag.up_left,
+      ],
+    };
     this.movementCount = 0;
   }
   validateMove(deltaX, deltaY, isEnemyAttacked,
     isEndEmpty, piece, board, start, end) {
-    const isRegularFound = this.findRegularPattern(deltaX, deltaY);
+      const isRegularFound = this.findRegularPattern(
+        this.pattern.regular, deltaX, deltaY);
     log(piece);
     log('color = ', piece.color);
     log('deltaX, deltaY = ', [deltaX, deltaY]);
@@ -102,6 +105,9 @@ class Queen extends Piece {
       if (nextIterPieceType !== '.') return true; // path is blocked
     }
     return false;
+  }
+  findRegularPattern(pattern, deltaX, deltaY) {
+    return super.findRegularPattern(pattern, deltaX, deltaY);
   }
 }
 

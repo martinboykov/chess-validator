@@ -39,8 +39,7 @@ class Pawn extends Piece {
       log('isFirstMoveFound = ', isFirstMoveFound);
       if (isFirstMoveFound) {
         const isPathBlocked = this.obsticleCheck(
-          start, end, deltaX, deltaY, piece, board
-        );
+          start, end, deltaX, deltaY, piece, board);
         log('isPathBlocked = ', isPathBlocked);
         if (!isPathBlocked) return true;
       }
@@ -54,15 +53,9 @@ class Pawn extends Piece {
       if (isAttackMoveFound) return true;
     }
     // regular movement pattern foun(d) => true
-    const isRegularFound = piece.color
-      ? this.pattern.white.regular.some((d) => {
-        return deltaX === d[0] && deltaY === d[1];
-      })
-      : this.pattern.black.regular.some((d) => {
-        return deltaX === d[0] && deltaY === d[1];
-      });
-    if (isRegularFound) return true;
-    log('regularMovePattern = ', isRegularFound);
+    const isRegularMoveFound = this.regularMoveCheck(piece, deltaX, deltaY);
+    if (isRegularMoveFound) return true;
+    log('regularMovePattern = ', isRegularMoveFound);
     return false;
   }
   obsticleCheck(start, end, deltaX, deltaY, piece, board) {
@@ -91,6 +84,11 @@ class Pawn extends Piece {
         return deltaX === d[0] && deltaY === d[1];
       });
   }
+  regularMoveCheck(piece, deltaX, deltaY) {
+    return piece.color ?
+      this.findRegularPattern(this.pattern.white.regular, deltaX, deltaY) :
+      this.findRegularPattern(this.pattern.black.regular, deltaX, deltaY);
+  }
   attackMoveCheck(piece, deltaX, deltaY) {
     return piece.color
       ? this.pattern.white.special.attack.some((d) => {
@@ -99,6 +97,9 @@ class Pawn extends Piece {
       : this.pattern.black.special.attack.some((d) => {
         return deltaX === d[0] && deltaY === d[1];
       });
+  }
+  findRegularPattern(pattern, deltaX, deltaY) {
+    return super.findRegularPattern(pattern, deltaX, deltaY);
   }
 }
 

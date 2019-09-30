@@ -9,8 +9,8 @@ class Piece {
     this.type = TYPES.default;
     this.pattern = [];
   }
-  findRegularPattern(deltaX, deltaY) {
-    return this.pattern.some((d) => {
+  findRegularPattern(pattern, deltaX, deltaY) {
+    return pattern.some((d) => {
       return deltaX === d[0] && deltaY === d[1];
     });
   }
