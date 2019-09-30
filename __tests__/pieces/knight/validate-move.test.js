@@ -16,7 +16,7 @@ describe('knight', () => {
         const board = new Board();
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
-        knight.findRegularPattern = jest.fn().mockImplementation(() => {
+        knight.findMovePattern = jest.fn().mockImplementation(() => {
           return true;
         });
         board.pieces[knight.pos] = knight;
@@ -34,7 +34,7 @@ describe('knight', () => {
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
-        knight.findRegularPattern = jest.fn().mockImplementation(() => {
+        knight.findMovePattern = jest.fn().mockImplementation(() => {
           return true;
         });
         const result = knight.validateMove(
@@ -51,7 +51,7 @@ describe('knight', () => {
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
-        knight.findRegularPattern = jest.fn().mockImplementation(() => {
+        knight.findMovePattern = jest.fn().mockImplementation(() => {
           return true;
         });
         const result = knight.validateMove(
@@ -68,7 +68,7 @@ describe('knight', () => {
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
-        knight.findRegularPattern = jest.fn().mockImplementation(() => {
+        knight.findMovePattern = jest.fn().mockImplementation(() => {
           return true;
         });
         const result = knight.validateMove(
@@ -84,7 +84,7 @@ describe('knight', () => {
         const board = new Board();
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
-        knight.findRegularPattern = jest.fn().mockImplementation(() => {
+        knight.findMovePattern = jest.fn().mockImplementation(() => {
           return true;
         });
         board.pieces[knight.pos] = knight;
@@ -102,7 +102,7 @@ describe('knight', () => {
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
-        knight.findRegularPattern = jest.fn().mockImplementation(() => {
+        knight.findMovePattern = jest.fn().mockImplementation(() => {
           return true;
         });
         const result = knight.validateMove(
@@ -119,7 +119,7 @@ describe('knight', () => {
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
-        knight.findRegularPattern = jest.fn().mockImplementation(() => {
+        knight.findMovePattern = jest.fn().mockImplementation(() => {
           return true;
         });
         const result = knight.validateMove(
@@ -136,7 +136,7 @@ describe('knight', () => {
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
-        knight.findRegularPattern = jest.fn().mockImplementation(() => {
+        knight.findMovePattern = jest.fn().mockImplementation(() => {
           return true;
         });
         const result = knight.validateMove(
@@ -157,7 +157,7 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
           board.pieces[end] = new Knight(start, COLORS.black);
-          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          knight.findMovePattern = jest.fn().mockImplementation(() => {
             return true;
           });
           const result = knight.validateMove(
@@ -175,7 +175,7 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
           board.pieces[end] = new Knight(start, COLORS.black);
-          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          knight.findMovePattern = jest.fn().mockImplementation(() => {
             return true;
           });
           const result = knight.validateMove(
@@ -193,7 +193,7 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[end] = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
-          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          knight.findMovePattern = jest.fn().mockImplementation(() => {
             return true;
           });
           const result = knight.validateMove(
@@ -211,7 +211,7 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[end] = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
-          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          knight.findMovePattern = jest.fn().mockImplementation(() => {
             return true;
           });
           const result = knight.validateMove(
@@ -229,7 +229,7 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[end] = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
-          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          knight.findMovePattern = jest.fn().mockImplementation(() => {
             return true;
           });
           const result = knight.validateMove(
@@ -247,7 +247,7 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[end] = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
-          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          knight.findMovePattern = jest.fn().mockImplementation(() => {
             return true;
           });
           const result = knight.validateMove(
@@ -265,7 +265,7 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[end] = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
-          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          knight.findMovePattern = jest.fn().mockImplementation(() => {
             return true;
           });
           const result = knight.validateMove(
@@ -283,7 +283,7 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
           board.pieces[end] = new Knight(start, COLORS.black);
-          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          knight.findMovePattern = jest.fn().mockImplementation(() => {
             return true;
           });
           const result = knight.validateMove(
@@ -303,7 +303,7 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
           board.pieces[end] = new Knight(start, COLORS.white);
-          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          knight.findMovePattern = jest.fn().mockImplementation(() => {
             return true;
           });
           const result = knight.validateMove(
@@ -321,7 +321,7 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
           board.pieces[end] = new Knight(start, COLORS.white);
-          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          knight.findMovePattern = jest.fn().mockImplementation(() => {
             return true;
           });
           const result = knight.validateMove(
@@ -339,7 +339,7 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
           board.pieces[end] = new Knight(start, COLORS.white);
-          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          knight.findMovePattern = jest.fn().mockImplementation(() => {
             return true;
           });
           const result = knight.validateMove(
@@ -357,7 +357,7 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
           board.pieces[end] = new Knight(start, COLORS.white);
-          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          knight.findMovePattern = jest.fn().mockImplementation(() => {
             return true;
           });
           const result = knight.validateMove(
@@ -375,7 +375,7 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
           board.pieces[end] = new Knight(start, COLORS.white);
-          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          knight.findMovePattern = jest.fn().mockImplementation(() => {
             return true;
           });
           const result = knight.validateMove(
@@ -393,7 +393,7 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[end] = new Knight(start, COLORS.white);
           board.pieces[knight.pos] = knight;
-          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          knight.findMovePattern = jest.fn().mockImplementation(() => {
             return true;
           });
           const result = knight.validateMove(
@@ -411,7 +411,7 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
           board.pieces[end] = new Knight(start, COLORS.white);
-          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          knight.findMovePattern = jest.fn().mockImplementation(() => {
             return true;
           });
           const result = knight.validateMove(
@@ -429,7 +429,7 @@ describe('knight', () => {
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
           board.pieces[end] = new Knight(start, COLORS.white);
-          knight.findRegularPattern = jest.fn().mockImplementation(() => {
+          knight.findMovePattern = jest.fn().mockImplementation(() => {
             return true;
           });
           const result = knight.validateMove(

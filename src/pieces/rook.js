@@ -60,14 +60,7 @@ class Rook extends Piece {
       const nextIterCoord = board.coordRev[nextIterStep];
       log('nextIterStep = ', nextIterStep);
       log('nextIterCoord = ', nextIterCoord);
-      let nextIterPieceType;
-      if (board.pieces[nextIterCoord]) {
-        nextIterPieceType = board.pieces[nextIterCoord].type || '.';
-      } else {
-        nextIterPieceType = '.';
-      }
-      log('nextIterPieceType = ', nextIterPieceType);
-      if (nextIterPieceType !== '.') return true; // path is blocked
+      if (board.pieces[nextIterCoord] !== '.') return true; // path is blocked
     }
     return false;
   }

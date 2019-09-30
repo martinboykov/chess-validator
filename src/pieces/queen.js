@@ -22,8 +22,8 @@ class Queen extends Piece {
   }
   validateMove(deltaX, deltaY, isEnemyAttacked,
     isEndEmpty, piece, board, start, end) {
-      const isRegularFound = this.findMovePattern(
-        this.pattern.regular, deltaX, deltaY);
+    const isRegularFound = this.findMovePattern(
+      this.pattern.regular, deltaX, deltaY);
     log(piece);
     log('color = ', piece.color);
     log('deltaX, deltaY = ', [deltaX, deltaY]);
@@ -48,9 +48,9 @@ class Queen extends Piece {
   }
   obsticleCheckStraight(start, end, deltaX, deltaY, piece, board) {
     const iterationCount =
-      Math.abs(deltaX) > 0 ?
-        Math.abs(deltaX) :
-        Math.abs(deltaY);
+      Math.abs(deltaX) > 0
+        ? Math.abs(deltaX)
+        : Math.abs(deltaY);
     const deltaXIterStep = deltaX !== 0 ? deltaX / iterationCount : 0;
     const deltaYIterStep = deltaY !== 0 ? deltaY / iterationCount : 0;
     log('deltaXIterStep = ', deltaXIterStep);
@@ -70,14 +70,9 @@ class Queen extends Piece {
       const nextIterCoord = board.coordRev[nextIterStep];
       log('nextIterStep = ', nextIterStep);
       log('nextIterCoord = ', nextIterCoord);
-      let nextIterPieceType;
-      if (board.pieces[nextIterCoord]) {
-        nextIterPieceType = board.pieces[nextIterCoord].type || '.';
-      } else {
-        nextIterPieceType = '.';
+      if (board.pieces[nextIterCoord] !== '.') {
+        return true;
       }
-      log('nextIterPieceType = ', nextIterPieceType);
-      if (nextIterPieceType !== '.') return true; // path is blocked
     }
     return false;
   }
@@ -98,11 +93,9 @@ class Queen extends Piece {
         nextIterStep = coordValue - (9 * index);
       }
       const nextIterCoord = board.coordRev[nextIterStep];
-      const nextIterPieceType = board.pieces[nextIterCoord].type || '.';
       log('nextIterStep = ', nextIterStep);
       log('nextIterCoord = ', nextIterCoord);
-      log('nextIterPieceType = ', nextIterPieceType);
-      if (nextIterPieceType !== '.') return true; // path is blocked
+      if (board.pieces[nextIterCoord] !== '.') return true; // path is blocked
     }
     return false;
   }

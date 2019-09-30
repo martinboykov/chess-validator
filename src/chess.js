@@ -1,12 +1,7 @@
 const log = require('debug')('chess');
-
-// import board
 const { Board } = require('./board');
-// import pieces
 const pieceType = require('./pieces');
-
 const { TYPES, COLORS, PLAY_ORDER, STATE } = require('./util');
-
 const isDev = process.env.NODE_ENV === 'development' ? true : false; // eslint-disable-line no-process-env
 
 // ...
@@ -17,9 +12,8 @@ class Chess {
     this.state = STATE.regular;
   }
   init() {
-    if (isDev) {/* istanbul ignore next */
-      this.board.print();
-    }
+    /* istanbul ignore next */
+    if (isDev) this.board.print();
     // pawns init
     // -----------------------------------------
 
@@ -54,16 +48,14 @@ class Chess {
       if (idx < 1) this.add().queen(pos, COLORS.white);
       else if (idx >= 1) this.add().queen(pos, COLORS.black);
     });
-
-    // rest of pieces
+    // kings init
     // -----------------------------------------
-    // ...
-
-
-    if (isDev) {/* istanbul ignore next */
-      this.board.print();
-    }
-
+    ['e1', 'e8'].forEach((pos, idx) => {
+      if (idx < 1) this.add().king(pos, COLORS.white);
+      else if (idx >= 1) this.add().king(pos, COLORS.black);
+    });
+    /* istanbul ignore next */
+    if (isDev) this.board.print();
     log('chess initiated');
   }
   makeMove(start, end) {
@@ -100,32 +92,20 @@ class Chess {
       piece.pos = end;
       piece.movementCount += 1;
       log(piece);
+
       // case: pawn promotion
       // ---------------------------------------
       // .....
-      // add new Queen
-
-      // king castling move with rook
-      // ---------------------------------------
-      //
-
-      // pown promotion move
-      // ---------------------------------------
-      // .....
-
-      // on state Check/ on state Checkmate
-      // ---------------------------------------
-      // N/A
 
       this.order = !this.order;
-      if (isDev) {/* istanbul ignore next */
-        this.board.print();
-      }
+
+      /* istanbul ignore next */
+      if (isDev) this.board.print();
       return true;
     }
     return this.gameOver(start, end);
   }
-  gameOver(start, end) {/* istanbul ignore next */
+  gameOver(start, end) {
     return `Wrong move: ${start}-${end}`;
   }
   add() {
@@ -145,6 +125,9 @@ class Chess {
       },
       queen: (pos, color) => {
         this.board.pieces[pos] = new pieceType.Queen(pos, color);
+      },
+      king: (pos, color) => {
+        this.board.pieces[pos] = new pieceType.King(pos, color);
       },
     };
   }

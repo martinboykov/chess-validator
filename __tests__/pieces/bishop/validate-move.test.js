@@ -16,7 +16,7 @@ describe('bishop', () => {
       const board = new Board();
       const bishop = new Bishop(start, COLORS.black);
       board.pieces[start] = bishop;
-      bishop.findRegularPattern = jest.fn().mockImplementation(() => {
+      bishop.findMovePattern = jest.fn().mockImplementation(() => {
         return true;
       });
       bishop.obsticleCheck = jest.fn().mockImplementation(() => {
@@ -36,7 +36,7 @@ describe('bishop', () => {
       const board = new Board();
       const bishop = new Bishop(start, COLORS.black);
       board.pieces[start] = bishop;
-      bishop.findRegularPattern = jest.fn().mockImplementation(() => {
+      bishop.findMovePattern = jest.fn().mockImplementation(() => {
         return false;
       });
       bishop.obsticleCheck = jest.fn().mockImplementation(() => {
@@ -57,7 +57,7 @@ describe('bishop', () => {
       const bishop = new Bishop(start, COLORS.black);
       board.pieces[start] = bishop;
       board.pieces[end] = new Piece(end, COLORS.white);
-      bishop.findRegularPattern = jest.fn().mockImplementation(() => {
+      bishop.findMovePattern = jest.fn().mockImplementation(() => {
         return true;
       });
       bishop.obsticleCheck = jest.fn().mockImplementation(() => {
@@ -78,7 +78,7 @@ describe('bishop', () => {
       const bishop = new Bishop(start, COLORS.black);
       board.pieces[start] = bishop;
       board.pieces[end] = new Piece(end, COLORS.white);
-      bishop.findRegularPattern = jest.fn().mockImplementation(() => {
+      bishop.findMovePattern = jest.fn().mockImplementation(() => {
         return true;
       });
       bishop.obsticleCheck = jest.fn().mockImplementation(() => {
@@ -99,7 +99,7 @@ describe('bishop', () => {
       const bishop = new Bishop(start, COLORS.black);
       board.pieces[start] = bishop;
       board.pieces[end] = new Piece(end, COLORS.black);
-      bishop.findRegularPattern = jest.fn().mockImplementation(() => {
+      bishop.findMovePattern = jest.fn().mockImplementation(() => {
         return true;
       });
       bishop.obsticleCheck = jest.fn().mockImplementation(() => {

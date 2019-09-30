@@ -6,7 +6,7 @@ describe('bishop', () => {
   beforeAll(() => {
 
   });
-  describe('find regular pattern', () => {
+  describe('regular', () => {
     describe('valid moves', () => {
       describe('up right', () => {
         it('should return "true" if bishop start pos is "e4" and end pos is "f5" without piece at end', () => { // eslint-disable-line max-len

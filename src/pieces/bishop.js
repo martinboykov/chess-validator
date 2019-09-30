@@ -14,11 +14,6 @@ class Bishop extends Piece {
         ...MOVEMENT_PATTERNS.diag.down_left,
         ...MOVEMENT_PATTERNS.diag.up_left,
       ],
-      special: [
-        // special
-        // king castling move
-        // ...
-      ],
     };
     this.movementCount = 0;
   }

@@ -4,17 +4,18 @@
   "description": "chess moves validator",
   "main": "index.js",
   "scripts": {
-    "dev": "SET NODE_ENV=development&&SET DEBUG=*,-nodemon*,-snapdragon*&&nodemon index.js",
-    "start": "SET NODE_ENV=production&&node index.js",
-    "test": "jest --colors --verbose --coverage test",
+    "dev": "cross-env NODE_ENV=development&&SET DEBUG=*,-nodemon*,-snapdragon*&&nodemon index.js",
+    "start": "cross-env NODE_ENV=production&&node index.js",
+    "test": "jest --colors --runInBand --coverage test",
     "jest:watch": "jest --runInBand --watchAll",
     "jest": "npm run jest:watch"
   },
-
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "cross-env": "^6.0.0"
+  },
   "devDependencies": {
     "chalk": "^2.4.2",
     "debug": "^4.1.1",

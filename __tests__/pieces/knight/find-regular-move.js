@@ -6,7 +6,7 @@ describe('knight', () => {
   beforeAll(() => {
 
   });
-  describe('find regular pattern', () => {
+  describe('regular', () => {
     describe('valid moves', () => {
       it('should return "true" if knight start pos is "e4" and end pos is "f6"', () => { // eslint-disable-line max-len
         const start = 'e4';

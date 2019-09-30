@@ -6,7 +6,7 @@ describe('rook', () => {
   beforeAll(() => {
 
   });
-  describe('find regular pattern', () => {
+  describe('find regular move', () => {
     describe('valid moves', () => {
       describe('up', () => {
         it('should return "true" if rook start pos is "e4" and end pos is "e5" without piece at end', () => { // eslint-disable-line max-len

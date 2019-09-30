@@ -16,7 +16,7 @@ describe('queen', () => {
       const board = new Board();
       const queen = new Queen(start, COLORS.black);
       board.pieces[start] = queen;
-      queen.findRegularPattern = jest.fn().mockImplementation(() => {
+      queen.findMovePattern = jest.fn().mockImplementation(() => {
         return true;
       });
       queen.obsticleCheckDiagonal = jest.fn().mockImplementation(() => {
@@ -36,7 +36,7 @@ describe('queen', () => {
       const board = new Board();
       const queen = new Queen(start, COLORS.black);
       board.pieces[start] = queen;
-      queen.findRegularPattern = jest.fn().mockImplementation(() => {
+      queen.findMovePattern = jest.fn().mockImplementation(() => {
         return false;
       });
       queen.obsticleCheckDiagonal = jest.fn().mockImplementation(() => {
@@ -57,7 +57,7 @@ describe('queen', () => {
       const queen = new Queen(start, COLORS.black);
       board.pieces[start] = queen;
       board.pieces[end] = new Piece(end, COLORS.white);
-      queen.findRegularPattern = jest.fn().mockImplementation(() => {
+      queen.findMovePattern = jest.fn().mockImplementation(() => {
         return true;
       });
       queen.obsticleCheckDiagonal = jest.fn().mockImplementation(() => {
@@ -78,7 +78,7 @@ describe('queen', () => {
       const queen = new Queen(start, COLORS.black);
       board.pieces[start] = queen;
       board.pieces[end] = new Piece(end, COLORS.white);
-      queen.findRegularPattern = jest.fn().mockImplementation(() => {
+      queen.findMovePattern = jest.fn().mockImplementation(() => {
         return true;
       });
       queen.obsticleCheckDiagonal = jest.fn().mockImplementation(() => {
@@ -99,7 +99,7 @@ describe('queen', () => {
       const queen = new Queen(start, COLORS.black);
       board.pieces[start] = queen;
       board.pieces[end] = new Piece(end, COLORS.black);
-      queen.findRegularPattern = jest.fn().mockImplementation(() => {
+      queen.findMovePattern = jest.fn().mockImplementation(() => {
         return true;
       });
       queen.obsticleCheckDiagonal = jest.fn().mockImplementation(() => {

@@ -16,7 +16,7 @@ describe('rook', () => {
       const board = new Board();
       const rook = new Rook(start, COLORS.black);
       board.pieces[start] = rook;
-      rook.findRegularPattern = jest.fn().mockImplementation(() => {
+      rook.findMovePattern = jest.fn().mockImplementation(() => {
         return true;
       });
       rook.obsticleCheck = jest.fn().mockImplementation(() => {
@@ -36,7 +36,7 @@ describe('rook', () => {
       const board = new Board();
       const rook = new Rook(start, COLORS.black);
       board.pieces[start] = rook;
-      rook.findRegularPattern = jest.fn().mockImplementation(() => {
+      rook.findMovePattern = jest.fn().mockImplementation(() => {
         return false;
       });
       rook.obsticleCheck = jest.fn().mockImplementation(() => {
@@ -57,7 +57,7 @@ describe('rook', () => {
       const rook = new Rook(start, COLORS.black);
       board.pieces[start] = rook;
       board.pieces[end] = new Piece(end, COLORS.white);
-      rook.findRegularPattern = jest.fn().mockImplementation(() => {
+      rook.findMovePattern = jest.fn().mockImplementation(() => {
         return true;
       });
       rook.obsticleCheck = jest.fn().mockImplementation(() => {
@@ -79,7 +79,7 @@ describe('rook', () => {
       const rook = new Rook(start, COLORS.black);
       board.pieces[start] = rook;
       board.pieces[end] = new Piece(end, COLORS.white);
-      rook.findRegularPattern = jest.fn().mockImplementation(() => {
+      rook.findMovePattern = jest.fn().mockImplementation(() => {
         return true;
       });
       rook.obsticleCheck = jest.fn().mockImplementation(() => {
@@ -100,7 +100,7 @@ describe('rook', () => {
       const rook = new Rook(start, COLORS.black);
       board.pieces[start] = rook;
       board.pieces[end] = new Piece(end, COLORS.black);
-      rook.findRegularPattern = jest.fn().mockImplementation(() => {
+      rook.findMovePattern = jest.fn().mockImplementation(() => {
         return true;
       });
       rook.obsticleCheck = jest.fn().mockImplementation(() => {
