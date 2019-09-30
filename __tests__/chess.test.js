@@ -1,6 +1,8 @@
 const { Chess } = require('../src/chess');
 const { Piece } = require('../src/pieces/piece');
 const { Pawn } = require('../src/pieces/pawn');
+const { King } = require('../src/pieces/king');
+const { Queen } = require('../src/pieces/queen');
 const { COLORS, TYPES } = require('../src/util');
 
 
@@ -120,11 +122,59 @@ describe('chess', () => {
         const result = chess.makeMove(start, end);
         expect(result).toBe(`Wrong move: ${start}-${end}`);
       });
+      it('should throw if one of the kings is taken', () => { // eslint-disable-line max-len
+        const chess = new Chess();
+
+        const p1 = 'e1';
+        const p2 = 'e8';
+        const p3 = 'e5';
+        const p4 = 'a5';
+        const kingWhite = new King(p1, COLORS.white);
+        chess.board.pieces[p1] = kingWhite;
+        chess.kingCount += 1;
+        const kingBlack = new King(p2, COLORS.black);
+        chess.board.pieces[p2] = kingBlack;
+        chess.kingCount += 1;
+        const queen = new Queen(p3, COLORS.white);
+        chess.board.pieces[p3] = queen;
+        chess.board.pieces[p4] = new Queen(p4, COLORS.black);
+        queen.validateMove = jest.fn().mockImplementation(() => {
+          return true;
+        });
+        chess.makeMove(p3, p2);
+        expect(() => {
+          chess.makeMove(p4, p3);
+        }).toThrow();
+      });
+      it('should not throw if none of the kings are taken', () => { // eslint-disable-line max-len
+        const chess = new Chess();
+        const p1 = 'e1';
+        const p2 = 'e8';
+        const p3 = 'e5';
+        const p31 = 'e4';
+        const p4 = 'a5';
+        const kingWhite = new King(p1, COLORS.white);
+        chess.board.pieces[p1] = kingWhite;
+        chess.kingCount += 1;
+        const kingBlack = new King(p2, COLORS.black);
+        chess.board.pieces[p2] = kingBlack;
+        chess.kingCount += 1;
+        const queen = new Queen(p3, COLORS.white);
+        chess.board.pieces[p3] = queen;
+        chess.board.pieces[p4] = new Queen(p4, COLORS.black);
+        queen.validateMove = jest.fn().mockImplementation(() => {
+          return true;
+        });
+        chess.makeMove(p3, p31);
+        const result = chess.makeMove(p4, p3);
+        expect(result).toBe(true);
+      });
     });
     describe('pawn promotion', () => {
       describe('white pawn', () => {
         it('should return true if pawn promotion is done succesfully', () => { // eslint-disable-line max-len
           const chess = new Chess();
+          chess.kingCount = 2;
           const start = 'a7';
           const end = 'a8';
           const piece = new Pawn(start, COLORS.white);
@@ -145,6 +195,7 @@ describe('chess', () => {
         });
         it('should return true if pawnPromotionCheck returns false', () => { // eslint-disable-line max-len
           const chess = new Chess();
+          chess.kingCount = 2;
           const start = 'a7';
           const end = 'a8';
           const piece = new Pawn(start, COLORS.white);
@@ -165,6 +216,7 @@ describe('chess', () => {
         });
         it('should return true if piece is not pawn', () => { // eslint-disable-line max-len
           const chess = new Chess();
+          chess.kingCount = 2;
           const start = 'a7';
           const end = 'a8';
           const piece = new Piece(start, COLORS.white);
@@ -185,6 +237,7 @@ describe('chess', () => {
         });
         it('should return true if piece is not pawn', () => { // eslint-disable-line max-len
           const chess = new Chess();
+          chess.kingCount = 2;
           const start = 'a7';
           const end = 'a8';
           const piece = new Piece(start, COLORS.white);
@@ -207,6 +260,7 @@ describe('chess', () => {
       describe('black pawn', () => {
         it('should return true if pawn promotion is done succesfully', () => { // eslint-disable-line max-len
           const chess = new Chess();
+          chess.kingCount = 2;
           const start = 'a2';
           const end = 'a1';
           chess.order = !chess.order;
@@ -228,6 +282,7 @@ describe('chess', () => {
         });
         it('should return true if pawnPromotionCheck returns false', () => { // eslint-disable-line max-len
           const chess = new Chess();
+          chess.kingCount = 2;
           const start = 'a2';
           const end = 'a1';
           const piece = new Pawn(start, COLORS.black);
@@ -248,6 +303,7 @@ describe('chess', () => {
         });
         it('should return true if piece is not pawn', () => { // eslint-disable-line max-len
           const chess = new Chess();
+          chess.kingCount = 2;
           const start = 'a2';
           const end = 'a1';
           const piece = new Piece(start, COLORS.black);
@@ -268,6 +324,7 @@ describe('chess', () => {
         });
         it('should return true if piece is not pawn', () => { // eslint-disable-line max-len
           const chess = new Chess();
+          chess.kingCount = 2;
           const start = 'a2';
           const end = 'a1';
           const piece = new Piece(start, COLORS.black);

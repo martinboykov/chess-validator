@@ -9,6 +9,7 @@ class Chess {
   constructor() {
     this.board = new Board();
     this.order = PLAY_ORDER.white;
+    this.kingCount = 0;
     this.state = STATE.regular;
   }
   init() {
@@ -54,6 +55,7 @@ class Chess {
       if (idx < 1) this.add().king(pos, COLORS.white);
       else if (idx >= 1) this.add().king(pos, COLORS.black);
     });
+    this.kingCount = 2;
     /* istanbul ignore next */
     if (isDev) this.board.print();
     log('chess initiated');
@@ -69,6 +71,15 @@ class Chess {
     }
     if (this.order !== this.board.pieces[start].color) {
       return this.gameOver(start, end);
+    }
+    if (this.kingCount < 2) {
+      throw new Error('Move was made with less than 2 kings on board');
+    }
+    // king removed
+    let isKingToBeRemoved = false;
+    if (this.board.pieces[end] !== '.') {
+      if (this.board.pieces[end].type === TYPES.king
+        && this.board.pieces[end] !== piece.color) isKingToBeRemoved = true;
     }
     const delta = this.board.calculateDelta(end, start);
     const deltaX = delta[0];
@@ -86,6 +97,7 @@ class Chess {
     );
     if (isValidMove) {
       const oldMovementCount = piece.movementCount;
+      if (isKingToBeRemoved) this.kingCount -= 1;
       // pawn promotion
       // ---------------------------------------
       const isPawnPromoted = this.pawnPromotionCheck(piece, end);
