@@ -21,7 +21,8 @@ describe('knight', () => {
         });
         board.pieces[knight.pos] = knight;
         const result = knight.validateMove(
-          delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+          delta[0], delta[1], isEnemyAttacked,
+          isEndEmpty, knight, board, start, end);
         expect(result).toBe(true);
       });
       it('should return "true" if knight start pos is "e4" and end pos is "g5" without piece at end', () => { // eslint-disable-line max-len
@@ -37,7 +38,8 @@ describe('knight', () => {
           return true;
         });
         const result = knight.validateMove(
-          delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+          delta[0], delta[1], isEnemyAttacked,
+          isEndEmpty, knight, board, start, end);
         expect(result).toBe(true);
       });
       it('should return "true" if knight start pos is "e4" and end pos is "g3" without piece at end', () => { // eslint-disable-line max-len
@@ -53,7 +55,8 @@ describe('knight', () => {
           return true;
         });
         const result = knight.validateMove(
-          delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+          delta[0], delta[1], isEnemyAttacked,
+          isEndEmpty, knight, board, start, end);
         expect(result).toBe(true);
       });
       it('should return "true" if knight start pos is "e4" and end pos is "f2" without piece at end', () => { // eslint-disable-line max-len
@@ -69,7 +72,8 @@ describe('knight', () => {
           return true;
         });
         const result = knight.validateMove(
-          delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+          delta[0], delta[1], isEnemyAttacked,
+          isEndEmpty, knight, board, start, end);
         expect(result).toBe(true);
       });
       it('should return "true" if knight start pos is "e4" and end pos is "d2" without piece at end', () => { // eslint-disable-line max-len
@@ -85,7 +89,8 @@ describe('knight', () => {
         });
         board.pieces[knight.pos] = knight;
         const result = knight.validateMove(
-          delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+          delta[0], delta[1], isEnemyAttacked,
+          isEndEmpty, knight, board, start, end);
         expect(result).toBe(true);
       });
       it('should return "true" if knight start pos is "e4" and end pos is "c3" without piece at end', () => { // eslint-disable-line max-len
@@ -101,7 +106,8 @@ describe('knight', () => {
           return true;
         });
         const result = knight.validateMove(
-          delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+          delta[0], delta[1], isEnemyAttacked,
+          isEndEmpty, knight, board, start, end);
         expect(result).toBe(true);
       });
       it('should return "true" if knight start pos is "e4" and end pos is "c5" without piece at end', () => { // eslint-disable-line max-len
@@ -117,7 +123,8 @@ describe('knight', () => {
           return true;
         });
         const result = knight.validateMove(
-          delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+          delta[0], delta[1], isEnemyAttacked,
+          isEndEmpty, knight, board, start, end);
         expect(result).toBe(true);
       });
       it('should return "true" if knight start pos is "e4" and end pos is "d6" without piece at end', () => { // eslint-disable-line max-len
@@ -133,7 +140,8 @@ describe('knight', () => {
           return true;
         });
         const result = knight.validateMove(
-          delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+          delta[0], delta[1], isEnemyAttacked,
+          isEndEmpty, knight, board, start, end);
         expect(result).toBe(true);
       });
     });
@@ -153,7 +161,8 @@ describe('knight', () => {
             return true;
           });
           const result = knight.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, knight, board, start, end);
           expect(result).toBe(false);
         });
         it('should return "false" if knight start pos is "e4" and end pos is "g5" with piece of same color at end', () => { // eslint-disable-line max-len
@@ -170,7 +179,8 @@ describe('knight', () => {
             return true;
           });
           const result = knight.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, knight, board, start, end);
           expect(result).toBe(false);
         });
         it('should return "false" if knight start pos is "e4" and end pos is "g3" with piece of same color at end', () => { // eslint-disable-line max-len
@@ -187,7 +197,8 @@ describe('knight', () => {
             return true;
           });
           const result = knight.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, knight, board, start, end);
           expect(result).toBe(false);
         });
         it('should return "false" if knight start pos is "e4" and end pos is "f2" with piece of same color at end', () => { // eslint-disable-line max-len
@@ -204,7 +215,8 @@ describe('knight', () => {
             return true;
           });
           const result = knight.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, knight, board, start, end);
           expect(result).toBe(false);
         });
         it('should return "false" if knight start pos is "e4" and end pos is "d2" with piece of same color at end', () => { // eslint-disable-line max-len
@@ -221,7 +233,8 @@ describe('knight', () => {
             return true;
           });
           const result = knight.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, knight, board, start, end);
           expect(result).toBe(false);
         });
         it('should return "false" if knight start pos is "e4" and end pos is "c3" with piece of same color at end', () => { // eslint-disable-line max-len
@@ -238,7 +251,8 @@ describe('knight', () => {
             return true;
           });
           const result = knight.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, knight, board, start, end);
           expect(result).toBe(false);
         });
         it('should return "false" if knight start pos is "e4" and end pos is "c5" with piece of same color at end', () => { // eslint-disable-line max-len
@@ -255,7 +269,8 @@ describe('knight', () => {
             return true;
           });
           const result = knight.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, knight, board, start, end);
           expect(result).toBe(false);
         });
         it('should return "false" if knight start pos is "e4" and end pos is "d6" with piece of same color at end', () => { // eslint-disable-line max-len
@@ -272,7 +287,8 @@ describe('knight', () => {
             return true;
           });
           const result = knight.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, knight, board, start, end);
           expect(result).toBe(false);
         });
       });
@@ -291,7 +307,8 @@ describe('knight', () => {
             return true;
           });
           const result = knight.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, knight, board, start, end);
           expect(result).toBe(true);
         });
         it('should return "true" if knight start pos is "e4" and end pos is "g5" with piece of another color at end', () => { // eslint-disable-line max-len
@@ -308,7 +325,8 @@ describe('knight', () => {
             return true;
           });
           const result = knight.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, knight, board, start, end);
           expect(result).toBe(true);
         });
         it('should return "true" if knight start pos is "e4" and end pos is "g3" with piece of another color at end', () => { // eslint-disable-line max-len
@@ -325,7 +343,8 @@ describe('knight', () => {
             return true;
           });
           const result = knight.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, knight, board, start, end);
           expect(result).toBe(true);
         });
         it('should return "true" if knight start pos is "e4" and end pos is "f2" with piece of another color at end', () => { // eslint-disable-line max-len
@@ -342,7 +361,8 @@ describe('knight', () => {
             return true;
           });
           const result = knight.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, knight, board, start, end);
           expect(result).toBe(true);
         });
         it('should return "true" if knight start pos is "e4" and end pos is "d2" with piece of another color at end', () => { // eslint-disable-line max-len
@@ -359,7 +379,8 @@ describe('knight', () => {
             return true;
           });
           const result = knight.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, knight, board, start, end);
           expect(result).toBe(true);
         });
         it('should return "true" if knight start pos is "e4" and end pos is "c3" with piece of another color at end', () => { // eslint-disable-line max-len
@@ -376,7 +397,8 @@ describe('knight', () => {
             return true;
           });
           const result = knight.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, knight, board, start, end);
           expect(result).toBe(true);
         });
         it('should return "true" if knight start pos is "e4" and end pos is "c5" with piece of another color at end', () => { // eslint-disable-line max-len
@@ -393,7 +415,8 @@ describe('knight', () => {
             return true;
           });
           const result = knight.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, knight, board, start, end);
           expect(result).toBe(true);
         });
         it('should return "true" if knight start pos is "e4" and end pos is "d6" with piece of another color at end', () => { // eslint-disable-line max-len
@@ -410,7 +433,8 @@ describe('knight', () => {
             return true;
           });
           const result = knight.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, knight, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, knight, board, start, end);
           expect(result).toBe(true);
         });
       });

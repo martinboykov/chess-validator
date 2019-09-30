@@ -1,14 +1,11 @@
 const log = require('debug')('pawn');
 const { Piece } = require('./piece');
-const TYPES = require('../util').TYPES;
-const MOVEMENT_PATTERNS = require('../util').MOVEMENT_PATTERNS;
+const { TYPES, MOVEMENT_PATTERNS } = require('../util');
 
 class Pawn extends Piece {
   constructor(pos, color) {
     super(pos, color);
     this.type = TYPES.pawn;
-    this.pos = pos;
-    this.color = color;
     this.movementCount = 0;
     this.pattern = {
       white: {
@@ -33,20 +30,12 @@ class Pawn extends Piece {
       },
     };
   }
-  validateMove(deltaPos, isEnemyAttacked,
+  validateMove(deltaX, deltaY, isEnemyAttacked,
     isEndEmpty, piece, board, start, end) {
     log(piece);
-    const deltaX = deltaPos[0];
-    const deltaY = deltaPos[1];
     const isFirstMove = piece.movementCount === 0;
     if (isFirstMove) {
-      const isFirstMoveFound = piece.color
-        ? this.pattern.white.special.first.some((d) => {
-          return deltaX === d[0] && deltaY === d[1];
-        })
-        : this.pattern.black.special.first.some((d) => {
-          return deltaX === d[0] && deltaY === d[1];
-        });
+      const isFirstMoveFound = this.firstMoveCheck(piece, deltaX, deltaY);
       log('isFirstMoveFound = ', isFirstMoveFound);
       if (isFirstMoveFound) {
         const isPathBlocked = this.obsticleCheck(
@@ -61,13 +50,7 @@ class Pawn extends Piece {
       log('pattern.black.special.attack = ', this.pattern.black.special.attack); // eslint-disable-line max-len
       log('color = ', piece.color);
       log('deltaX, deltaY = ', [deltaX, deltaY]);
-      const isAttackMoveFound = piece.color
-        ? this.pattern.white.special.attack.some((d) => {
-          return deltaX === d[0] && deltaY === d[1];
-        })
-        : this.pattern.black.special.attack.some((d) => {
-          return deltaX === d[0] && deltaY === d[1];
-        });
+      const isAttackMoveFound = this.attackMoveCheck(piece, deltaX, deltaY);
       if (isAttackMoveFound) return true;
     }
     // regular movement pattern foun(d) => true
@@ -79,8 +62,7 @@ class Pawn extends Piece {
         return deltaX === d[0] && deltaY === d[1];
       });
     if (isRegularFound) return true;
-    log('regularMuvePattern = ', isRegularFound);
-    // no pawn movement pattern foun(d) => false
+    log('regularMovePattern = ', isRegularFound);
     return false;
   }
   obsticleCheck(start, end, deltaX, deltaY, piece, board) {
@@ -99,6 +81,24 @@ class Pawn extends Piece {
       if (nextIterPieceType !== '.') return true;
     }
     return false;
+  }
+  firstMoveCheck(piece, deltaX, deltaY) {
+    return piece.color
+      ? this.pattern.white.special.first.some((d) => {
+        return deltaX === d[0] && deltaY === d[1];
+      })
+      : this.pattern.black.special.first.some((d) => {
+        return deltaX === d[0] && deltaY === d[1];
+      });
+  }
+  attackMoveCheck(piece, deltaX, deltaY) {
+    return piece.color
+      ? this.pattern.white.special.attack.some((d) => {
+        return deltaX === d[0] && deltaY === d[1];
+      })
+      : this.pattern.black.special.attack.some((d) => {
+        return deltaX === d[0] && deltaY === d[1];
+      });
   }
 }
 

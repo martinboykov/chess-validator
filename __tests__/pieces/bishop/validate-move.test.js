@@ -24,7 +24,8 @@ describe('bishop', () => {
       });
       const delta = board.calculateDelta(end, start);
       const result = bishop.validateMove(
-        delta, isEnemyAttacked, isEndEmpty, bishop, board, start, end);
+        delta[0], delta[1], isEnemyAttacked,
+        isEndEmpty, bishop, board, start, end);
       expect(result).toBe(true); // no obstruction
     });
     it('should return "false" if bishop start pos is "e4" and end pos is "h6" without piece at end and with no obstruction', () => { // eslint-disable-line max-len
@@ -43,7 +44,8 @@ describe('bishop', () => {
       });
       const delta = board.calculateDelta(end, start);
       const result = bishop.validateMove(
-        delta, isEnemyAttacked, isEndEmpty, bishop, board, start, end);
+        delta[0], delta[1], isEnemyAttacked,
+        isEndEmpty, bishop, board, start, end);
       expect(result).toBe(false); // no obstruction
     });
     it('should return "true" if bishop start pos is "e4" and end pos is "g6" with enemy piece at end and with no obstruction', () => { // eslint-disable-line max-len
@@ -63,7 +65,8 @@ describe('bishop', () => {
       });
       const delta = board.calculateDelta(end, start);
       const result = bishop.validateMove(
-        delta, isEnemyAttacked, isEndEmpty, bishop, board, start, end);
+        delta[0], delta[1], isEnemyAttacked,
+        isEndEmpty, bishop, board, start, end);
       expect(result).toBe(true); // no obstruction
     });
     it('should return "false" if bishop start pos is "e4" and end pos is "g6" with enemy piece at end and with obstruction', () => { // eslint-disable-line max-len
@@ -83,7 +86,8 @@ describe('bishop', () => {
       });
       const delta = board.calculateDelta(end, start);
       const result = bishop.validateMove(
-        delta, isEnemyAttacked, isEndEmpty, bishop, board, start, end);
+        delta[0], delta[1], isEnemyAttacked,
+        isEndEmpty, bishop, board, start, end);
       expect(result).toBe(false); // no obstruction
     });
     it('should return "false" if bishop start pos is "e4" and end pos is "g6" with same color piece at end and with no obstruction', () => { // eslint-disable-line max-len
@@ -103,7 +107,8 @@ describe('bishop', () => {
       });
       const delta = board.calculateDelta(end, start);
       const result = bishop.validateMove(
-        delta, isEnemyAttacked, isEndEmpty, bishop, board, start, end);
+        delta[0], delta[1], isEnemyAttacked,
+        isEndEmpty, bishop, board, start, end);
       expect(result).toBe(false); // no obstruction
     });
   });

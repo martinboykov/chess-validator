@@ -22,7 +22,8 @@ describe('pawn', () => {
           });
           board.pieces[pawn.pos] = pawn;
           const result = pawn.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, pawn, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, pawn, board, start, end);
           expect(result).toBe(true);
         });
         it('should return "false" if whitepawn start pos is "a2" and end pos is "a1"', () => { // eslint-disable-line max-len
@@ -38,7 +39,8 @@ describe('pawn', () => {
           });
           board.pieces[pawn.pos] = pawn;
           const result = pawn.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, pawn, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, pawn, board, start, end);
           expect(result).toBe(false);
         });
         it('should return "false" if white pawn start pos is "b2" and end pos is "a2"', () => { // eslint-disable-line max-len
@@ -55,7 +57,8 @@ describe('pawn', () => {
 
           board.pieces[pawn.pos] = pawn;
           const result = pawn.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, pawn, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, pawn, board, start, end);
           expect(result).toBe(false);
         });
         it('should return "false" if white pawn start pos is "b2" and end pos is "c2"', () => { // eslint-disable-line max-len
@@ -72,7 +75,8 @@ describe('pawn', () => {
 
           board.pieces[pawn.pos] = pawn;
           const result = pawn.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, pawn, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, pawn, board, start, end);
           expect(result).toBe(false);
         });
       });
@@ -90,7 +94,8 @@ describe('pawn', () => {
             return false;
           });
           const result = pawn.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, pawn, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, pawn, board, start, end);
           expect(result).toBe(true);
         });
         it('should return "false" if start pos is "a2" and end pos is "a5" with "no obsicles" infront', () => { // eslint-disable-line max-len
@@ -106,7 +111,8 @@ describe('pawn', () => {
             return false;
           });
           const result = pawn.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, pawn, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, pawn, board, start, end);
           expect(result).toBe(false);
         });
 
@@ -124,7 +130,8 @@ describe('pawn', () => {
 
           board.pieces[pawn.pos] = pawn;
           const result = pawn.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, pawn, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, pawn, board, start, end);
           expect(result).toBe(false);
         });
         it('should return "false" if start pos is "a3" and end pos is "a5" with not first move', () => { // eslint-disable-line max-len
@@ -141,7 +148,8 @@ describe('pawn', () => {
             return false;
           });
           const result = pawn.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, pawn, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, pawn, board, start, end);
           expect(result).toBe(false);
         });
       });
@@ -156,7 +164,8 @@ describe('pawn', () => {
           const pawn = new Pawn(start, COLORS.white);
           board.pieces[pawn.pos] = pawn;
           const result = pawn.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, pawn, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, pawn, board, start, end);
           expect(result).toBe(false);
         });
         it('should return "false" if white pawn start pos is "b2" and end pos is "a1" "with no piece" on a1', () => { // eslint-disable-line max-len
@@ -169,7 +178,8 @@ describe('pawn', () => {
           const pawn = new Pawn(start, COLORS.white);
           board.pieces[pawn.pos] = pawn;
           const result = pawn.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, pawn, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, pawn, board, start, end);
           expect(result).toBe(false);
         });
         it('should return "false" if white pawn start pos is "b2" and end pos is "a3" "with no piece" on a3', () => { // eslint-disable-line max-len
@@ -182,7 +192,8 @@ describe('pawn', () => {
           const pawn = new Pawn(start, COLORS.white);
           board.pieces[pawn.pos] = pawn;
           const result = pawn.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, pawn, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, pawn, board, start, end);
           expect(result).toBe(false);
         });
         it('should return "false" if white pawn start pos is "b2" and end pos is "c3" "with no piece" on c3', () => { // eslint-disable-line max-len
@@ -195,7 +206,8 @@ describe('pawn', () => {
           const pawn = new Pawn(start, COLORS.white);
           board.pieces[pawn.pos] = pawn;
           const result = pawn.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, pawn, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, pawn, board, start, end);
           expect(result).toBe(false);
         });
         it('should return "false" if white pawn start pos is "b2" and end pos is "a3" "with white pawn" on a3', () => { // eslint-disable-line max-len
@@ -210,7 +222,8 @@ describe('pawn', () => {
           board.pieces[pawn.pos] = pawn;
           board.pieces[anotherWhitePawn.pos] = anotherWhitePawn;
           const result = pawn.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, pawn, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, pawn, board, start, end);
           expect(result).toBe(false);
         });
         it('should return "false" if white pawn start pos is "b2" and end pos is "c3" "with white pawn" on c3', () => { // eslint-disable-line max-len
@@ -225,7 +238,8 @@ describe('pawn', () => {
           board.pieces[pawn.pos] = pawn;
           board.pieces[anotherWhitePawn.pos] = anotherWhitePawn;
           const result = pawn.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, pawn, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, pawn, board, start, end);
           expect(result).toBe(false);
         });
         it('should return "true" if white pawn start pos is "b2" and end pos is "a3" "with black pawn" on a3', () => { // eslint-disable-line max-len
@@ -240,7 +254,8 @@ describe('pawn', () => {
           board.pieces[pawn.pos] = pawn;
           board.pieces[blackPawn.pos] = blackPawn;
           const result = pawn.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, pawn, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, pawn, board, start, end);
           expect(result).toBe(true);
         });
         it('should return "true" if white pawn start pos is "b2" and end pos is "c3" "with black pawn" on c3', () => { // eslint-disable-line max-len
@@ -255,7 +270,8 @@ describe('pawn', () => {
           board.pieces[pawn.pos] = pawn;
           board.pieces[blackPawn.pos] = blackPawn;
           const result = pawn.validateMove(
-            delta, isEnemyAttacked, isEndEmpty, pawn, board, start, end);
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, pawn, board, start, end);
           expect(result).toBe(true);
         });
       });

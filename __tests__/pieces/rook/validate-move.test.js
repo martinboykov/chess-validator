@@ -24,7 +24,8 @@ describe('rook', () => {
       });
       const delta = board.calculateDelta(end, start);
       const result = rook.validateMove(
-        delta, isEnemyAttacked, isEndEmpty, rook, board, start, end);
+        delta[0], delta[1], isEnemyAttacked,
+        isEndEmpty, rook, board, start, end);
       expect(result).toBe(true); // no obstruction
     });
     it('should return "false" if rook start pos is "e4" and end pos is "h6" without piece at end and with no obstruction', () => { // eslint-disable-line max-len
@@ -43,7 +44,8 @@ describe('rook', () => {
       });
       const delta = board.calculateDelta(end, start);
       const result = rook.validateMove(
-        delta, isEnemyAttacked, isEndEmpty, rook, board, start, end);
+        delta[0], delta[1], isEnemyAttacked,
+        isEndEmpty, rook, board, start, end);
       expect(result).toBe(false); // no obstruction
     });
     it('should return "true" if rook start pos is "e4" and end pos is "e6" with enemy piece at end and with no obstruction', () => { // eslint-disable-line max-len
@@ -63,7 +65,8 @@ describe('rook', () => {
       });
       const delta = board.calculateDelta(end, start);
       const result = rook.validateMove(
-        delta, isEnemyAttacked, isEndEmpty, rook, board, start, end);
+        delta[0], delta[1], isEnemyAttacked,
+        isEndEmpty, rook, board, start, end);
       expect(result).toBe(true); // no obstruction
     });
     it('should return "false" if rook start pos is "e4" and end pos is "e6" with enemy piece at end and with obstruction', () => { // eslint-disable-line max-len
@@ -84,7 +87,8 @@ describe('rook', () => {
       });
       const delta = board.calculateDelta(end, start);
       const result = rook.validateMove(
-        delta, isEnemyAttacked, isEndEmpty, rook, board, start, end);
+        delta[0], delta[1], isEnemyAttacked,
+        isEndEmpty, rook, board, start, end);
       expect(result).toBe(false); // no obstruction
     });
     it('should return "false" if rook start pos is "e4" and end pos is "g6" with same color piece at end and with no obstruction', () => { // eslint-disable-line max-len
@@ -104,7 +108,8 @@ describe('rook', () => {
       });
       const delta = board.calculateDelta(end, start);
       const result = rook.validateMove(
-        delta, isEnemyAttacked, isEndEmpty, rook, board, start, end);
+        delta[0], delta[1], isEnemyAttacked,
+        isEndEmpty, rook, board, start, end);
       expect(result).toBe(false); // no obstruction
     });
   });

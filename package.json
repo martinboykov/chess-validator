@@ -1,13 +1,13 @@
 {
   "name": "fork_point_task_chess",
   "version": "1.0.0",
-  "description": "",
+  "description": "chess moves validator",
   "main": "index.js",
   "scripts": {
     "dev": "SET NODE_ENV=development&&SET DEBUG=*,-nodemon*,-snapdragon*&&nodemon index.js",
     "start": "SET NODE_ENV=production&&node index.js",
-    "test": "jest --env=node --colors --verbose --coverage test",
-    "jest:watch": "jest --env=node --runInBand --watchAll",
+    "test": "jest --colors --verbose --coverage test",
+    "jest:watch": "jest --runInBand --watchAll",
     "jest": "npm run jest:watch"
   },
 

@@ -15,8 +15,7 @@ describe('knight', () => {
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
-        const result = knight.validateMove(
-          delta, false, knight, board, start, end);
+        const result = knight.findRegularPattern(delta[0], delta[1]);
         expect(result).toBe(true);
       });
       it('should return "true" if knight start pos is "e4" and end pos is "g5"', () => { // eslint-disable-line max-len
@@ -26,8 +25,8 @@ describe('knight', () => {
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
-        const result = knight.validateMove(
-          delta, false, knight, board, start, end);
+        const result = knight.findRegularPattern(
+          delta[0], delta[1]);
         expect(result).toBe(true);
       });
       it('should return "true" if knight start pos is "e4" and end pos is "g3"', () => { // eslint-disable-line max-len
@@ -37,8 +36,8 @@ describe('knight', () => {
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
-        const result = knight.validateMove(
-          delta, false, knight, board, start, end);
+        const result = knight.findRegularPattern(
+          delta[0], delta[1]);
         expect(result).toBe(true);
       });
       it('should return "true" if knight start pos is "e4" and end pos is "f2"', () => { // eslint-disable-line max-len
@@ -48,8 +47,8 @@ describe('knight', () => {
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
-        const result = knight.validateMove(
-          delta, false, knight, board, start, end);
+        const result = knight.findRegularPattern(
+          delta[0], delta[1]);
         expect(result).toBe(true);
       });
       it('should return "true" if knight start pos is "e4" and end pos is "d2"', () => { // eslint-disable-line max-len
@@ -59,8 +58,8 @@ describe('knight', () => {
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
-        const result = knight.validateMove(
-          delta, false, knight, board, start, end);
+        const result = knight.findRegularPattern(
+          delta[0], delta[1]);
         expect(result).toBe(true);
       });
       it('should return "true" if knight start pos is "e4" and end pos is "c3"', () => { // eslint-disable-line max-len
@@ -70,8 +69,8 @@ describe('knight', () => {
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
-        const result = knight.validateMove(
-          delta, false, knight, board, start, end);
+        const result = knight.findRegularPattern(
+          delta[0], delta[1]);
         expect(result).toBe(true);
       });
       it('should return "true" if knight start pos is "e4" and end pos is "c5"', () => { // eslint-disable-line max-len
@@ -81,8 +80,8 @@ describe('knight', () => {
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
-        const result = knight.validateMove(
-          delta, false, knight, board, start, end);
+        const result = knight.findRegularPattern(
+          delta[0], delta[1]);
         expect(result).toBe(true);
       });
       it('should return "true" if knight start pos is "e4" and end pos is "d6"', () => { // eslint-disable-line max-len
@@ -92,8 +91,8 @@ describe('knight', () => {
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
-        const result = knight.validateMove(
-          delta, false, knight, board, start, end);
+        const result = knight.findRegularPattern(
+          delta[0], delta[1]);
         expect(result).toBe(true);
       });
     });
@@ -106,8 +105,8 @@ describe('knight', () => {
       const delta = board.calculateDelta(end, start);
       const knight = new Knight(start, COLORS.black);
       board.pieces[knight.pos] = knight;
-      const result = knight.validateMove(
-        delta, false, knight, board, start, end);
+      const result = knight.findRegularPattern(
+        delta[0], delta[1]);
       expect(result).toBe(false);
     });
     it('should return "true" if knight start pos is "e4" and end pos is "h8"', () => { // eslint-disable-line max-len
@@ -117,8 +116,8 @@ describe('knight', () => {
       const delta = board.calculateDelta(end, start);
       const knight = new Knight(start, COLORS.black);
       board.pieces[knight.pos] = knight;
-      const result = knight.validateMove(
-        delta, false, knight, board, start, end);
+      const result = knight.findRegularPattern(
+        delta[0], delta[1]);
       expect(result).toBe(false);
     });
   });

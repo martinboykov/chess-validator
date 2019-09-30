@@ -1,13 +1,11 @@
 const log = require('debug')('bishop');
 const { Piece } = require('./piece');
-const TYPES = require('../util').TYPES;
-const MOVEMENT_PATTERNS = require('../util').MOVEMENT_PATTERNS;
+const { TYPES, MOVEMENT_PATTERNS } = require('../util');
+
 
 class Bishop extends Piece {
   constructor(pos, color) {
     super(pos, color);
-    this.pos = pos;
-    this.color = color;
     this.type = TYPES.bishop;
     this.pattern = [
       ...MOVEMENT_PATTERNS.diag.up_right,
@@ -20,10 +18,8 @@ class Bishop extends Piece {
     ];
     this.movementCount = 0;
   }
-  validateMove(deltaPos, isEnemyAttacked,
+  validateMove(deltaX, deltaY, isEnemyAttacked,
     isEndEmpty, piece, board, start, end) {
-    const deltaX = deltaPos[0];
-    const deltaY = deltaPos[1];
     const isRegularFound = this.findRegularPattern(deltaX, deltaY);
     log(piece);
     log('color = ', piece.color);
@@ -63,11 +59,6 @@ class Bishop extends Piece {
       if (nextIterPieceType !== '.') return true; // path is blocked
     }
     return false;
-  }
-  findRegularPattern(deltaX, deltaY) {
-    return this.pattern.some((d) => {
-      return deltaX === d[0] && deltaY === d[1];
-    });
   }
 }
 

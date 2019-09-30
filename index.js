@@ -1,9 +1,9 @@
 const log = require('debug')('system');
-const { Chess } = require('./src/chess');
 const fs = require('fs');
 const rl = require('readline');
 const path = require('path');
 const file = path.resolve(__dirname, 'input', 'input.txt');
+const { Chess } = require('./src/chess');
 const { dataHandler, errorHandler } = require('./src/util');
 const isDev = process.env.NODE_ENV === 'development' ? true : false; // eslint-disable-line no-process-env
 

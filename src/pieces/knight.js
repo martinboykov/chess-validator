@@ -1,22 +1,16 @@
 const log = require('debug')('knight');
 const { Piece } = require('./piece');
-const TYPES = require('../util').TYPES;
-const MOVEMENT_PATTERNS = require('../util').MOVEMENT_PATTERNS;
+const { TYPES, MOVEMENT_PATTERNS } = require('../util');
 
 class Knight extends Piece {
   constructor(pos, color) {
     super(pos, color);
-    this.pos = pos;
-    this.color = color;
     this.type = TYPES.knight;
     this.pattern = MOVEMENT_PATTERNS.lShappe;
     this.movementCount = 0;
   }
-  validateMove(deltaPos, isEnemyAttacked,
+  validateMove(deltaX, deltaY, isEnemyAttacked,
     isEndEmpty, piece, board, start, end) {
-    log(piece);
-    const deltaX = deltaPos[0];
-    const deltaY = deltaPos[1];
     const isRegularFound = this.findRegularPattern(deltaX, deltaY);
     log(piece);
     log('color = ', piece.color);
@@ -28,11 +22,6 @@ class Knight extends Piece {
       }
     }
     return false;
-  }
-  findRegularPattern(deltaX, deltaY) {
-    return this.pattern.some((d) => {
-      return deltaX === d[0] && deltaY === d[1];
-    });
   }
 }
 

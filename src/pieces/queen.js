@@ -1,15 +1,10 @@
 const log = require('debug')('queen');
 const { Piece } = require('./piece');
-const { Bishop } = require('./bishop');
-const { Rook } = require('./rook');
-const TYPES = require('../util').TYPES;
-const MOVEMENT_PATTERNS = require('../util').MOVEMENT_PATTERNS;
+const { TYPES, MOVEMENT_PATTERNS } = require('../util');
 
 class Queen extends Piece {
   constructor(pos, color) {
     super(pos, color);
-    this.pos = pos;
-    this.color = color;
     this.type = TYPES.queen;
     this.pattern = [
       ...MOVEMENT_PATTERNS.up,
@@ -23,10 +18,8 @@ class Queen extends Piece {
     ];
     this.movementCount = 0;
   }
-  validateMove(deltaPos, isEnemyAttacked,
+  validateMove(deltaX, deltaY, isEnemyAttacked,
     isEndEmpty, piece, board, start, end) {
-    const deltaX = deltaPos[0];
-    const deltaY = deltaPos[1];
     const isRegularFound = this.findRegularPattern(deltaX, deltaY);
     log(piece);
     log('color = ', piece.color);
@@ -35,7 +28,6 @@ class Queen extends Piece {
     if (isRegularFound) {
       if (isEnemyAttacked || isEndEmpty) {
         let isPathBlocked;
-        console.log(deltaX, deltaY);
         if (Math.abs(deltaX) !== Math.abs(deltaY)) {
           // straight move pattern
           isPathBlocked = this.obsticleCheckStraight( // if the previous conditions are met => check for obsticles
@@ -110,11 +102,6 @@ class Queen extends Piece {
       if (nextIterPieceType !== '.') return true; // path is blocked
     }
     return false;
-  }
-  findRegularPattern(deltaX, deltaY) {
-    return this.pattern.some((d) => {
-      return deltaX === d[0] && deltaY === d[1];
-    });
   }
 }
 

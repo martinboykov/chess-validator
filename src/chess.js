@@ -5,13 +5,7 @@ const { Board } = require('./board');
 // import pieces
 const pieceType = require('./pieces');
 
-const TYPES = require('./util').TYPES;
-
-const COLORS = require('./util').COLORS;
-
-const PLAY_ORDER = require('./util').PLAY_ORDER;
-
-const STATE = require('./util').STATE;
+const { TYPES, COLORS, PLAY_ORDER, STATE } = require('./util');
 
 const isDev = process.env.NODE_ENV === 'development' ? true : false; // eslint-disable-line no-process-env
 
@@ -85,6 +79,8 @@ class Chess {
       return this.gameOver(start, end);
     }
     const delta = this.board.calculateDelta(end, start);
+    const deltaX = delta[0];
+    const deltaY = delta[1];
     const isEnemyAttacked = this.enemyAttackedCheck(start, end);
     const isEndEmpty = this.endEmptyCheck(end);
     log('piece.color = ', this.board.pieces[start].color);
@@ -93,7 +89,7 @@ class Chess {
     log('isEnemyAttacked = ', isEnemyAttacked);
     log('isEndEmpty = ', isEndEmpty);
     const isValidMove = piece.validateMove(
-      delta, isEnemyAttacked, isEndEmpty,
+      deltaX, deltaY, isEnemyAttacked, isEndEmpty,
       piece, this.board, start, end,
     );
     if (isValidMove) {
