@@ -1,6 +1,7 @@
 const { Chess } = require('../src/chess');
 const { Piece } = require('../src/pieces/piece');
-const COLORS = require('../src/util').COLORS;
+const { Pawn } = require('../src/pieces/pawn');
+const { COLORS, TYPES } = require('../src/util');
 
 
 describe('chess', () => {
@@ -120,6 +121,173 @@ describe('chess', () => {
         expect(result).toBe(`Wrong move: ${start}-${end}`);
       });
     });
+    describe('pawn promotion', () => {
+      describe('white pawn', () => {
+        it('should return true if pawn promotion is done succesfully', () => { // eslint-disable-line max-len
+          const chess = new Chess();
+          const start = 'a7';
+          const end = 'a8';
+          const piece = new Pawn(start, COLORS.white);
+          piece.movementCount = 5;
+          chess.board.pieces[start] = piece;
+          piece.validateMove = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          chess.pawnPromotionCheck = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          chess.makeMove(start, end);
+          let result = false;
+          if (chess.board.pieces[end] !== '.') {
+            result = chess.board.pieces[end].type === TYPES.queen;
+          }
+          expect(result).toBe(true);
+        });
+        it('should return true if pawnPromotionCheck returns false', () => { // eslint-disable-line max-len
+          const chess = new Chess();
+          const start = 'a7';
+          const end = 'a8';
+          const piece = new Pawn(start, COLORS.white);
+          piece.movementCount = 5;
+          chess.board.pieces[start] = piece;
+          piece.validateMove = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          chess.pawnPromotionCheck = jest.fn().mockImplementation(() => {
+            return false;
+          });
+          chess.makeMove(start, end);
+          let result = false;
+          if (chess.board.pieces[end] !== '.') {
+            result = chess.board.pieces[end].type === TYPES.queen;
+          }
+          expect(result).toBe(false);
+        });
+        it('should return true if piece is not pawn', () => { // eslint-disable-line max-len
+          const chess = new Chess();
+          const start = 'a7';
+          const end = 'a8';
+          const piece = new Piece(start, COLORS.white);
+          piece.movementCount = 5;
+          chess.board.pieces[start] = piece;
+          piece.validateMove = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          chess.pawnPromotionCheck = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          chess.makeMove(start, end);
+          let result = false;
+          if (chess.board.pieces[end] !== '.') {
+            result = chess.board.pieces[end].type === TYPES.queen;
+          }
+          expect(result).toBe(false);
+        });
+        it('should return true if piece is not pawn', () => { // eslint-disable-line max-len
+          const chess = new Chess();
+          const start = 'a7';
+          const end = 'a8';
+          const piece = new Piece(start, COLORS.white);
+          piece.movementCount = 5;
+          chess.board.pieces[start] = piece;
+          piece.validateMove = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          chess.pawnPromotionCheck = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          chess.makeMove(start, end);
+          let result = false;
+          if (chess.board.pieces[end] !== '.') {
+            result = chess.board.pieces[end].type === TYPES.queen;
+          }
+          expect(result).toBe(false);
+        });
+      });
+      describe('black pawn', () => {
+        it('should return true if pawn promotion is done succesfully', () => { // eslint-disable-line max-len
+          const chess = new Chess();
+          const start = 'a2';
+          const end = 'a1';
+          chess.order = !chess.order;
+          const piece = new Pawn(start, COLORS.black);
+          piece.movementCount = 5;
+          chess.board.pieces[start] = piece;
+          piece.validateMove = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          chess.pawnPromotionCheck = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          chess.makeMove(start, end);
+          let result = false;
+          if (chess.board.pieces[end] !== '.') {
+            result = chess.board.pieces[end].type === TYPES.queen;
+          }
+          expect(result).toBe(true);
+        });
+        it('should return true if pawnPromotionCheck returns false', () => { // eslint-disable-line max-len
+          const chess = new Chess();
+          const start = 'a2';
+          const end = 'a1';
+          const piece = new Pawn(start, COLORS.black);
+          piece.movementCount = 5;
+          chess.board.pieces[start] = piece;
+          piece.validateMove = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          chess.pawnPromotionCheck = jest.fn().mockImplementation(() => {
+            return false;
+          });
+          chess.makeMove(start, end);
+          let result = false;
+          if (chess.board.pieces[end] !== '.') {
+            result = chess.board.pieces[end].type === TYPES.queen;
+          }
+          expect(result).toBe(false);
+        });
+        it('should return true if piece is not pawn', () => { // eslint-disable-line max-len
+          const chess = new Chess();
+          const start = 'a2';
+          const end = 'a1';
+          const piece = new Piece(start, COLORS.black);
+          piece.movementCount = 5;
+          chess.board.pieces[start] = piece;
+          piece.validateMove = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          chess.pawnPromotionCheck = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          chess.makeMove(start, end);
+          let result = false;
+          if (chess.board.pieces[end] !== '.') {
+            result = chess.board.pieces[end].type === TYPES.queen;
+          }
+          expect(result).toBe(false);
+        });
+        it('should return true if piece is not pawn', () => { // eslint-disable-line max-len
+          const chess = new Chess();
+          const start = 'a2';
+          const end = 'a1';
+          const piece = new Piece(start, COLORS.black);
+          piece.movementCount = 5;
+          chess.board.pieces[start] = piece;
+          piece.validateMove = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          chess.pawnPromotionCheck = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          chess.makeMove(start, end);
+          let result = false;
+          if (chess.board.pieces[end] !== '.') {
+            result = chess.board.pieces[end].type === TYPES.queen;
+          }
+          expect(result).toBe(false);
+        });
+      });
+    });
   });
   describe('enemyAttackedCheck', () => {
     it('should return true if on start pos the piece is with white color and on end pos the piece is with black color', () => { // eslint-disable-line max-len
@@ -207,6 +375,52 @@ describe('chess', () => {
       chess.board.pieces[end] = new Piece(end, COLORS.black);
       const result = chess.endEmptyCheck(end);
       expect(result).toBe(false);
+    });
+  });
+  describe('pawnPromotionCheck', () => {
+    describe('white', () => {
+      ['a8', 'b8', 'c8', 'd8', 'e8', 'f8', 'g8', 'h8'].forEach((pos) => {
+        it(`should return true if end pos is ${pos} and piece is white`, () => { // eslint-disable-line max-len
+          const chess = new Chess();
+          const end = pos;
+          const piece = new Piece(end, COLORS.white);
+          chess.board.pieces[end] = piece;
+          const result = chess.pawnPromotionCheck(piece, end);
+          expect(result).toBe(true);
+        });
+      });
+      ['a7', 'b7', 'c7', 'd7', 'e7', 'f7', 'g7', 'h7'].forEach((pos) => {
+        it(`should return false if piece is not reached the other end of the board`, () => { // eslint-disable-line max-len
+          const chess = new Chess();
+          const end = pos;
+          const piece = new Piece(end, COLORS.white);
+          chess.board.pieces[end] = piece;
+          const result = chess.pawnPromotionCheck(piece, end);
+          expect(result).toBe(false);
+        });
+      });
+    });
+    describe('black', () => {
+      ['a1', 'b1', 'c1', 'd1', 'e1', 'f1', 'g1', 'h1'].forEach((pos) => {
+        it(`should return true if end pos is ${pos} and piece is white`, () => { // eslint-disable-line max-len
+          const chess = new Chess();
+          const end = pos;
+          const piece = new Piece(end, COLORS.black);
+          chess.board.pieces[end] = piece;
+          const result = chess.pawnPromotionCheck(piece, end);
+          expect(result).toBe(true);
+        });
+      });
+      ['a2', 'b2', 'c2', 'd2', 'e2', 'f2', 'g2', 'h2'].forEach((pos) => {
+        it(`should return false if piece is not reached the other end of the board`, () => { // eslint-disable-line max-len
+          const chess = new Chess();
+          const end = pos;
+          const piece = new Piece(end, COLORS.black);
+          chess.board.pieces[end] = piece;
+          const result = chess.pawnPromotionCheck(piece, end);
+          expect(result).toBe(false);
+        });
+      });
     });
   });
 });

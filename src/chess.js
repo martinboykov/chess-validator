@@ -59,7 +59,7 @@ class Chess {
     log('chess initiated');
   }
   makeMove(start, end) {
-    const piece = this.board.pieces[start];
+    let piece = this.board.pieces[start];
     if (piece === '.' || // check if there is no piece on start position
       // check if start and/or end position is outside the board
       typeof (this.board.pieces[start]) === 'undefined' ||
@@ -85,18 +85,23 @@ class Chess {
       piece, this.board, start, end,
     );
     if (isValidMove) {
-      // default
+      const oldMovementCount = piece.movementCount;
+      // pawn promotion
       // ---------------------------------------
-      this.board.pieces[end] = piece;
-      this.board.pieces[start] = '.';
-      piece.pos = end;
-      piece.movementCount += 1;
+      const isPawnPromoted = this.pawnPromotionCheck(piece, end);
+      if (piece.type === TYPES.pawn && isPawnPromoted) {
+        piece = new pieceType.Queen(end, piece.color);
+        this.board.pieces[end] = piece;
+        this.board.pieces[start] = '.';
+        // default
+        // ---------------------------------------
+      } else {
+        this.board.pieces[end] = piece;
+        piece.pos = end;
+        this.board.pieces[start] = '.';
+      }
+      piece.movementCount = oldMovementCount + 1;
       log(piece);
-
-      // case: pawn promotion
-      // ---------------------------------------
-      // .....
-
       this.order = !this.order;
 
       /* istanbul ignore next */
@@ -109,7 +114,6 @@ class Chess {
     return `Wrong move: ${start}-${end}`;
   }
   add() {
-    // const that = this;
     return {
       pawn: (pos, color) => {
         this.board.pieces[pos] = new pieceType.Pawn(pos, color);
@@ -139,6 +143,20 @@ class Chess {
   }
   endEmptyCheck(end) {
     return this.board.pieces[end] === '.' ? true : false;
+  }
+  pawnPromotionCheck(piece, end) {
+    if (piece.color) {
+      if (end === 'a8' || end === 'b8' || end === 'c8' || end === 'd8'
+        || end === 'e8' || end === 'f8' || end === 'g8' || end === 'h8') {
+        return true;
+      }
+    } else if (!piece.color) {
+      if (end === 'a1' || end === 'b1' || end === 'c1' || end === 'd1'
+        || end === 'e1' || end === 'f1' || end === 'g1' || end === 'h1') {
+        return true;
+      }
+    }
+    return false;
   }
 }
 
