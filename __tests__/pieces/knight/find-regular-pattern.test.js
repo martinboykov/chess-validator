@@ -17,7 +17,7 @@ describe('knight', () => {
         const deltaY = delta[1];
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
-        const result = knight.findRegularPattern(
+        const result = knight.findMovePattern(
           knight.pattern.regular, deltaX, deltaY);
         expect(result).toBe(true);
       });
@@ -30,7 +30,7 @@ describe('knight', () => {
         const deltaY = delta[1];
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
-        const result = knight.findRegularPattern(
+        const result = knight.findMovePattern(
           knight.pattern.regular, deltaX, deltaY);
         expect(result).toBe(true);
       });
@@ -43,7 +43,7 @@ describe('knight', () => {
         const deltaY = delta[1];
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
-        const result = knight.findRegularPattern(
+        const result = knight.findMovePattern(
           knight.pattern.regular, deltaX, deltaY);
         expect(result).toBe(true);
       });
@@ -56,7 +56,7 @@ describe('knight', () => {
         const deltaY = delta[1];
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
-        const result = knight.findRegularPattern(
+        const result = knight.findMovePattern(
           knight.pattern.regular, deltaX, deltaY);
         expect(result).toBe(true);
       });
@@ -69,7 +69,7 @@ describe('knight', () => {
         const deltaY = delta[1];
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
-        const result = knight.findRegularPattern(
+        const result = knight.findMovePattern(
           knight.pattern.regular, deltaX, deltaY);
         expect(result).toBe(true);
       });
@@ -82,7 +82,7 @@ describe('knight', () => {
         const deltaY = delta[1];
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
-        const result = knight.findRegularPattern(
+        const result = knight.findMovePattern(
           knight.pattern.regular, deltaX, deltaY);
         expect(result).toBe(true);
       });
@@ -95,7 +95,7 @@ describe('knight', () => {
         const deltaY = delta[1];
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
-        const result = knight.findRegularPattern(
+        const result = knight.findMovePattern(
           knight.pattern.regular, deltaX, deltaY);
         expect(result).toBe(true);
       });
@@ -108,7 +108,7 @@ describe('knight', () => {
         const deltaY = delta[1];
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
-        const result = knight.findRegularPattern(
+        const result = knight.findMovePattern(
           knight.pattern.regular, deltaX, deltaY);
         expect(result).toBe(true);
       });
@@ -124,7 +124,7 @@ describe('knight', () => {
       const deltaY = delta[1];
       const knight = new Knight(start, COLORS.black);
       board.pieces[knight.pos] = knight;
-      const result = knight.findRegularPattern(
+      const result = knight.findMovePattern(
         knight.pattern.regular, deltaX, deltaY);
       expect(result).toBe(false);
     });
@@ -137,7 +137,7 @@ describe('knight', () => {
       const deltaY = delta[1];
       const knight = new Knight(start, COLORS.black);
       board.pieces[knight.pos] = knight;
-      const result = knight.findRegularPattern(
+      const result = knight.findMovePattern(
         knight.pattern.regular, deltaX, deltaY);
       expect(result).toBe(false);
     });

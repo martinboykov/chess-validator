@@ -22,7 +22,7 @@ class Queen extends Piece {
   }
   validateMove(deltaX, deltaY, isEnemyAttacked,
     isEndEmpty, piece, board, start, end) {
-      const isRegularFound = this.findRegularPattern(
+      const isRegularFound = this.findMovePattern(
         this.pattern.regular, deltaX, deltaY);
     log(piece);
     log('color = ', piece.color);
@@ -106,8 +106,8 @@ class Queen extends Piece {
     }
     return false;
   }
-  findRegularPattern(pattern, deltaX, deltaY) {
-    return super.findRegularPattern(pattern, deltaX, deltaY);
+  findMovePattern(pattern, deltaX, deltaY) {
+    return super.findMovePattern(pattern, deltaX, deltaY);
   }
 }
 

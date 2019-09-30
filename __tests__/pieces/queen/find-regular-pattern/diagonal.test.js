@@ -18,7 +18,7 @@ describe('queen', () => {
           const delta = board.calculateDelta(end, start);
           const deltaX = delta[0];
           const deltaY = delta[1];
-          const result = queen.findRegularPattern(
+          const result = queen.findMovePattern(
             queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
@@ -31,7 +31,7 @@ describe('queen', () => {
           const delta = board.calculateDelta(end, start);
           const deltaX = delta[0];
           const deltaY = delta[1];
-          const result = queen.findRegularPattern(
+          const result = queen.findMovePattern(
             queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
@@ -44,7 +44,7 @@ describe('queen', () => {
           const delta = board.calculateDelta(end, start);
           const deltaX = delta[0];
           const deltaY = delta[1];
-          const result = queen.findRegularPattern(
+          const result = queen.findMovePattern(
             queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
@@ -59,7 +59,7 @@ describe('queen', () => {
           const delta = board.calculateDelta(end, start);
           const deltaX = delta[0];
           const deltaY = delta[1];
-          const result = queen.findRegularPattern(
+          const result = queen.findMovePattern(
             queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
@@ -72,7 +72,7 @@ describe('queen', () => {
           const delta = board.calculateDelta(end, start);
           const deltaX = delta[0];
           const deltaY = delta[1];
-          const result = queen.findRegularPattern(
+          const result = queen.findMovePattern(
             queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
@@ -85,7 +85,7 @@ describe('queen', () => {
           const delta = board.calculateDelta(end, start);
           const deltaX = delta[0];
           const deltaY = delta[1];
-          const result = queen.findRegularPattern(
+          const result = queen.findMovePattern(
             queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
@@ -100,7 +100,7 @@ describe('queen', () => {
           const delta = board.calculateDelta(end, start);
           const deltaX = delta[0];
           const deltaY = delta[1];
-          const result = queen.findRegularPattern(
+          const result = queen.findMovePattern(
             queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
@@ -113,7 +113,7 @@ describe('queen', () => {
           const delta = board.calculateDelta(end, start);
           const deltaX = delta[0];
           const deltaY = delta[1];
-          const result = queen.findRegularPattern(
+          const result = queen.findMovePattern(
             queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
@@ -126,7 +126,7 @@ describe('queen', () => {
           const delta = board.calculateDelta(end, start);
           const deltaX = delta[0];
           const deltaY = delta[1];
-          const result = queen.findRegularPattern(
+          const result = queen.findMovePattern(
             queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
@@ -141,7 +141,7 @@ describe('queen', () => {
           const delta = board.calculateDelta(end, start);
           const deltaX = delta[0];
           const deltaY = delta[1];
-          const result = queen.findRegularPattern(
+          const result = queen.findMovePattern(
             queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
@@ -154,7 +154,7 @@ describe('queen', () => {
           const delta = board.calculateDelta(end, start);
           const deltaX = delta[0];
           const deltaY = delta[1];
-          const result = queen.findRegularPattern(
+          const result = queen.findMovePattern(
             queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
@@ -167,7 +167,7 @@ describe('queen', () => {
           const delta = board.calculateDelta(end, start);
           const deltaX = delta[0];
           const deltaY = delta[1];
-          const result = queen.findRegularPattern(
+          const result = queen.findMovePattern(
             queen.pattern.regular, deltaX, deltaY);
           expect(result).toBe(true);
         });
@@ -183,7 +183,7 @@ describe('queen', () => {
         const delta = board.calculateDelta(end, start);
         const deltaX = delta[0];
         const deltaY = delta[1];
-        const result = queen.findRegularPattern(
+        const result = queen.findMovePattern(
           queen.pattern.regular, deltaX, deltaY);
         expect(result).toBe(false);
       });
@@ -196,7 +196,7 @@ describe('queen', () => {
         const delta = board.calculateDelta(end, start);
         const deltaX = delta[0];
         const deltaY = delta[1];
-        const result = queen.findRegularPattern(
+        const result = queen.findMovePattern(
           queen.pattern.regular, deltaX, deltaY);
         expect(result).toBe(false);
       });

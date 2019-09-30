@@ -76,30 +76,22 @@ class Pawn extends Piece {
     return false;
   }
   firstMoveCheck(piece, deltaX, deltaY) {
-    return piece.color
-      ? this.pattern.white.special.first.some((d) => {
-        return deltaX === d[0] && deltaY === d[1];
-      })
-      : this.pattern.black.special.first.some((d) => {
-        return deltaX === d[0] && deltaY === d[1];
-      });
+    return piece.color ?
+      this.findMovePattern(this.pattern.white.special.first, deltaX, deltaY) :
+      this.findMovePattern(this.pattern.black.special.first, deltaX, deltaY);
   }
   regularMoveCheck(piece, deltaX, deltaY) {
     return piece.color ?
-      this.findRegularPattern(this.pattern.white.regular, deltaX, deltaY) :
-      this.findRegularPattern(this.pattern.black.regular, deltaX, deltaY);
+      this.findMovePattern(this.pattern.white.regular, deltaX, deltaY) :
+      this.findMovePattern(this.pattern.black.regular, deltaX, deltaY);
   }
   attackMoveCheck(piece, deltaX, deltaY) {
-    return piece.color
-      ? this.pattern.white.special.attack.some((d) => {
-        return deltaX === d[0] && deltaY === d[1];
-      })
-      : this.pattern.black.special.attack.some((d) => {
-        return deltaX === d[0] && deltaY === d[1];
-      });
+    return piece.color ?
+      this.findMovePattern(this.pattern.white.special.attack, deltaX, deltaY) :
+      this.findMovePattern(this.pattern.black.special.attack, deltaX, deltaY);
   }
-  findRegularPattern(pattern, deltaX, deltaY) {
-    return super.findRegularPattern(pattern, deltaX, deltaY);
+  findMovePattern(pattern, deltaX, deltaY) {
+    return super.findMovePattern(pattern, deltaX, deltaY);
   }
 }
 

@@ -20,7 +20,7 @@ class Rook extends Piece {
     isEndEmpty, piece, board, start, end) {
     if ((deltaX !== 0 && deltaY !== 0) ||
       (deltaX === 0 && deltaY === 0)) return false; // fast check
-    const isRegularFound = this.findRegularPattern(
+    const isRegularFound = this.findMovePattern(
       this.pattern.regular, deltaX, deltaY);
     log(piece);
     log('color = ', piece.color);
@@ -71,8 +71,8 @@ class Rook extends Piece {
     }
     return false;
   }
-  findRegularPattern(pattern, deltaX, deltaY) {
-    return super.findRegularPattern(pattern, deltaX, deltaY);
+  findMovePattern(pattern, deltaX, deltaY) {
+    return super.findMovePattern(pattern, deltaX, deltaY);
   }
 }
 
