@@ -9,7 +9,7 @@ const isDev = process.env.NODE_ENV === 'development' ? true : false; // eslint-d
 
 function main() { // eslint-disable-line consistent-return
   const success = 'All moves are valid';
-  const fileReader = new FileReader();
+  const fileReader = new FileReader(file);
   // let lineCounter = 1;
   const readline = rl.createInterface({
     input: fs.createReadStream(file),
@@ -21,9 +21,11 @@ function main() { // eslint-disable-line consistent-return
     fs.accessSync(file, fs.constants.R_OK | fs.constants.W_OK);
     readline.on('line', (line) => {
       const moves = fileReader.dataHandler(line);
-      for (let i = 0; i < moves.length; i++) {
-        const start = moves[i][0];
-        const finish = moves[i][1];
+      for (let i = 0; i < moves.length; i += 4) {
+        const start = `${moves[i]}${moves[i + 1]}`;
+        const finish = `${moves[i + 2]}${moves[i + 3]}`;
+        // const start = moves[i][0];
+        // const finish = moves[i][1];
         const moveOutcome = chess.makeMove(start, finish);
         if (typeof (moveOutcome) === 'string') {
           log(moveOutcome);
@@ -32,11 +34,14 @@ function main() { // eslint-disable-line consistent-return
         }
       }
     }).on('close', () => {
+      if (fileReader.lineCount === 0) { // catch empty file case
+        throw new Error(`No valid moves provided`);
+      }
       log(success);
       if (!isDev) console.log(success);
     });
   } catch (err) {
-    fileReader.errorHandler(err, file);
+    fileReader.errorHandler(err);
   }
 }
 main();

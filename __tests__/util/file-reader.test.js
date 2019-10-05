@@ -43,9 +43,11 @@ describe('file reader', () => {
       const expectedBlackMove = ['g7', 'g6'];
       const fileReader = new FileReader();
       const result = fileReader.dataHandler(line);
-      expect(result.length).toBe(2);
-      expect(result[0]).toEqual(expect.arrayContaining(expectedWhiteMove));
-      expect(result[1]).toEqual(expect.arrayContaining(expectedBlackMove));
+      expect(result.length).toBe(8);
+      expect(result).toMatch(expectedWhiteMove[0]);
+      expect(result).toMatch(expectedWhiteMove[1]);
+      expect(result).toMatch(expectedBlackMove[0]);
+      expect(result).toMatch(expectedBlackMove[1]);
     });
     it('Should Throw Error with message containing the current line count', () => { // eslint-disable-line max-len
       const line = '1.e2-e4g7-g6';

@@ -1,7 +1,8 @@
 const log = require('debug')('file:reader');
 
 class FileReader {
-  constructor() {
+  constructor(file) {
+    this.file = file;
     this.lineCount = 0;
   }
   dataHandler(line) {
@@ -9,23 +10,21 @@ class FileReader {
     log('lineCount = ', this.lineCount);
     log('line = ', line);
     const regexp = /^(?:[0-9]+\.\s)([a-h][1-8])(?:\-){1}([a-h][1-8])(?:[\s]{3})([a-h][1-8])(?:\-){1}([a-h][1-8])$/; // eslint-disable-line max-len
-    const str = line.trim();
-    let moves = str.replace(regexp, '$1 $2 $3 $4').split(' ');
-    if (moves.length !== 4) {
+    const match = line.match(regexp);
+    if (!match) {
       throw new Error(`Invalid input detected on line = ${this.lineCount}`);
     }
-    moves = [[moves[0], moves[1]], [moves[2], moves[3]]];
-    log(moves);
-    return moves;
+    log(`${match[1]}${match[2]}${match[3]}${match[4]}`);
+    return `${match[1]}${match[2]}${match[3]}${match[4]}`;
   }
-  errorHandler(err, file) {
+  errorHandler(err) {
     if (err.code === 'ENOENT') {
-      throw new Error(`${file} does not exist`);
+      throw new Error(`${this.file} does not exist`);
     }
     if (err.code === 'EACCES') {
-      throw new Error(`Permission denied to access ${file}`);
+      throw new Error(`Permission denied to access ${this.file}`);
     }
-    throw new Error(`An error occured opening ${file}`);
+    throw new Error(`An error occured opening ${this.file}`);
   }
 }
 
