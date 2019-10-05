@@ -4,7 +4,7 @@ const rl = require('readline');
 const path = require('path');
 const file = path.resolve(__dirname, 'input', 'input.txt');
 const { Chess } = require('./src/chess');
-const { FileReader, dataHandler, errorHandler } = require('./src/util');
+const { FileReader } = require('./src/util');
 const isDev = process.env.NODE_ENV === 'development' ? true : false; // eslint-disable-line no-process-env
 
 function main() { // eslint-disable-line consistent-return

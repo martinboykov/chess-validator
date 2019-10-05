@@ -8,7 +8,7 @@ class FileReader {
     this.lineCount += 1;
     log('lineCount = ', this.lineCount);
     log('line = ', line);
-    const regexp = /(?:[0-9]+\.[\s]*)([a-zA-Z0-9]*)(?:\-){1}([a-zA-Z0-9]*)(?:[\s]+)([a-zA-Z0-9]*)(?:\-){1}([a-zA-Z0-9]*)/; // eslint-disable-line max-len
+    const regexp = /^(?:[0-9]+\.\s)([a-h][1-8])(?:\-){1}([a-h][1-8])(?:[\s]{3})([a-h][1-8])(?:\-){1}([a-h][1-8])$/; // eslint-disable-line max-len
     const str = line.trim();
     let moves = str.replace(regexp, '$1 $2 $3 $4').split(' ');
     if (moves.length !== 4) {
