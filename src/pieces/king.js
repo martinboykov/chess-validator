@@ -6,24 +6,7 @@ class King extends Piece {
   constructor(pos, color) {
     super(pos, color);
     this.type = TYPES.king;
-    this.pattern = {
-      regular: [
-        MOVEMENT_PATTERNS.up[0],
-        MOVEMENT_PATTERNS.diag.up_right[0],
-        MOVEMENT_PATTERNS.right[0],
-        MOVEMENT_PATTERNS.diag.down_right[0],
-        MOVEMENT_PATTERNS.down[0],
-        MOVEMENT_PATTERNS.diag.down_left[0],
-        MOVEMENT_PATTERNS.left[0],
-        MOVEMENT_PATTERNS.diag.up_left[0],
-      ],
-      special: {
-        castling: {
-          left: MOVEMENT_PATTERNS.left[1],
-          right: MOVEMENT_PATTERNS.right[1],
-        },
-      },
-    };
+    this.pattern = MOVEMENT_PATTERNS.king;
     this.movementCount = 0;
   }
   validateMove(deltaX, deltaY, isEnemyAttacked,
@@ -35,9 +18,12 @@ class King extends Piece {
     }
     const isRegularFound = this.findMovePattern(
       this.pattern.regular, deltaX, deltaY);
-    log(piece);
     log('color = ', piece.color);
+    log('type = ', piece.type);
+    log('start = ', piece.pos);
     log('deltaX, deltaY = ', [deltaX, deltaY]);
+    log('isEnemyAttacked = ', isEnemyAttacked);
+    log('isEndEmpty = ', isEndEmpty);
     log('isRegularFound = ', isRegularFound);
     if (isRegularFound) {
       if (isEnemyAttacked || isEndEmpty) {
@@ -52,7 +38,7 @@ class King extends Piece {
     let path;
     if (king.color
       && king.movementCount === 0
-      && deltaX === this.pattern.special.castling.right[0]
+      && deltaX === 2 // this.pattern.special.castling.right[0]
       && board.pieces.h1 !== '.') {
       path = ['f1', 'g1'];
       isPathBlocked = this.obsticleCheck(path, board);
@@ -68,7 +54,7 @@ class King extends Piece {
       }
     } else if (king.color
       && king.movementCount === 0
-      && deltaX === this.pattern.special.castling.left[0]
+      && deltaX === -2 // this.pattern.special.castling.left[0]
       && board.pieces.a1 !== '.') {
       path = ['b1', 'c1', 'd1'];
       isPathBlocked = this.obsticleCheck(path, board);
@@ -84,7 +70,7 @@ class King extends Piece {
       }
     } else if (!king.color
       && king.movementCount === 0
-      && deltaX === this.pattern.special.castling.right[0]
+      && deltaX === 2 // this.pattern.special.castling.right[0]
       && board.pieces.h8 !== '.') {
       path = ['f8', 'g8'];
       isPathBlocked = this.obsticleCheck(path, board);
@@ -100,7 +86,7 @@ class King extends Piece {
       }
     } else if (!king.color
       && king.movementCount === 0
-      && deltaX === this.pattern.special.castling.left[0]
+      && deltaX === -2 // this.pattern.special.castling.left[0]
       && board.pieces.a8 !== '.') {
       path = ['b8', 'c8', 'd8'];
       isPathBlocked = this.obsticleCheck(path, board);

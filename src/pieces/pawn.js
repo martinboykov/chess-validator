@@ -7,32 +7,16 @@ class Pawn extends Piece {
     super(pos, color);
     this.type = TYPES.pawn;
     this.movementCount = 0;
-    this.pattern = {
-      white: {
-        regular: [MOVEMENT_PATTERNS.up[0]],
-        special: {
-          first: [MOVEMENT_PATTERNS.up[1]],
-          attack: [
-            MOVEMENT_PATTERNS.diag.up_left[0],
-            MOVEMENT_PATTERNS.diag.up_right[0],
-          ],
-        },
-      },
-      black: {
-        regular: [MOVEMENT_PATTERNS.down[0]],
-        special: {
-          first: [MOVEMENT_PATTERNS.down[1]],
-          attack: [
-            MOVEMENT_PATTERNS.diag.down_left[0],
-            MOVEMENT_PATTERNS.diag.down_right[0],
-          ],
-        },
-      },
-    };
+    this.pattern = MOVEMENT_PATTERNS.pawn;
   }
   validateMove(deltaX, deltaY, isEnemyAttacked,
     isEndEmpty, piece, board, start, end) {
-    log(piece);
+    log('color = ', piece.color);
+    log('type = ', piece.type);
+    log('start = ', piece.pos);
+    log('deltaX, deltaY = ', [deltaX, deltaY]);
+    log('isEnemyAttacked = ', isEnemyAttacked);
+    log('isEndEmpty = ', isEndEmpty);
     const isFirstMove = piece.movementCount === 0;
     if (isFirstMove) {
       const isFirstMoveFound = this.firstMoveCheck(piece, deltaX, deltaY);
@@ -47,8 +31,6 @@ class Pawn extends Piece {
     if (isEnemyAttacked) {
       log('pattern.white.special.attack = ', this.pattern.white.special.attack); // eslint-disable-line max-len
       log('pattern.black.special.attack = ', this.pattern.black.special.attack); // eslint-disable-line max-len
-      log('color = ', piece.color);
-      log('deltaX, deltaY = ', [deltaX, deltaY]);
       const isAttackMoveFound = this.attackMoveCheck(piece, deltaX, deltaY);
       if (isAttackMoveFound) return true;
     }

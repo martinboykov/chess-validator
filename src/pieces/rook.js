@@ -6,14 +6,7 @@ class Rook extends Piece {
   constructor(pos, color) {
     super(pos, color);
     this.type = TYPES.rook;
-    this.pattern = {
-      regular: [
-        ...MOVEMENT_PATTERNS.up,
-        ...MOVEMENT_PATTERNS.right,
-        ...MOVEMENT_PATTERNS.down,
-        ...MOVEMENT_PATTERNS.left,
-      ],
-    };
+    this.pattern = MOVEMENT_PATTERNS.rook;
     this.movementCount = 0;
   }
   validateMove(deltaX, deltaY, isEnemyAttacked,
@@ -22,10 +15,12 @@ class Rook extends Piece {
       (deltaX === 0 && deltaY === 0)) return false; // fast check
     const isRegularFound = this.findMovePattern(
       this.pattern.regular, deltaX, deltaY);
-    log(piece);
     log('color = ', piece.color);
+    log('type = ', piece.type);
+    log('start = ', piece.pos);
     log('deltaX, deltaY = ', [deltaX, deltaY]);
-    log('isRegularFound = ', isRegularFound);
+    log('isEnemyAttacked = ', isEnemyAttacked);
+    log('isEndEmpty = ', isEndEmpty);
     if (isRegularFound) {
       if (isEnemyAttacked || isEndEmpty) {
         const isPathBlocked = this.obsticleCheck( // if the previous conditions are met => check for obsticles

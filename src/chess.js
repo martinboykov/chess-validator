@@ -86,11 +86,7 @@ class Chess {
     const deltaY = delta[1];
     const isEnemyAttacked = this.enemyAttackedCheck(start, end);
     const isEndEmpty = this.endEmptyCheck(end);
-    log('piece.color = ', this.board.pieces[start].color);
     log('order = ', this.order);
-    log('delta = ', delta);
-    log('isEnemyAttacked = ', isEnemyAttacked);
-    log('isEndEmpty = ', isEndEmpty);
     const isValidMove = piece.validateMove(
       deltaX, deltaY, isEnemyAttacked, isEndEmpty,
       piece, this.board, start, end,
@@ -113,7 +109,10 @@ class Chess {
         this.board.pieces[start] = '.';
       }
       piece.movementCount = oldMovementCount + 1;
-      log(piece);
+      log('end = ', end);
+      log('pos = ', piece.pos);
+      log('type = ', piece.type);
+      log('color = ', piece.color);
       this.order = !this.order;
 
       /* istanbul ignore next */

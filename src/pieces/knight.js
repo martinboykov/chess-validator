@@ -6,19 +6,19 @@ class Knight extends Piece {
   constructor(pos, color) {
     super(pos, color);
     this.type = TYPES.knight;
-    this.pattern = {
-      regular: MOVEMENT_PATTERNS.lShappe,
-    };
+    this.pattern = MOVEMENT_PATTERNS.knight;
     this.movementCount = 0;
   }
   validateMove(deltaX, deltaY, isEnemyAttacked,
     isEndEmpty, piece, board, start, end) {
     const isRegularFound = this.findMovePattern(
       this.pattern.regular, deltaX, deltaY);
-    log(piece);
     log('color = ', piece.color);
+    log('type = ', piece.type);
+    log('start = ', piece.pos);
     log('deltaX, deltaY = ', [deltaX, deltaY]);
-    log('isRegularFound = ', isRegularFound);
+    log('isEnemyAttacked = ', isEnemyAttacked);
+    log('isEndEmpty = ', isEndEmpty);
     if (isRegularFound) {
       if (isEnemyAttacked || isEndEmpty) {
         return true;

@@ -10,9 +10,8 @@ class Piece {
     this.pattern = [];
   }
   findMovePattern(pattern, deltaX, deltaY) {
-    return pattern.some((d) => {
-      return deltaX === d[0] && deltaY === d[1];
-    });
+    if (pattern[[deltaX, deltaY]]) return true;
+    return false;
   }
 }
 

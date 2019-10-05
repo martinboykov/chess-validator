@@ -6,28 +6,19 @@ class Queen extends Piece {
   constructor(pos, color) {
     super(pos, color);
     this.type = TYPES.queen;
-    this.pattern = {
-      regular: [
-        ...MOVEMENT_PATTERNS.up,
-        ...MOVEMENT_PATTERNS.diag.up_right,
-        ...MOVEMENT_PATTERNS.right,
-        ...MOVEMENT_PATTERNS.diag.down_right,
-        ...MOVEMENT_PATTERNS.down,
-        ...MOVEMENT_PATTERNS.diag.down_left,
-        ...MOVEMENT_PATTERNS.left,
-        ...MOVEMENT_PATTERNS.diag.up_left,
-      ],
-    };
+    this.pattern = MOVEMENT_PATTERNS.queen;
     this.movementCount = 0;
   }
   validateMove(deltaX, deltaY, isEnemyAttacked,
     isEndEmpty, piece, board, start, end) {
     const isRegularFound = this.findMovePattern(
       this.pattern.regular, deltaX, deltaY);
-    log(piece);
     log('color = ', piece.color);
+    log('type = ', piece.type);
+    log('start = ', piece.pos);
     log('deltaX, deltaY = ', [deltaX, deltaY]);
-    log('isRegularFound = ', isRegularFound);
+    log('isEnemyAttacked = ', isEnemyAttacked);
+    log('isEndEmpty = ', isEndEmpty);
     if (isRegularFound) {
       if (isEnemyAttacked || isEndEmpty) {
         let isPathBlocked;
