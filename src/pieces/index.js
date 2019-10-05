@@ -4,6 +4,7 @@ const rook = require('./rook');
 const bishop = require('./bishop');
 const knight = require('./knight');
 const pawn = require('./pawn');
+const piece = require('./piece');
 
 
 module.exports = {
@@ -13,4 +14,5 @@ module.exports = {
   ...bishop,
   ...knight,
   ...pawn,
+  ...piece,
 };

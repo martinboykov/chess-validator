@@ -11,11 +11,11 @@ class FileReader {
     log('line = ', line);
     const regexp = /^(?:[0-9]+\.\s)([a-h][1-8])(?:\-){1}([a-h][1-8])(?:[\s]{3})([a-h][1-8])(?:\-){1}([a-h][1-8])$/; // eslint-disable-line max-len
     const match = line.match(regexp);
-    if (!match) {
+    if (!match) { // if no match returns "null"
       throw new Error(`Invalid input detected on line = ${this.lineCount}`);
     }
-    log(`${match[1]}${match[2]}${match[3]}${match[4]}`);
-    return `${match[1]}${match[2]}${match[3]}${match[4]}`;
+    log(match);
+    return match;
   }
   errorHandler(err) {
     if (err.code === 'ENOENT') {

@@ -1,6 +1,4 @@
-const log = require('debug')('piece');
-
-const { TYPES, MOVEMENT_PATTERNS } = require('../util');
+const { TYPES } = require('../util');
 
 class Piece {
   constructor(pos, color) {

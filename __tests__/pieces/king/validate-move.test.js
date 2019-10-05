@@ -116,6 +116,26 @@ describe('king', () => {
           isEndEmpty, king, board, start, end);
         expect(result).toBe(true); // no obstruction
       });
+      it('should return "false" if king start pos is "e1", end pos is "g1"', () => { // eslint-disable-line max-len
+        const start = 'e1';
+        const end = 'g1';
+        const isEnemyAttacked = false;
+        const isEndEmpty = true;
+        const board = new Board();
+        const king = new King(start, COLORS.black);
+        board.pieces[start] = king;
+        king.specialMoveCheck = jest.fn().mockImplementation(() => {
+          return false;
+        });
+        king.findMovePattern = jest.fn().mockImplementation(() => {
+          return false;
+        });
+        const delta = board.calculateDelta(end, start);
+        const result = king.validateMove(
+          delta[0], delta[1], isEnemyAttacked,
+          isEndEmpty, king, board, start, end);
+        expect(result).toBe(false);
+      });
       it('should return "false" if king start pos is "e1", end pos is "g2" (deltaY!==0)', () => { // eslint-disable-line max-len
         const start = 'e1';
         const end = 'g2';

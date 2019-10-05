@@ -41,10 +41,9 @@ class Pawn extends Piece {
     return false;
   }
   obsticleCheck(start, end, deltaX, deltaY, piece, board) {
-    if (deltaY !== 2 && deltaX !== 0) return false;
     const iterationCount = deltaY;
+    const coordValue = parseInt(board.coord[start], 10);
     for (let index = 1; index <= iterationCount; index++) {
-      const coordValue = parseInt(board.coord[start], 10);
       const nextIterStep = piece.color
         ? coordValue + index
         : coordValue - index;

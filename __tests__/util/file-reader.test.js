@@ -32,7 +32,6 @@ describe('file reader', () => {
       function errorHandlerWrapper() {
         fileReader.errorHandler(error, file);
       }
-      // const expected = `Invalid input detected on line = ${lineCount}`;
       expect(errorHandlerWrapper).toThrowError(/error occured/);
     });
   });
@@ -43,11 +42,11 @@ describe('file reader', () => {
       const expectedBlackMove = ['g7', 'g6'];
       const fileReader = new FileReader();
       const result = fileReader.dataHandler(line);
-      expect(result.length).toBe(8);
-      expect(result).toMatch(expectedWhiteMove[0]);
-      expect(result).toMatch(expectedWhiteMove[1]);
-      expect(result).toMatch(expectedBlackMove[0]);
-      expect(result).toMatch(expectedBlackMove[1]);
+      expect(result.length).toBe(5);
+      expect(result[1]).toMatch(expectedWhiteMove[0]);
+      expect(result[2]).toMatch(expectedWhiteMove[1]);
+      expect(result[3]).toMatch(expectedBlackMove[0]);
+      expect(result[4]).toMatch(expectedBlackMove[1]);
     });
     it('Should Throw Error with message containing the current line count', () => { // eslint-disable-line max-len
       const line = '1.e2-e4g7-g6';

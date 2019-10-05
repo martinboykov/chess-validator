@@ -1,7 +1,7 @@
 const log = require('debug')('chess');
 const { Board } = require('./board');
 const pieceType = require('./pieces');
-const { TYPES, COLORS, PLAY_ORDER, STATE } = require('./util');
+const { TYPES, COLORS, PLAY_ORDER, STATE } = require('./util'); /* istanbul ignore next */
 const isDev = process.env.NODE_ENV === 'development' ? true : false; // eslint-disable-line no-process-env
 
 // ...
@@ -21,38 +21,38 @@ class Chess {
     ['a2', 'b2', 'c2', 'd2', 'e2', 'f2', 'g2', 'h2',
       'a7', 'b7', 'c7', 'd7', 'e7', 'f7', 'g7', 'h7']
       .forEach((pos, idx) => {
-        if (idx < 8) this.add().pawn(pos, COLORS.white);
+        if (idx < 8) this.add().pawn(pos, COLORS.white); /* istanbul ignore next */
         else if (idx >= 8) this.add().pawn(pos, COLORS.black);
       });
 
     // knights init
     // -----------------------------------------
     ['b1', 'g1', 'b8', 'g8'].forEach((pos, idx) => {
-      if (idx < 2) this.add().knight(pos, COLORS.white);
+      if (idx < 2) this.add().knight(pos, COLORS.white); /* istanbul ignore next */
       else if (idx >= 2) this.add().knight(pos, COLORS.black);
     });
     // bishops init
     // -----------------------------------------
     ['c1', 'f1', 'c8', 'f8'].forEach((pos, idx) => {
-      if (idx < 2) this.add().bishop(pos, COLORS.white);
+      if (idx < 2) this.add().bishop(pos, COLORS.white); /* istanbul ignore next */
       else if (idx >= 2) this.add().bishop(pos, COLORS.black);
     });
     // rooks init
     // -----------------------------------------
     ['a1', 'h1', 'a8', 'h8'].forEach((pos, idx) => {
-      if (idx < 2) this.add().rook(pos, COLORS.white);
+      if (idx < 2) this.add().rook(pos, COLORS.white); /* istanbul ignore next */
       else if (idx >= 2) this.add().rook(pos, COLORS.black);
     });
     // queens init
     // -----------------------------------------
     ['d1', 'd8'].forEach((pos, idx) => {
-      if (idx < 1) this.add().queen(pos, COLORS.white);
+      if (idx < 1) this.add().queen(pos, COLORS.white); /* istanbul ignore next */
       else if (idx >= 1) this.add().queen(pos, COLORS.black);
     });
     // kings init
     // -----------------------------------------
     ['e1', 'e8'].forEach((pos, idx) => {
-      if (idx < 1) this.add().king(pos, COLORS.white);
+      if (idx < 1) this.add().king(pos, COLORS.white); /* istanbul ignore next */
       else if (idx >= 1) this.add().king(pos, COLORS.black);
     });
     this.kingCount = 2;
@@ -75,18 +75,15 @@ class Chess {
     if (this.kingCount < 2) {
       throw new Error('Move was made with less than 2 kings on board');
     }
-    // king removed
-    let isKingToBeRemoved = false;
-    if (this.board.pieces[end] !== '.') {
-      if (this.board.pieces[end].type === TYPES.king
-        && this.board.pieces[end] !== piece.color) isKingToBeRemoved = true;
-    }
+    const isKingToBeRemoved = this.kingRemoveCheck(end);
+
     const delta = this.board.calculateDelta(end, start);
     const deltaX = delta[0];
     const deltaY = delta[1];
     const isEnemyAttacked = this.enemyAttackedCheck(start, end);
     const isEndEmpty = this.endEmptyCheck(end);
     log('order = ', this.order);
+
     const isValidMove = piece.validateMove(
       deltaX, deltaY, isEnemyAttacked, isEndEmpty,
       piece, this.board, start, end,
@@ -161,11 +158,18 @@ class Chess {
         || end === 'e8' || end === 'f8' || end === 'g8' || end === 'h8') {
         return true;
       }
-    } else if (!piece.color) {
+    } else { // if (!piece.color)
       if (end === 'a1' || end === 'b1' || end === 'c1' || end === 'd1'
         || end === 'e1' || end === 'f1' || end === 'g1' || end === 'h1') {
         return true;
       }
+    }
+    return false;
+  }
+  kingRemoveCheck(end) {
+    if (this.board.pieces[end] !== '.') {
+      if (this.board.pieces[end].type === TYPES.king) return true;
+      // no need to check if the color is not the same, as then will return invalid move beforehand
     }
     return false;
   }
