@@ -1,5 +1,5 @@
 const COLORS = require('../../../../src/util').COLORS;
-const { Board } = require('../../../../src/board');
+const { Chess } = require('../../../../src/chess');
 const { Piece } = require('../../../../src/pieces/piece');
 const { Queen } = require('../../../../src/pieces/queen');
 
@@ -13,7 +13,8 @@ describe('queen', () => {
       const end = 'g6';
       const isEnemyAttacked = false;
       const isEndEmpty = true;
-      const board = new Board();
+       const chess = new Chess();
+      const board = chess.board;
       const queen = new Queen(start, COLORS.black);
       board.pieces[start] = queen;
       queen.findMovePattern = jest.fn().mockImplementation(() => {
@@ -25,7 +26,7 @@ describe('queen', () => {
       const delta = board.calculateDelta(end, start);
       const result = queen.validateMove(
         delta[0], delta[1], isEnemyAttacked,
-        isEndEmpty, queen, board, start, end);
+        isEndEmpty, queen, chess, start, end);
       expect(result).toBe(true); // no obstruction
     });
     it('should return "false" if queen start pos is "e4" and end pos is "h6" without piece at end and with no obstruction', () => { // eslint-disable-line max-len
@@ -33,7 +34,8 @@ describe('queen', () => {
       const end = 'h6';
       const isEnemyAttacked = false;
       const isEndEmpty = true;
-      const board = new Board();
+       const chess = new Chess();
+      const board = chess.board;
       const queen = new Queen(start, COLORS.black);
       board.pieces[start] = queen;
       queen.findMovePattern = jest.fn().mockImplementation(() => {
@@ -45,7 +47,7 @@ describe('queen', () => {
       const delta = board.calculateDelta(end, start);
       const result = queen.validateMove(
         delta[0], delta[1], isEnemyAttacked,
-        isEndEmpty, queen, board, start, end);
+        isEndEmpty, queen, chess, start, end);
       expect(result).toBe(false); // no obstruction
     });
     it('should return "true" if queen start pos is "e4" and end pos is "g6" with enemy piece at end and with no obstruction', () => { // eslint-disable-line max-len
@@ -53,7 +55,8 @@ describe('queen', () => {
       const end = 'g6';
       const isEnemyAttacked = true;
       const isEndEmpty = false;
-      const board = new Board();
+       const chess = new Chess();
+      const board = chess.board;
       const queen = new Queen(start, COLORS.black);
       board.pieces[start] = queen;
       board.pieces[end] = new Piece(end, COLORS.white);
@@ -66,7 +69,7 @@ describe('queen', () => {
       const delta = board.calculateDelta(end, start);
       const result = queen.validateMove(
         delta[0], delta[1], isEnemyAttacked,
-        isEndEmpty, queen, board, start, end);
+        isEndEmpty, queen, chess, start, end);
       expect(result).toBe(true); // no obstruction
     });
     it('should return "false" if queen start pos is "e4" and end pos is "g6" with enemy piece at end and with obstruction', () => { // eslint-disable-line max-len
@@ -74,7 +77,8 @@ describe('queen', () => {
       const end = 'g6';
       const isEnemyAttacked = true;
       const isEndEmpty = false;
-      const board = new Board();
+       const chess = new Chess();
+      const board = chess.board;
       const queen = new Queen(start, COLORS.black);
       board.pieces[start] = queen;
       board.pieces[end] = new Piece(end, COLORS.white);
@@ -87,7 +91,7 @@ describe('queen', () => {
       const delta = board.calculateDelta(end, start);
       const result = queen.validateMove(
         delta[0], delta[1], isEnemyAttacked,
-        isEndEmpty, queen, board, start, end);
+        isEndEmpty, queen, chess, start, end);
       expect(result).toBe(false); // no obstruction
     });
     it('should return "false" if queen start pos is "e4" and end pos is "g6" with same color piece at end and with no obstruction', () => { // eslint-disable-line max-len
@@ -95,7 +99,8 @@ describe('queen', () => {
       const end = 'g6';
       const isEnemyAttacked = false;
       const isEndEmpty = false;
-      const board = new Board();
+       const chess = new Chess();
+      const board = chess.board;
       const queen = new Queen(start, COLORS.black);
       board.pieces[start] = queen;
       board.pieces[end] = new Piece(end, COLORS.black);
@@ -108,7 +113,7 @@ describe('queen', () => {
       const delta = board.calculateDelta(end, start);
       const result = queen.validateMove(
         delta[0], delta[1], isEnemyAttacked,
-        isEndEmpty, queen, board, start, end);
+        isEndEmpty, queen, chess, start, end);
       expect(result).toBe(false); // no obstruction
     });
   });

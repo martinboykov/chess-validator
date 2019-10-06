@@ -10,9 +10,10 @@ class King extends Piece {
     this.movementCount = 0;
   }
   validateMove(deltaX, deltaY, isEnemyAttacked,
-    isEndEmpty, piece, board, start, end) {
+    isEndEmpty, piece, chess, start, end) {
     if (Math.abs(deltaX) === 2 && deltaY === 0) {
-      const isSpecialMoveFound = this.specialMoveCheck(deltaX, piece, board);
+      const isSpecialMoveFound =
+        this.specialMoveCheck(deltaX, piece, chess.board);
       if (isSpecialMoveFound) return true;
       return false;
     }
@@ -20,7 +21,8 @@ class King extends Piece {
       this.pattern.regular, deltaX, deltaY);
     log('color = ', piece.color);
     log('type = ', piece.type);
-    log('start = ', piece.pos);
+    log('moveCount = ', piece.movementCount);
+    log('position = ', piece.pos);
     log('deltaX, deltaY = ', [deltaX, deltaY]);
     log('isEnemyAttacked = ', isEnemyAttacked);
     log('isEndEmpty = ', isEndEmpty);

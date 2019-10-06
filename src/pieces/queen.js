@@ -10,12 +10,13 @@ class Queen extends Piece {
     this.movementCount = 0;
   }
   validateMove(deltaX, deltaY, isEnemyAttacked,
-    isEndEmpty, piece, board, start, end) {
+    isEndEmpty, piece, chess, start, end) {
     const isRegularFound = this.findMovePattern(
       this.pattern.regular, deltaX, deltaY);
     log('color = ', piece.color);
     log('type = ', piece.type);
-    log('start = ', piece.pos);
+    log('moveCount = ', piece.movementCount);
+    log('position = ', piece.pos);
     log('deltaX, deltaY = ', [deltaX, deltaY]);
     log('isEnemyAttacked = ', isEnemyAttacked);
     log('isEndEmpty = ', isEndEmpty);
@@ -25,11 +26,11 @@ class Queen extends Piece {
         if (Math.abs(deltaX) !== Math.abs(deltaY)) {
           // straight move pattern
           isPathBlocked = this.obsticleCheckStraight( // if the previous conditions are met => check for obsticles
-            start, end, deltaX, deltaY, piece, board);
-        } else if (Math.abs(deltaX) === Math.abs(deltaY)) {
+            start, end, deltaX, deltaY, piece, chess.board);
+        } else { // if (Math.abs(deltaX) === Math.abs(deltaY))
           // diag move pattern
           isPathBlocked = this.obsticleCheckDiagonal( // if the previous conditions are met => check for obsticles
-            start, end, deltaX, deltaY, piece, board);
+            start, end, deltaX, deltaY, piece, chess.board);
         }
         log('isPathBlocked = ', isPathBlocked);
         if (!isPathBlocked) return true;
@@ -39,9 +40,9 @@ class Queen extends Piece {
   }
   obsticleCheckStraight(start, end, deltaX, deltaY, piece, board) {
     const iterationCount =
-      Math.abs(deltaX) > 0
-        ? Math.abs(deltaX)
-        : Math.abs(deltaY);
+      Math.abs(deltaX) > 0 ?
+        Math.abs(deltaX) :
+        Math.abs(deltaY);
     const deltaXIterStep = deltaX !== 0 ? deltaX / iterationCount : 0;
     const deltaYIterStep = deltaY !== 0 ? deltaY / iterationCount : 0;
     log('deltaXIterStep = ', deltaXIterStep);
@@ -55,7 +56,7 @@ class Queen extends Piece {
         nextIterStep = coordValue - (1 * index);
       } else if (deltaXIterStep > 0) {
         nextIterStep = coordValue + (10 * index);
-      } else if (deltaXIterStep < 0) {
+      } else { // if (deltaXIterStep < 0)
         nextIterStep = coordValue - (10 * index);
       }
       const nextIterCoord = board.coordRev[nextIterStep];
@@ -80,7 +81,7 @@ class Queen extends Piece {
         nextIterStep = coordValue + (9 * index);
       } else if (deltaXIterStep < 0 && deltaYIterStep < 0) {
         nextIterStep = coordValue - (11 * index);
-      } else if (deltaXIterStep < 0 && deltaYIterStep > 0) {
+      } else { // if (deltaXIterStep < 0 && deltaYIterStep > 0)
         nextIterStep = coordValue - (9 * index);
       }
       const nextIterCoord = board.coordRev[nextIterStep];

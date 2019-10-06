@@ -1,4 +1,3 @@
-
 const COLORS = require('../../../src/util').COLORS;
 const { Board } = require('../../../src/board');
 const { Pawn } = require('../../../src/pieces/pawn');

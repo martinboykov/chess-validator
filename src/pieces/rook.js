@@ -10,21 +10,22 @@ class Rook extends Piece {
     this.movementCount = 0;
   }
   validateMove(deltaX, deltaY, isEnemyAttacked,
-    isEndEmpty, piece, board, start, end) {
+    isEndEmpty, piece, chess, start, end) {
     if ((deltaX !== 0 && deltaY !== 0) ||
       (deltaX === 0 && deltaY === 0)) return false; // fast check
     const isRegularFound = this.findMovePattern(
       this.pattern.regular, deltaX, deltaY);
     log('color = ', piece.color);
     log('type = ', piece.type);
-    log('start = ', piece.pos);
+    log('moveCount = ', piece.movementCount);
+    log('position = ', piece.pos);
     log('deltaX, deltaY = ', [deltaX, deltaY]);
     log('isEnemyAttacked = ', isEnemyAttacked);
     log('isEndEmpty = ', isEndEmpty);
     if (isRegularFound) {
       if (isEnemyAttacked || isEndEmpty) {
         const isPathBlocked = this.obsticleCheck( // if the previous conditions are met => check for obsticles
-          start, end, deltaX, deltaY, piece, board);
+          start, end, deltaX, deltaY, piece, chess.board);
         log('isPathBlocked = ', isPathBlocked);
         if (!isPathBlocked) return true;
       }
@@ -49,7 +50,7 @@ class Rook extends Piece {
         nextIterStep = coordValue - (1 * index);
       } else if (deltaXIterStep > 0) {
         nextIterStep = coordValue + (10 * index);
-      } else if (deltaXIterStep < 0) {
+      } else { // if (deltaXIterStep < 0)
         nextIterStep = coordValue - (10 * index);
       }
       const nextIterCoord = board.coordRev[nextIterStep];

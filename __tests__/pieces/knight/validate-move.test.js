@@ -1,5 +1,5 @@
 const COLORS = require('../../../src/util').COLORS;
-const { Board } = require('../../../src/board');
+const { Chess } = require('../../../src/chess');
 const { Knight } = require('../../../src/pieces/knight');
 
 describe('knight', () => {
@@ -13,7 +13,8 @@ describe('knight', () => {
         const end = 'f6';
         const isEnemyAttacked = false;
         const isEndEmpty = true;
-        const board = new Board();
+        const chess = new Chess();
+        const board = chess.board;
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         knight.findMovePattern = jest.fn().mockImplementation(() => {
@@ -22,7 +23,7 @@ describe('knight', () => {
         board.pieces[knight.pos] = knight;
         const result = knight.validateMove(
           delta[0], delta[1], isEnemyAttacked,
-          isEndEmpty, knight, board, start, end);
+          isEndEmpty, knight, chess, start, end);
         expect(result).toBe(true);
       });
       it('should return "true" if knight start pos is "e4" and end pos is "g5" without piece at end', () => { // eslint-disable-line max-len
@@ -30,7 +31,8 @@ describe('knight', () => {
         const end = 'g5';
         const isEnemyAttacked = false;
         const isEndEmpty = true;
-        const board = new Board();
+        const chess = new Chess();
+        const board = chess.board;
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
@@ -39,7 +41,7 @@ describe('knight', () => {
         });
         const result = knight.validateMove(
           delta[0], delta[1], isEnemyAttacked,
-          isEndEmpty, knight, board, start, end);
+          isEndEmpty, knight, chess, start, end);
         expect(result).toBe(true);
       });
       it('should return "true" if knight start pos is "e4" and end pos is "g3" without piece at end', () => { // eslint-disable-line max-len
@@ -47,7 +49,8 @@ describe('knight', () => {
         const end = 'g3';
         const isEnemyAttacked = false;
         const isEndEmpty = true;
-        const board = new Board();
+        const chess = new Chess();
+        const board = chess.board;
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
@@ -56,7 +59,7 @@ describe('knight', () => {
         });
         const result = knight.validateMove(
           delta[0], delta[1], isEnemyAttacked,
-          isEndEmpty, knight, board, start, end);
+          isEndEmpty, knight, chess, start, end);
         expect(result).toBe(true);
       });
       it('should return "true" if knight start pos is "e4" and end pos is "f2" without piece at end', () => { // eslint-disable-line max-len
@@ -64,7 +67,8 @@ describe('knight', () => {
         const end = 'f2';
         const isEnemyAttacked = false;
         const isEndEmpty = true;
-        const board = new Board();
+        const chess = new Chess();
+        const board = chess.board;
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
@@ -73,7 +77,7 @@ describe('knight', () => {
         });
         const result = knight.validateMove(
           delta[0], delta[1], isEnemyAttacked,
-          isEndEmpty, knight, board, start, end);
+          isEndEmpty, knight, chess, start, end);
         expect(result).toBe(true);
       });
       it('should return "true" if knight start pos is "e4" and end pos is "d2" without piece at end', () => { // eslint-disable-line max-len
@@ -81,7 +85,8 @@ describe('knight', () => {
         const end = 'd2';
         const isEnemyAttacked = false;
         const isEndEmpty = true;
-        const board = new Board();
+        const chess = new Chess();
+        const board = chess.board;
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         knight.findMovePattern = jest.fn().mockImplementation(() => {
@@ -90,7 +95,7 @@ describe('knight', () => {
         board.pieces[knight.pos] = knight;
         const result = knight.validateMove(
           delta[0], delta[1], isEnemyAttacked,
-          isEndEmpty, knight, board, start, end);
+          isEndEmpty, knight, chess, start, end);
         expect(result).toBe(true);
       });
       it('should return "true" if knight start pos is "e4" and end pos is "c3" without piece at end', () => { // eslint-disable-line max-len
@@ -98,7 +103,8 @@ describe('knight', () => {
         const end = 'c3';
         const isEnemyAttacked = false;
         const isEndEmpty = true;
-        const board = new Board();
+        const chess = new Chess();
+        const board = chess.board;
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
@@ -107,7 +113,7 @@ describe('knight', () => {
         });
         const result = knight.validateMove(
           delta[0], delta[1], isEnemyAttacked,
-          isEndEmpty, knight, board, start, end);
+          isEndEmpty, knight, chess, start, end);
         expect(result).toBe(true);
       });
       it('should return "true" if knight start pos is "e4" and end pos is "c5" without piece at end', () => { // eslint-disable-line max-len
@@ -115,7 +121,8 @@ describe('knight', () => {
         const end = 'c5';
         const isEnemyAttacked = false;
         const isEndEmpty = true;
-        const board = new Board();
+        const chess = new Chess();
+        const board = chess.board;
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
@@ -124,7 +131,7 @@ describe('knight', () => {
         });
         const result = knight.validateMove(
           delta[0], delta[1], isEnemyAttacked,
-          isEndEmpty, knight, board, start, end);
+          isEndEmpty, knight, chess, start, end);
         expect(result).toBe(true);
       });
       it('should return "true" if knight start pos is "e4" and end pos is "d6" without piece at end', () => { // eslint-disable-line max-len
@@ -132,7 +139,8 @@ describe('knight', () => {
         const end = 'd6';
         const isEnemyAttacked = false;
         const isEndEmpty = true;
-        const board = new Board();
+        const chess = new Chess();
+        const board = chess.board;
         const delta = board.calculateDelta(end, start);
         const knight = new Knight(start, COLORS.black);
         board.pieces[knight.pos] = knight;
@@ -141,7 +149,7 @@ describe('knight', () => {
         });
         const result = knight.validateMove(
           delta[0], delta[1], isEnemyAttacked,
-          isEndEmpty, knight, board, start, end);
+          isEndEmpty, knight, chess, start, end);
         expect(result).toBe(true);
       });
     });
@@ -152,7 +160,8 @@ describe('knight', () => {
           const end = 'f6';
           const isEnemyAttacked = false;
           const isEndEmpty = false;
-          const board = new Board();
+          const chess = new Chess();
+          const board = chess.board;
           const delta = board.calculateDelta(end, start);
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
@@ -162,7 +171,7 @@ describe('knight', () => {
           });
           const result = knight.validateMove(
             delta[0], delta[1], isEnemyAttacked,
-            isEndEmpty, knight, board, start, end);
+            isEndEmpty, knight, chess, start, end);
           expect(result).toBe(false);
         });
         it('should return "false" if knight start pos is "e4" and end pos is "g5" with piece of same color at end', () => { // eslint-disable-line max-len
@@ -170,7 +179,8 @@ describe('knight', () => {
           const end = 'g5';
           const isEnemyAttacked = false;
           const isEndEmpty = false;
-          const board = new Board();
+          const chess = new Chess();
+          const board = chess.board;
           const delta = board.calculateDelta(end, start);
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
@@ -180,7 +190,7 @@ describe('knight', () => {
           });
           const result = knight.validateMove(
             delta[0], delta[1], isEnemyAttacked,
-            isEndEmpty, knight, board, start, end);
+            isEndEmpty, knight, chess, start, end);
           expect(result).toBe(false);
         });
         it('should return "false" if knight start pos is "e4" and end pos is "g3" with piece of same color at end', () => { // eslint-disable-line max-len
@@ -188,7 +198,8 @@ describe('knight', () => {
           const end = 'g3';
           const isEnemyAttacked = false;
           const isEndEmpty = false;
-          const board = new Board();
+          const chess = new Chess();
+          const board = chess.board;
           const delta = board.calculateDelta(end, start);
           const knight = new Knight(start, COLORS.black);
           board.pieces[end] = new Knight(start, COLORS.black);
@@ -198,7 +209,7 @@ describe('knight', () => {
           });
           const result = knight.validateMove(
             delta[0], delta[1], isEnemyAttacked,
-            isEndEmpty, knight, board, start, end);
+            isEndEmpty, knight, chess, start, end);
           expect(result).toBe(false);
         });
         it('should return "false" if knight start pos is "e4" and end pos is "f2" with piece of same color at end', () => { // eslint-disable-line max-len
@@ -206,7 +217,8 @@ describe('knight', () => {
           const end = 'f2';
           const isEnemyAttacked = false;
           const isEndEmpty = false;
-          const board = new Board();
+          const chess = new Chess();
+          const board = chess.board;
           const delta = board.calculateDelta(end, start);
           const knight = new Knight(start, COLORS.black);
           board.pieces[end] = new Knight(start, COLORS.black);
@@ -216,7 +228,7 @@ describe('knight', () => {
           });
           const result = knight.validateMove(
             delta[0], delta[1], isEnemyAttacked,
-            isEndEmpty, knight, board, start, end);
+            isEndEmpty, knight, chess, start, end);
           expect(result).toBe(false);
         });
         it('should return "false" if knight start pos is "e4" and end pos is "d2" with piece of same color at end', () => { // eslint-disable-line max-len
@@ -224,7 +236,8 @@ describe('knight', () => {
           const end = 'd2';
           const isEnemyAttacked = false;
           const isEndEmpty = false;
-          const board = new Board();
+          const chess = new Chess();
+          const board = chess.board;
           const delta = board.calculateDelta(end, start);
           const knight = new Knight(start, COLORS.black);
           board.pieces[end] = new Knight(start, COLORS.black);
@@ -234,7 +247,7 @@ describe('knight', () => {
           });
           const result = knight.validateMove(
             delta[0], delta[1], isEnemyAttacked,
-            isEndEmpty, knight, board, start, end);
+            isEndEmpty, knight, chess, start, end);
           expect(result).toBe(false);
         });
         it('should return "false" if knight start pos is "e4" and end pos is "c3" with piece of same color at end', () => { // eslint-disable-line max-len
@@ -242,7 +255,8 @@ describe('knight', () => {
           const end = 'c3';
           const isEnemyAttacked = false;
           const isEndEmpty = false;
-          const board = new Board();
+          const chess = new Chess();
+          const board = chess.board;
           const delta = board.calculateDelta(end, start);
           const knight = new Knight(start, COLORS.black);
           board.pieces[end] = new Knight(start, COLORS.black);
@@ -252,7 +266,7 @@ describe('knight', () => {
           });
           const result = knight.validateMove(
             delta[0], delta[1], isEnemyAttacked,
-            isEndEmpty, knight, board, start, end);
+            isEndEmpty, knight, chess, start, end);
           expect(result).toBe(false);
         });
         it('should return "false" if knight start pos is "e4" and end pos is "c5" with piece of same color at end', () => { // eslint-disable-line max-len
@@ -260,7 +274,8 @@ describe('knight', () => {
           const end = 'c5';
           const isEnemyAttacked = false;
           const isEndEmpty = false;
-          const board = new Board();
+          const chess = new Chess();
+          const board = chess.board;
           const delta = board.calculateDelta(end, start);
           const knight = new Knight(start, COLORS.black);
           board.pieces[end] = new Knight(start, COLORS.black);
@@ -270,7 +285,7 @@ describe('knight', () => {
           });
           const result = knight.validateMove(
             delta[0], delta[1], isEnemyAttacked,
-            isEndEmpty, knight, board, start, end);
+            isEndEmpty, knight, chess, start, end);
           expect(result).toBe(false);
         });
         it('should return "false" if knight start pos is "e4" and end pos is "d6" with piece of same color at end', () => { // eslint-disable-line max-len
@@ -278,7 +293,8 @@ describe('knight', () => {
           const end = 'd6';
           const isEnemyAttacked = false;
           const isEndEmpty = false;
-          const board = new Board();
+          const chess = new Chess();
+          const board = chess.board;
           const delta = board.calculateDelta(end, start);
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
@@ -288,7 +304,7 @@ describe('knight', () => {
           });
           const result = knight.validateMove(
             delta[0], delta[1], isEnemyAttacked,
-            isEndEmpty, knight, board, start, end);
+            isEndEmpty, knight, chess, start, end);
           expect(result).toBe(false);
         });
       });
@@ -298,7 +314,8 @@ describe('knight', () => {
           const end = 'f6';
           const isEnemyAttacked = true;
           const isEndEmpty = false;
-          const board = new Board();
+          const chess = new Chess();
+          const board = chess.board;
           const delta = board.calculateDelta(end, start);
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
@@ -308,7 +325,7 @@ describe('knight', () => {
           });
           const result = knight.validateMove(
             delta[0], delta[1], isEnemyAttacked,
-            isEndEmpty, knight, board, start, end);
+            isEndEmpty, knight, chess, start, end);
           expect(result).toBe(true);
         });
         it('should return "true" if knight start pos is "e4" and end pos is "g5" with piece of another color at end', () => { // eslint-disable-line max-len
@@ -316,7 +333,8 @@ describe('knight', () => {
           const end = 'g5';
           const isEnemyAttacked = true;
           const isEndEmpty = false;
-          const board = new Board();
+          const chess = new Chess();
+          const board = chess.board;
           const delta = board.calculateDelta(end, start);
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
@@ -326,7 +344,7 @@ describe('knight', () => {
           });
           const result = knight.validateMove(
             delta[0], delta[1], isEnemyAttacked,
-            isEndEmpty, knight, board, start, end);
+            isEndEmpty, knight, chess, start, end);
           expect(result).toBe(true);
         });
         it('should return "true" if knight start pos is "e4" and end pos is "g3" with piece of another color at end', () => { // eslint-disable-line max-len
@@ -334,7 +352,8 @@ describe('knight', () => {
           const end = 'g3';
           const isEnemyAttacked = true;
           const isEndEmpty = false;
-          const board = new Board();
+          const chess = new Chess();
+          const board = chess.board;
           const delta = board.calculateDelta(end, start);
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
@@ -344,7 +363,7 @@ describe('knight', () => {
           });
           const result = knight.validateMove(
             delta[0], delta[1], isEnemyAttacked,
-            isEndEmpty, knight, board, start, end);
+            isEndEmpty, knight, chess, start, end);
           expect(result).toBe(true);
         });
         it('should return "true" if knight start pos is "e4" and end pos is "f2" with piece of another color at end', () => { // eslint-disable-line max-len
@@ -352,7 +371,8 @@ describe('knight', () => {
           const end = 'f2';
           const isEnemyAttacked = true;
           const isEndEmpty = false;
-          const board = new Board();
+          const chess = new Chess();
+          const board = chess.board;
           const delta = board.calculateDelta(end, start);
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
@@ -362,7 +382,7 @@ describe('knight', () => {
           });
           const result = knight.validateMove(
             delta[0], delta[1], isEnemyAttacked,
-            isEndEmpty, knight, board, start, end);
+            isEndEmpty, knight, chess, start, end);
           expect(result).toBe(true);
         });
         it('should return "true" if knight start pos is "e4" and end pos is "d2" with piece of another color at end', () => { // eslint-disable-line max-len
@@ -370,7 +390,8 @@ describe('knight', () => {
           const end = 'd2';
           const isEnemyAttacked = true;
           const isEndEmpty = false;
-          const board = new Board();
+          const chess = new Chess();
+          const board = chess.board;
           const delta = board.calculateDelta(end, start);
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
@@ -380,7 +401,7 @@ describe('knight', () => {
           });
           const result = knight.validateMove(
             delta[0], delta[1], isEnemyAttacked,
-            isEndEmpty, knight, board, start, end);
+            isEndEmpty, knight, chess, start, end);
           expect(result).toBe(true);
         });
         it('should return "true" if knight start pos is "e4" and end pos is "c3" with piece of another color at end', () => { // eslint-disable-line max-len
@@ -388,7 +409,8 @@ describe('knight', () => {
           const end = 'c3';
           const isEnemyAttacked = true;
           const isEndEmpty = false;
-          const board = new Board();
+          const chess = new Chess();
+          const board = chess.board;
           const delta = board.calculateDelta(end, start);
           const knight = new Knight(start, COLORS.black);
           board.pieces[end] = new Knight(start, COLORS.white);
@@ -398,7 +420,7 @@ describe('knight', () => {
           });
           const result = knight.validateMove(
             delta[0], delta[1], isEnemyAttacked,
-            isEndEmpty, knight, board, start, end);
+            isEndEmpty, knight, chess, start, end);
           expect(result).toBe(true);
         });
         it('should return "true" if knight start pos is "e4" and end pos is "c5" with piece of another color at end', () => { // eslint-disable-line max-len
@@ -406,7 +428,8 @@ describe('knight', () => {
           const end = 'c5';
           const isEnemyAttacked = true;
           const isEndEmpty = false;
-          const board = new Board();
+          const chess = new Chess();
+          const board = chess.board;
           const delta = board.calculateDelta(end, start);
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
@@ -416,7 +439,7 @@ describe('knight', () => {
           });
           const result = knight.validateMove(
             delta[0], delta[1], isEnemyAttacked,
-            isEndEmpty, knight, board, start, end);
+            isEndEmpty, knight, chess, start, end);
           expect(result).toBe(true);
         });
         it('should return "true" if knight start pos is "e4" and end pos is "d6" with piece of another color at end', () => { // eslint-disable-line max-len
@@ -424,7 +447,8 @@ describe('knight', () => {
           const end = 'd6';
           const isEnemyAttacked = true;
           const isEndEmpty = false;
-          const board = new Board();
+          const chess = new Chess();
+          const board = chess.board;
           const delta = board.calculateDelta(end, start);
           const knight = new Knight(start, COLORS.black);
           board.pieces[knight.pos] = knight;
@@ -434,8 +458,45 @@ describe('knight', () => {
           });
           const result = knight.validateMove(
             delta[0], delta[1], isEnemyAttacked,
-            isEndEmpty, knight, board, start, end);
+            isEndEmpty, knight, chess, start, end);
           expect(result).toBe(true);
+        });
+        it('should return "false" if knight start pos is "e4" and end pos is "e5" with no piece at end', () => { // eslint-disable-line max-len
+          const start = 'e4';
+          const end = 'e5';
+          const isEnemyAttacked = true;
+          const isEndEmpty = false;
+          const chess = new Chess();
+          const board = chess.board;
+          const delta = board.calculateDelta(end, start);
+          const knight = new Knight(start, COLORS.black);
+          board.pieces[knight.pos] = knight;
+          knight.findMovePattern = jest.fn().mockImplementation(() => {
+            return false;
+          });
+          const result = knight.validateMove(
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, knight, chess, start, end);
+          expect(result).toBe(false);
+        });
+        it('should return "false" if knight start pos is "e4" and end pos is "g6" with piece of same color at end', () => { // eslint-disable-line max-len
+          const start = 'e4';
+          const end = 'g6';
+          const isEnemyAttacked = false;
+          const isEndEmpty = false;
+          const chess = new Chess();
+          const board = chess.board;
+          const delta = board.calculateDelta(end, start);
+          const knight = new Knight(start, COLORS.black);
+          board.pieces[knight.pos] = knight;
+          board.pieces[end] = new Knight(start, COLORS.black);
+          knight.findMovePattern = jest.fn().mockImplementation(() => {
+            return true;
+          });
+          const result = knight.validateMove(
+            delta[0], delta[1], isEnemyAttacked,
+            isEndEmpty, knight, chess, start, end);
+          expect(result).toBe(false);
         });
       });
     });

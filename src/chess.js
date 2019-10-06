@@ -11,6 +11,11 @@ class Chess {
     this.order = PLAY_ORDER.white;
     this.kingCount = 0;
     this.state = STATE.regular;
+    this.enPassant = {
+      state: false,
+      pos: null,
+      activated: false,
+    };
   }
   init() {
     /* istanbul ignore next */
@@ -86,30 +91,39 @@ class Chess {
 
     const isValidMove = piece.validateMove(
       deltaX, deltaY, isEnemyAttacked, isEndEmpty,
-      piece, this.board, start, end,
+      piece, this, start, end,
     );
     if (isValidMove) {
-      const oldMovementCount = piece.movementCount;
       if (isKingToBeRemoved) this.kingCount -= 1;
+
+      // pawn en passant
+      if (this.enPassant.state) {
+        // reset the en-passant state if no en-passant move was made in the current turn
+        if (this.enPassant.pos !== end) {
+          this.enPassant.state = false;
+          this.enPassant.pos = null;
+        }
+      }
       // pawn promotion
       // ---------------------------------------
+      const oldMovementCount = piece.movementCount;
       const isPawnPromoted = this.pawnPromotionCheck(piece, end);
       if (piece.type === TYPES.pawn && isPawnPromoted) {
         piece = new pieceType.Queen(end, piece.color);
         this.board.pieces[end] = piece;
         this.board.pieces[start] = '.';
+      } else {
         // default
         // ---------------------------------------
-      } else {
         this.board.pieces[end] = piece;
         piece.pos = end;
         this.board.pieces[start] = '.';
       }
       piece.movementCount = oldMovementCount + 1;
-      log('end = ', end);
-      log('pos = ', piece.pos);
-      log('type = ', piece.type);
       log('color = ', piece.color);
+      log('type = ', piece.type);
+      log('moveCount = ', piece.movementCount);
+      log('position = ', piece.pos);
       this.order = !this.order;
 
       /* istanbul ignore next */
@@ -154,13 +168,13 @@ class Chess {
   }
   pawnPromotionCheck(piece, end) {
     if (piece.color) {
-      if (end === 'a8' || end === 'b8' || end === 'c8' || end === 'd8'
-        || end === 'e8' || end === 'f8' || end === 'g8' || end === 'h8') {
+      if (end === 'a8' || end === 'b8' || end === 'c8' || end === 'd8' ||
+        end === 'e8' || end === 'f8' || end === 'g8' || end === 'h8') {
         return true;
       }
     } else { // if (!piece.color)
-      if (end === 'a1' || end === 'b1' || end === 'c1' || end === 'd1'
-        || end === 'e1' || end === 'f1' || end === 'g1' || end === 'h1') {
+      if (end === 'a1' || end === 'b1' || end === 'c1' || end === 'd1' ||
+        end === 'e1' || end === 'f1' || end === 'g1' || end === 'h1') {
         return true;
       }
     }

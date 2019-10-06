@@ -11,18 +11,19 @@ class Bishop extends Piece {
     this.movementCount = 0;
   }
   validateMove(deltaX, deltaY, isEnemyAttacked,
-    isEndEmpty, piece, board, start, end) {
+    isEndEmpty, piece, chess, start, end) {
     const isRegularFound = this.findMovePattern(
       this.pattern.regular, deltaX, deltaY);
-    log('pos = ', piece.pos);
-    log('type = ', piece.type);
     log('color = ', piece.color);
+    log('type = ', piece.type);
+    log('moveCount = ', piece.movementCount);
+    log('position = ', piece.pos);
     log('deltaX, deltaY = ', [deltaX, deltaY]);
     log('isRegularFound = ', isRegularFound);
     if (isRegularFound) {
       if (isEnemyAttacked || isEndEmpty) {
         const isPathBlocked = this.obsticleCheck( // if the previous conditions are met => check for obsticles
-          start, end, deltaX, deltaY, piece, board);
+          start, end, deltaX, deltaY, piece, chess.board);
         log('isPathBlocked = ', isPathBlocked);
         if (!isPathBlocked) return true;
       }
@@ -42,7 +43,7 @@ class Bishop extends Piece {
         nextIterStep = coordValue + (9 * index);
       } else if (deltaXIterStep < 0 && deltaYIterStep < 0) {
         nextIterStep = coordValue - (11 * index);
-      } else if (deltaXIterStep < 0 && deltaYIterStep > 0) {
+      } else { //  if (deltaXIterStep < 0 && deltaYIterStep > 0)
         nextIterStep = coordValue - (9 * index);
       }
       const nextIterCoord = board.coordRev[nextIterStep];
