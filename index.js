@@ -9,6 +9,7 @@ const isDev = process.env.NODE_ENV === 'development' ? true : false; // eslint-d
 
 function main() { // eslint-disable-line consistent-return
   const success = 'All moves are valid';
+  let finalMove = false;
   const fileReader = new FileReader(file);
   const readline = rl.createInterface({
     input: fs.createReadStream(file),
@@ -19,9 +20,15 @@ function main() { // eslint-disable-line consistent-return
   try {
     fs.accessSync(file, fs.constants.R_OK | fs.constants.W_OK);
     readline.on('line', (line) => {
+      if (finalMove) {
+        throw new Error(`Can't have more moves as final move was already made`);
+      }
       const moves = fileReader.dataHandler(line); // returns str.match(regexp)
       let max = 5;
-      if (!moves[3]) max = 3; // if white make final move and there is no move for black
+      if (!moves[3]) {
+        finalMove = true;
+        max = 3; // if white make final move and there is no move for black
+      }
       for (let i = 1; i < max; i += 2) {
         const start = moves[i];
         const finish = moves[i + 1];
