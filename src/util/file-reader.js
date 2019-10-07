@@ -9,10 +9,14 @@ class FileReader {
     this.lineCount += 1;
     log('lineCount = ', this.lineCount);
     log('line = ', line);
-    const regexp = /^(?:[0-9]+\.\s)([a-h][1-8])(?:-){1}([a-h][1-8])(?:[\s]{3})([a-h][1-8])(?:-){1}([a-h][1-8])$/; // eslint-disable-line max-len
-    const match = line.match(regexp);
+    let regexp = /^(?:[0-9]+\.\s)([a-h][1-8])(?:-){1}([a-h][1-8])(?:[\s]{3})([a-h][1-8])(?:-){1}([a-h][1-8])$/; // eslint-disable-line max-len
+    let match = line.match(regexp);
     if (!match) { // if no match returns "null"
-      throw new Error(`Invalid input detected on line = ${this.lineCount}`);
+      regexp = /^(?:[0-9]+\.\s)([a-h][1-8])(?:-){1}([a-h][1-8])$/; // eslint-disable-line max-len
+      match = line.match(regexp);
+      if (!match) {
+        throw new Error(`Invalid input detected on line = ${this.lineCount}`);
+      }
     }
     log(match);
     return match;

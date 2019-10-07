@@ -1,7 +1,7 @@
 const log = require('debug')('chess');
 const { Board } = require('./board');
 const pieceType = require('./pieces');
-const { TYPES, COLORS, PLAY_ORDER, STATE } = require('./util'); /* istanbul ignore next */
+const { TYPES, COLORS, PLAY_ORDER } = require('./util'); /* istanbul ignore next */
 const isDev = process.env.NODE_ENV === 'development' ? true : false; // eslint-disable-line no-process-env
 
 // ...
@@ -10,7 +10,6 @@ class Chess {
     this.board = new Board();
     this.order = PLAY_ORDER.white;
     this.kingCount = 0;
-    this.state = STATE.regular;
     this.enPassant = {
       state: false,
       pos: null,

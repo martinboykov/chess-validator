@@ -20,13 +20,15 @@ function main() { // eslint-disable-line consistent-return
     fs.accessSync(file, fs.constants.R_OK | fs.constants.W_OK);
     readline.on('line', (line) => {
       const moves = fileReader.dataHandler(line); // returns str.match(regexp)
-      for (let i = 1; i < 5; i += 2) {
+      let max = 5;
+      if (!moves[3]) max = 3; // if white make final move and there is no move for black
+      for (let i = 1; i < max; i += 2) {
         const start = moves[i];
         const finish = moves[i + 1];
         const moveOutcome = chess.makeMove(start, finish);
         if (typeof (moveOutcome) === 'string') {
           log(moveOutcome);
-          if (!isDev) readline.write(moveOutcome);
+          if (!isDev) console.log(moveOutcome);
           process.exit(0);
         }
       }
@@ -35,7 +37,7 @@ function main() { // eslint-disable-line consistent-return
         throw new Error(`No valid moves provided`);
       }
       log(success);
-      if (!isDev) readline.write(success);
+      if (!isDev) console.log(success);
     });
   } catch (err) {
     fileReader.errorHandler(err);

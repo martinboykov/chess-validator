@@ -18,16 +18,8 @@ const PLAY_ORDER = {
   black: false,
 };
 
-
-const STATE = {
-  regular: 0,
-  check: 1,
-  checkmate: 2,
-};
-
 module.exports = {
   TYPES,
   COLORS,
   PLAY_ORDER,
-  STATE,
 };
