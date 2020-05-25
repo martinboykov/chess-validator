@@ -25,39 +25,39 @@ class Chess {
     ['a2', 'b2', 'c2', 'd2', 'e2', 'f2', 'g2', 'h2',
       'a7', 'b7', 'c7', 'd7', 'e7', 'f7', 'g7', 'h7']
       .forEach((pos, idx) => {
-        if (idx < 8) this.add().pawn(pos, COLORS.white); /* istanbul ignore next */
-        else if (idx >= 8) this.add().pawn(pos, COLORS.black);
+        if (idx < 8) this.addPiece.pawn(pos, COLORS.white); /* istanbul ignore next */
+        else if (idx >= 8) this.addPiece.pawn(pos, COLORS.black);
       });
 
     // knights init
     // -----------------------------------------
     ['b1', 'g1', 'b8', 'g8'].forEach((pos, idx) => {
-      if (idx < 2) this.add().knight(pos, COLORS.white); /* istanbul ignore next */
-      else if (idx >= 2) this.add().knight(pos, COLORS.black);
+      if (idx < 2) this.addPiece.knight(pos, COLORS.white); /* istanbul ignore next */
+      else if (idx >= 2) this.addPiece.knight(pos, COLORS.black);
     });
     // bishops init
     // -----------------------------------------
     ['c1', 'f1', 'c8', 'f8'].forEach((pos, idx) => {
-      if (idx < 2) this.add().bishop(pos, COLORS.white); /* istanbul ignore next */
-      else if (idx >= 2) this.add().bishop(pos, COLORS.black);
+      if (idx < 2) this.addPiece.bishop(pos, COLORS.white); /* istanbul ignore next */
+      else if (idx >= 2) this.addPiece.bishop(pos, COLORS.black);
     });
     // rooks init
     // -----------------------------------------
     ['a1', 'h1', 'a8', 'h8'].forEach((pos, idx) => {
-      if (idx < 2) this.add().rook(pos, COLORS.white); /* istanbul ignore next */
-      else if (idx >= 2) this.add().rook(pos, COLORS.black);
+      if (idx < 2) this.addPiece.rook(pos, COLORS.white); /* istanbul ignore next */
+      else if (idx >= 2) this.addPiece.rook(pos, COLORS.black);
     });
     // queens init
     // -----------------------------------------
     ['d1', 'd8'].forEach((pos, idx) => {
-      if (idx < 1) this.add().queen(pos, COLORS.white); /* istanbul ignore next */
-      else if (idx >= 1) this.add().queen(pos, COLORS.black);
+      if (idx < 1) this.addPiece.queen(pos, COLORS.white); /* istanbul ignore next */
+      else if (idx >= 1) this.addPiece.queen(pos, COLORS.black);
     });
     // kings init
     // -----------------------------------------
     ['e1', 'e8'].forEach((pos, idx) => {
-      if (idx < 1) this.add().king(pos, COLORS.white); /* istanbul ignore next */
-      else if (idx >= 1) this.add().king(pos, COLORS.black);
+      if (idx < 1) this.addPiece.king(pos, COLORS.white); /* istanbul ignore next */
+      else if (idx >= 1) this.addPiece.king(pos, COLORS.black);
     });
     this.kingCount = 2;
     /* istanbul ignore next */
@@ -131,30 +131,28 @@ class Chess {
     }
     return this.gameOver(start, end);
   }
+  addPiece = {
+    pawn: (pos, color) => {
+      this.board.pieces[pos] = new pieceType.Pawn(pos, color);
+    },
+    knight: (pos, color) => {
+      this.board.pieces[pos] = new pieceType.Knight(pos, color);
+    },
+    bishop: (pos, color) => {
+      this.board.pieces[pos] = new pieceType.Bishop(pos, color);
+    },
+    rook: (pos, color) => {
+      this.board.pieces[pos] = new pieceType.Rook(pos, color);
+    },
+    queen: (pos, color) => {
+      this.board.pieces[pos] = new pieceType.Queen(pos, color);
+    },
+    king: (pos, color) => {
+      this.board.pieces[pos] = new pieceType.King(pos, color);
+    },
+  }
   gameOver(start, end) {
     return `Wrong move: ${start}-${end}`;
-  }
-  add() {
-    return {
-      pawn: (pos, color) => {
-        this.board.pieces[pos] = new pieceType.Pawn(pos, color);
-      },
-      knight: (pos, color) => {
-        this.board.pieces[pos] = new pieceType.Knight(pos, color);
-      },
-      bishop: (pos, color) => {
-        this.board.pieces[pos] = new pieceType.Bishop(pos, color);
-      },
-      rook: (pos, color) => {
-        this.board.pieces[pos] = new pieceType.Rook(pos, color);
-      },
-      queen: (pos, color) => {
-        this.board.pieces[pos] = new pieceType.Queen(pos, color);
-      },
-      king: (pos, color) => {
-        this.board.pieces[pos] = new pieceType.King(pos, color);
-      },
-    };
   }
   enemyAttackedCheck(start, end) {
     return (this.board.pieces[end] !== '.' &&

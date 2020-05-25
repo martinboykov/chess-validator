@@ -1,7 +1,7 @@
 # __**Chess Validator**__
 
-## __**Description**__
-The game of chess is a two-player game and each player start with one king, one queen, two rooks, two knights, two bishops, and eight pawns. Each piece type moves differently:
+### __**Description**__
+The game of chess is a two-player game and each player start with one king, one queen, two rooks, two knights, two bishops, and eight pawns. Each piece type moves differently. If all the moves are valid returns string “All moves are valid”. If any invalid move is fund returns the wrong move: “Wrong move: {wrong_move}”. Pawn promotion, check and checkmate are not implemented. Pieces types:
 ### __**King**__
 The king moves one square in any direction. The king also has a special move called castling that involves also moving a rook.
 ### __**Rook**__
@@ -17,9 +17,6 @@ The pawn can move forward to the unoccupied square immediately in front of it on
 
 ### __**Board**__
 The game is played on a square board of eight rows (called ranks, denoted 1 to 8 from bottom to top according to White's perspective) and eight columns (called files, denoted a to h from left to right according to White's perspective).
-
-## __**Task**__
-Implement code that validates the moves of the two players. If all the moves are valid return string “All moves are valid”. If you find any invalid move, then validation and return the wrong move: “Wrong move: {wrong_move}” where {wrong_move} is the invalid move you’ve found.
 
 ## __**Examples**__
 ### __**Example 1**__:
